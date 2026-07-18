@@ -1,5 +1,10 @@
 .env
+.env.local
+.env*.local
 .venv/
+
+# Cotal mesh local state (NATS creds, nkey seeds, logs)
+.cotal/
 __pycache__/
 scratch/
 *.pyc
