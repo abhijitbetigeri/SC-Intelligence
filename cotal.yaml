@@ -1,0 +1,111 @@
+# Mise — Cotal mesh manifest (one Space per franchise)
+# Schema: https://docs.cotal.ai/manifest/  (apiVersion cotal/v1, kind Mesh)
+#
+# Branches and suppliers are agent nodes. The rebalance loop lives on #rebalance:
+# a short branch broadcasts a need, branches holding surplus respond (anycast — one
+# claims), the coordinator confirms the transfer, and only the net shortage escalates
+# to #procurement where supplier agents bid.
+#
+# Run:  npx cotal-ai setup   →   cotal up --detach   →   cotal spawn <agent>   →   cotal web
+
+apiVersion: cotal/v1
+kind: Mesh
+space: trattoria-verde
+
+# Default harness for agents that don't override it. Each agent is a Claude Code /
+# Runtype-hosted node; personas can also live in ./agents/*.md.
+agent: claude-code
+
+defaults:
+  replay: true
+  replayWindow: 50        # late joiners (a branch that just booted) see recent context
+  deliveryClass: durable  # NATS JetStream — a busy/offline branch still gets its messages
+
+agents:
+  # ── Branch nodes: one per restaurant location ─────────────────────────────
+  branch-downtown:
+    role: branch
+    instructions: >
+      You are the Downtown branch of Trattoria Verde (branch_id
+      b0000000-0000-0000-0000-00000000000a). Each cycle, read your forecast +
+      inventory. If an ingredient is below its reorder point, post a SHORTAGE on
+      #rebalance with product, qty needed, and needed_by. If you hold surplus above
+      par (especially near expiry), post a SURPLUS offer. When another branch posts a
+      shortage you can cover from surplus, claim it and propose a transfer. Prefer
+      transfers over new purchases.
+  branch-marina:
+    role: branch
+    instructions: >
+      You are the Marina branch (branch_id b0000000-0000-0000-0000-00000000000b).
+      Same protocol as any branch: declare shortages and surpluses on #rebalance,
+      claim shortages you can cover from surplus, propose transfers. Favor moving
+      near-expiry surplus first to cut waste.
+  branch-mission:
+    role: branch
+    instructions: >
+      You are the Mission branch (branch_id b0000000-0000-0000-0000-00000000000c).
+      Same branch protocol on #rebalance. You also flag near-expiry surplus that no
+      other branch needs so the Promotion agent can sell it through locally.
+
+  # ── Coordinator: matches surplus↔shortage, confirms transfers ──────────────
+  rebalance-coordinator:
+    role: lead
+    capabilities: [spawn]
+    instructions: >
+      You own #rebalance. Match branch surpluses to branch shortages for the same
+      product, preferring the nearest branch and the nearest-expiry stock. Confirm each
+      transfer by writing a row to rebalance_transfers (status=proposed) and posting the
+      decision to #decisions. Sum the UNMET shortage per product across the franchise and
+      hand that net quantity to Procurement on #procurement. Never buy what a transfer can
+      cover.
+
+  # ── Procurement: turns net shortage into an RFQ, awards the best bid ────────
+  procurement:
+    role: procurement
+    instructions: >
+      Read net-shortage requests on #procurement. For each, open an RFQ (rfqs row) and
+      broadcast product, qty, needed_by. Collect supplier bids, pick the lowest landed
+      cost that meets needed_by, and assemble a purchase_orders row (status=pending) for
+      owner approval. Post the award to #decisions.
+
+  # ── Supplier nodes (simulated external vendors) ────────────────────────────
+  supplier-norcal:
+    role: supplier
+    instructions: >
+      You are NorCal Produce (supplier_id d0000000-0000-0000-0000-000000000001),
+      lead time 1 day. When an RFQ on #procurement names a product you carry
+      (tomatoes, basil), reply with a bid (unit_price, eta_days) from supplier_products.
+      Only one supplier wins each RFQ — bid your real price, don't undercut below cost.
+  supplier-bayfoods:
+    role: supplier
+    instructions: >
+      You are Bay Foods Wholesale (supplier_id d0000000-0000-0000-0000-000000000002),
+      lead time 2 days. Bid on RFQs for products you carry (tomatoes, mozzarella, penne),
+      respecting your min-order quantities.
+
+channels:
+  # Branch forecasts + inventory posture are published here each cycle.
+  demand:
+    description: Per-branch demand forecasts and ingredient requirements.
+    subscribe: [branch-downtown, branch-marina, branch-mission, rebalance-coordinator]
+
+  # The showpiece: shortage/surplus matching via anycast to surplus holders.
+  rebalance:
+    description: Branch shortage/surplus declarations and transfer proposals.
+    subscribe: [branch-downtown, branch-marina, branch-mission, rebalance-coordinator]
+
+  # Net franchise shortage → RFQ → supplier bids.
+  procurement:
+    description: RFQs and supplier bids for net franchise shortages.
+    subscribe: [procurement, supplier-norcal, supplier-bayfoods, rebalance-coordinator]
+
+  # Promotion triggers (surplus / near-expiry → menu-item special) surfaced to consumers.
+  promotions:
+    description: Auto-generated promotions from surplus and near-expiry stock.
+    subscribe: [branch-downtown, branch-marina, branch-mission]
+
+  # Durable record of every transfer and PO decision (owner audit trail).
+  decisions:
+    description: The durable record of what the mesh decided.
+    subscribe: [rebalance-coordinator, procurement]
+    allowPublish: [rebalance-coordinator, procurement]
