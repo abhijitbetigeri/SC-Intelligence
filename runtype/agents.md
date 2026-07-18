@@ -32,7 +32,8 @@ InsForge edge functions exposed as HTTP tools.
 | `submit_bid` | rfq_id, supplier_id, unit_price, eta_days | bid_id | `bids` |
 | `create_po` | supplier_id, branch_id, product_id, qty, unit_price | po_id | `purchase_orders` |
 | `create_promotion` | branch_id, menu_item_id, kind, discount_pct, headline, reason, ends_at | promo_id | `promotions` |
-| `get_availability` | branch_id, menu_item_id? | in_stock_now, confidence | `menu_item_availability` view |
+| `get_availability` | branch_id, menu_item_id? | in_stock_now, **servings_available**, confidence | `menu_item_availability` view |
+| `get_stock_signal` | branch_id | rows (product, on_hand, daily_burn, days_of_cover, days_to_expiry, spoil_qty, transferable_qty, needed_by, status) | `v_replenishment_signal` ([../db/views.sql](../db/views.sql)) |
 | `get_favorites` | consumer_id | menu_item_ids | `favorites` |
 
 ---
@@ -62,9 +63,28 @@ InsForge edge functions exposed as HTTP tools.
 1. Load forecasts for the branch + `get_recipe_bom` for each item.
 2. **Explode** demand → ingredient requirement = Σ(predicted_qty × qty_per_serving).
 3. Set `par_level` = requirement × safety factor (1.15); `reorder_point` = requirement
-   for the branch's supplier lead time. `set_par_levels(...)`.
-4. Compare on-hand vs. par: below reorder → `post_shortage`; above par (esp. near
-   expiry) → `post_surplus`. This is what lights up the Cotal `#rebalance` channel.
+   over the lead time of the **fastest supplier carrying that product**, plus a 2-day
+   buffer. (Note: "the branch's supplier lead time" isn't defined — `lead_time_days`
+   lives on `suppliers`, and a branch has no supplier relation.) Shape the requirement
+   across the **specific days** in that window rather than a flat 7-day average: the seed
+   puts a 1.6× lift on Fri–Sun, so a flat average under-orders ~27% going into a weekend
+   and over-orders ~26% going into a slow week — and on a 6-day tomato shelf life the
+   over-order becomes the waste that goal 2 then has to clean up. `set_par_levels(...)`.
+4. Read `get_stock_signal(branch)` and act on **days of cover**, not just the reorder
+   point: `days_of_cover <= 1` → `post_shortage` with `needed_by` from the view; a
+   positive `spoil_qty` → `post_surplus` for `transferable_qty`. This is what lights up
+   the Cotal `#rebalance` channel.
+
+   Why cover and not the reorder point alone: on the current seed Downtown's basil holds
+   1.2 kg against a reorder point of 0.6, so nothing fires — but it burns 1.36 kg/day,
+   i.e. **0.88 days of cover** against a 1-day minimum lead time. It runs out mid-service
+   and no agent notices. A hand-authored reorder point that doesn't reflect consumption
+   will always have this blind spot.
+
+   And offer `transferable_qty`, not "everything above par": Marina holds 34 kg of
+   tomatoes expiring in 2 days against a 10.1 kg/day burn. Above-par gives 10 kg, but
+   **13.8 kg will spoil regardless** — so 13.8 kg is the honest offer. It cuts waste and
+   shrinks the PO Downtown still needs.
 
 No LLM needed — pure deterministic math. Keep it a Flow so it's fast and reproducible.
 
@@ -91,14 +111,35 @@ nearest expiry first); `propose_transfer`; sum unmet shortage and hand to `procu
 
 **Surface:** owner Slack (approval).
 **Tools:** `open_rfq`, `create_po`; reads `bids`.
-**Loop:** for each net shortage → `open_rfq`; suppliers bid (supplier agents / sim);
-pick lowest landed cost meeting `needed_by`; `create_po(status=pending)` for approval.
+**Loop:** for each net shortage → `open_rfq` (with `needed_by` from `get_stock_signal`, not
+NULL); suppliers bid; **rank the bids deterministically** with
+[`src/mise/supplier_rank.py`](../src/mise/supplier_rank.py); `create_po(status=pending)`
+for approval.
+
+> **Why the ranking moved out of the prompt.** The old rule — "lowest landed cost that
+> arrives by `needed_by`" — has a hole: `rfqs.needed_by` is nullable and nothing computed
+> it, so the deadline term was absent and the rule collapsed to *lowest unit price*. The
+> as-built coordinator shows it: `BUILD.md` records `buy 26 TOM-ROMA from Bay Foods @ $2.05
+> = $53.30`. Bay Foods is $0.15/kg cheaper and a day slower; Downtown had 4.0 kg against a
+> 14.2 kg/day burn — **6.7 hours of cover**. The order saved $3.90 and landed ~1.7 days
+> after the shelf emptied, and the card reported success.
+>
+> Constrained optimisation is also the wrong job for the model. Compute the ranking, hand
+> the agent the **already-ranked** list with `feasible` and a `note` per option, and let it
+> do what it's good at: writing the sentence.
 
 **System prompt:**
-> You buy ingredients for a restaurant franchise at least cost. For a shortage, open an
-> RFQ, gather supplier bids, and choose the lowest landed cost (unit_price×qty) that
-> arrives by needed_by, honoring min-order quantities. Create a pending purchase order and
-> explain the choice in one line.
+> You buy ingredients for a restaurant franchise. You will be given supplier options
+> **already ranked**, each with `feasible` (can it arrive before the branch runs out) and a
+> `note` explaining any option that cannot. Take the top-ranked option — do not re-rank on
+> price. Honor min-order quantities. Create a pending purchase order and explain the choice
+> in one line, naming the runner-up by *why it actually lost*: say "cheaper but arrives
+> after we run dry", never "cheaper" about a more expensive option.
+>
+> If the top option is not `feasible`, **no supplier can beat the stockout**. Say so
+> plainly on the card — "this order lands N days after we run out; plan a substitute" —
+> rather than presenting the PO as if it closed the loop. Recommending a substitute dish or
+> a transfer is more useful than a confident purchase order over an empty shelf.
 
 ---
 
@@ -134,6 +175,10 @@ for a signed-in consumer, lead with their favorites.
 > You are a friendly restaurant concierge. Tell diners honestly whether a dish is
 > available now and how likely it stays available (use in_stock_now + forecast
 > confidence: >0.7 "reliably available", 0.4–0.7 "usually available", else "call ahead").
+> Check `servings_available`, not just `in_stock_now` — one serving's worth of an
+> ingredient counts as "in stock" but will not survive service. If `servings_available` is
+> below the forecast for tonight, say "available now, but running low" rather than
+> promising it.
 > Lead with the diner's favorites when known, suggest in-stock alternatives if something's
 > out, and mention any active promotion. Never promise a dish the data says is unavailable.
 
