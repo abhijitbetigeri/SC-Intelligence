@@ -198,14 +198,29 @@ create table favorites (
 -- ── Availability view (goal 3): live + predicted availability per branch/item ─
 -- A menu item is "available" if every ingredient's on-hand stock covers at least
 -- one serving. Confidence blends current coverage with the latest forecast confidence.
+--
+-- Two corrections vs. the first cut:
+--
+-- 1. It failed OPEN on missing data. `inventory` is LEFT JOINed, so an ingredient with no
+--    inventory row yields NULL, `NULL >= x` is NULL, and bool_and IGNORES NULLs -- meaning
+--    a dish missing an ingredient entirely reported in_stock_now = true. coalesce(...,0)
+--    makes a missing row count as zero stock, which is what it means.
+--
+-- 2. One serving is not availability. Downtown holds 4.0 kg of tomatoes and a Margherita
+--    needs 0.150 kg, so the old view says "in stock" -- that is ~26 servings against a day
+--    that needs ~31. servings_available exposes the real number so the concierge can stop
+--    promising a dish that is about to 86. It is the min over ingredients of
+--    (on_hand / qty_per_serving) -- the binding constraint.
 create view menu_item_availability as
 select
   mi.id            as menu_item_id,
   b.id             as branch_id,
   mi.name          as menu_item_name,
   b.name           as branch_name,
-  bool_and(inv.qty_on_hand >= mii.qty_per_serving) as in_stock_now,
-  coalesce(max(f.confidence), 0.5)                 as forecast_confidence
+  bool_and(coalesce(inv.qty_on_hand, 0) >= mii.qty_per_serving)      as in_stock_now,
+  floor(min(coalesce(inv.qty_on_hand, 0) / nullif(mii.qty_per_serving, 0)))::int
+                                                                      as servings_available,
+  coalesce(max(f.confidence), 0.5)                                    as forecast_confidence
 from menu_items mi
 join menu_item_ingredients mii on mii.menu_item_id = mi.id
 join branches b on b.franchise_id = mi.franchise_id
