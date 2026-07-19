@@ -1,6 +1,6 @@
 # Mise — Intelligence Supply Chain for Restaurants
 
-**AGI Summit 2026 Hackathon.** A multi-agent system that keeps the right ingredients in the right
+**AGI Summit 2026.** A multi-agent system that keeps the right ingredients in the right
 branch at the right time, driven by real customer demand. Owners get an autonomous back-of-house
 supply chain (demand forecasting, cross-branch rebalancing, procurement, surplus-driven
 promotions); consumers get predictable availability of the dishes they love.
