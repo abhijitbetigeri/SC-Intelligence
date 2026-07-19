@@ -23,6 +23,48 @@ keeps the right ingredients in the right branch at the right time, ready before 
 | [Branch Operations](https://k3trn3a2.insforge.site/branch.html) | A branch admin's inventory console + live AI assistant (Persona) |
 | [Market Intelligence](https://k3trn3a2.insforge.site/market.html) | 8 cuisines scraped from the web: restaurants, menus, ingredient demand |
 
+## Project description
+
+**The problem.** Restaurant inventory is a distributed system with no shared state. Every branch
+orders in isolation, so a franchise over-orders at one location (waste, spoilage, cash tied up)
+while stocking out at another. The obvious fix — move surplus between branches before buying new —
+never happens, because there is no coordination layer and no central planner that scales across
+locations and suppliers.
+
+**Target user.** Restaurant operators: branch admins and franchise procurement managers who run
+back-of-house inventory and purchasing. Diners benefit downstream through reliable availability of
+the dishes they order.
+
+**What we built.** Mise models each branch and supplier as an autonomous agent on a coordination
+mesh. Each cycle, branch agents forecast demand, explode it through recipe bills-of-materials into
+ingredient requirements, and derive par/reorder levels and days-of-cover. Shortages and surpluses
+post to a shared `#rebalance` channel; **anycast** routes a shortage to surplus-holders, which
+claim it (nearest branch, nearest-expiry lot first) and propose a transfer. A coordinator confirms
+transfers, and only the *net* franchise shortage escalates to a procurement RFQ where supplier
+agents bid — the lowest landed-cost bid becomes a single owner-approval purchase order. Surplus
+near expiry is auto-converted into promotions, and a consumer concierge answers "is my dish
+available tonight?" from live stock × forecast. It ships as a hosted product with three views: a
+Mesh Console (the agents negotiating), a Branch Operations dashboard (Persona-embedded assistant),
+and Market Intelligence.
+
+**Technical approach.** Three layers, each doing what it's best at. **Cotal** handles coordination
+— agent nodes, presence, and anycast over channels (`#demand / #rebalance / #procurement /
+#decisions`), no central planner. **Runtype** handles reasoning — six capabilities (agents + flows;
+`claude-opus-4-8` for the multi-constraint rebalance/procurement, `claude-sonnet-5` elsewhere)
+exposed over an **MCP bridge** that mesh nodes call as tools, hardened with eval suites. **InsForge**
+(Postgres) holds shared state — inventory, transfers, RFQs, bids, POs, forecasts — and hosts the
+frontend.
+
+**Worked example (live).** Heading into the weekend, the Downtown branch is 36 kg short on
+tomatoes. Rather than buy all of it, the coordinator first covers the gap from within the
+franchise: Marina is holding near-expiry surplus, so 10 kg moves branch-to-branch (zero cost,
+spoilage avoided). Only the 26 kg net shortage escalates to procurement, where two supplier agents
+bid — Bay Foods wins at $2.05/kg over NorCal's $2.20 — landing a single **$53.30** purchase order
+for the owner to approve. One shortage in, one decision out: least waste, least cost. Separately, a
+menu-intelligence flow (Exa search → Firecrawl scrape → LLM extraction) ingested **8 cuisines, 16
+restaurants, and 128 dishes** into the same backend, surfacing a cross-cuisine ingredient-demand
+signal for shared procurement.
+
 ## The idea
 
 Restaurants run on guesswork: over-order (waste) or under-order (stockouts). Franchises make it
