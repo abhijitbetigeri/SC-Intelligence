@@ -1,0 +1,23 @@
+# dependencies / build
+node_modules/
+dist/
+build/
+.cache/
+.vite/
+
+# os / editor
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# secrets — never commit
+.env
+.env.local
+*.env
+!*.env.example
+!.env.production
+
+# local state (demo-mode records store)
+.data/
+tmp/
