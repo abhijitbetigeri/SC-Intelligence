@@ -1,86 +1,158 @@
 # Mise — Intelligence Supply Chain for Restaurants
 
-AGI Summit 2026 Hackathon · a multi-agent system that keeps the right ingredients in the
-right branch at the right time, driven by real customer demand.
+**AGI Summit 2026 Hackathon.** A multi-agent system that keeps the right ingredients in the right
+branch at the right time, driven by real customer demand. Owners get an autonomous back-of-house
+supply chain (demand forecasting, cross-branch rebalancing, procurement, surplus-driven
+promotions); consumers get predictable availability of the dishes they love.
 
-Owners get an autonomous back-of-house supply chain (demand forecasting, cross-branch
-rebalancing, procurement, surplus-driven promotions). Consumers get **predictable
-availability** of the dishes they love.
+> *"mise en place" — everything in its place, ready before service.*
 
-Full design + demo script: [docs/architecture.md](docs/architecture.md).
+## ▶ Live demo
 
-> **Status:** the agent layer is **live on Runtype** — 6 capabilities (forecast, the
-> rebalance+procurement showpiece, promotion sweep, consumer concierge, inventory admin, and a
-> web-scraping **menu intelligence** flow), 3 chat surfaces + an MCP bridge, eval suites, all
-> smoke-tested. A multi-cuisine market dataset (8 cuisines · 16 restaurants · 128 dishes · 589
-> ingredients) is scraped into InsForge — see [docs/menu-intelligence.md](docs/menu-intelligence.md).
-> Resource IDs and how to run each are in
-> [runtype/BUILD.md](runtype/BUILD.md). A branch-admin **inventory dashboard UI** with the
-> embedded [Persona](https://github.com/runtypelabs/persona) chat widget lives in
-> [web/branch.html](web/branch.html), alongside a **Mesh Console** ([web/mesh.html](web/mesh.html))
-> and **Market Intelligence** ([web/market.html](web/market.html)) view. All three are reachable
-> from a landing hub and **hosted on InsForge at https://k3trn3a2.insforge.site**. The **InsForge**
-> Postgres backend is provisioned (schema + seed) — see [INSFORGE.md](INSFORGE.md).
+**https://k3trn3a2.insforge.site** (hosted on InsForge, light + dark mode)
 
-## Stack
+| View | What it shows |
+|------|---------------|
+| [Landing](https://k3trn3a2.insforge.site/) | The story and the three views |
+| [Mesh Console](https://k3trn3a2.insforge.site/mesh.html) | Branch & supplier agents negotiating a tomato shortage in real time (Cotal) |
+| [Branch Operations](https://k3trn3a2.insforge.site/branch.html) | A branch admin's inventory console + live AI assistant (Persona) |
+| [Market Intelligence](https://k3trn3a2.insforge.site/market.html) | 8 cuisines scraped from the web: restaurants, menus, ingredient demand |
 
-| Layer | Tool |
-|-------|------|
-| Agent coordination mesh | **Cotal.ai** — branches & suppliers as autonomous agent nodes negotiating stock ([cotal.yaml](cotal.yaml) · [why Cotal + demo](docs/cotal-mesh.md) · [Mesh Console](web/mesh.html)) |
-| Agent runtime + surfaces | **Runtype** — agents/flows deployed to owner + consumer surfaces ([runtype/agents.md](runtype/agents.md)) |
-| Backend / state | **InsForge** — Postgres, auth, realtime, pgvector ([db/schema.sql](db/schema.sql)) |
-| Reasoning | **Anthropic** (`claude-sonnet-5` / `claude-opus-4-8`) |
+## The idea
+
+Restaurants run on guesswork: over-order (waste) or under-order (stockouts). Franchises make it
+worse — one branch dumps surplus tomatoes while another two miles away 86's the marinara. Mise
+puts an **intelligence layer across the supply chain**: supplier → franchise → branch → consumer,
+where specialist agents forecast demand per menu item, rebalance surplus **between branches**
+before buying, auto-trigger promotions to burn down surplus, and give diners predictable
+availability.
+
+**Three goals:** (1) demand-driven supply chain with cross-branch rebalancing (the multi-agent
+showpiece); (2) autonomous promotions from surplus / near-expiry stock; (3) consumer predictability.
+
+## Architecture
+
+Three layers, each doing what it's best at:
+
+```
+   COTAL      coordination — branches & suppliers are agent nodes negotiating stock
+              peer-to-peer (anycast on #rebalance); no central planner
+      │  each node, when it must decide, calls ↓
+   RUNTYPE    reasoning — 6 capabilities (agents + flows) over an MCP bridge
+      │  reads / writes ↓
+   INSFORGE   state + hosting — Postgres for inventory, transfers, POs, market data;
+              serves the UI
+```
+
+| Layer | Tool | Role |
+|-------|------|------|
+| Coordination mesh | **[Cotal.ai](cotal.yaml)** | Branches + suppliers as autonomous agent nodes; presence, channels, anycast rebalancing ([why Cotal + demo script](docs/cotal-mesh.md)) |
+| Agent runtime + surfaces | **Runtype** | Agents & flows built once, deployed to chat surfaces + an MCP bridge ([as-built](runtype/BUILD.md)) |
+| Backend / state / hosting | **InsForge** | Postgres, provisioned schema + seed + scraped market, and the frontend host ([runbook](INSFORGE.md)) |
+| Chat widget | **[Persona](https://github.com/runtypelabs/persona)** | The embedded assistants on the owner/consumer surfaces |
+| Reasoning | **Anthropic** | `claude-opus-4-8` (rebalance) and `claude-sonnet-5` inside the agents |
+
+## What's built
+
+**Runtype** — product `Mise` (`prod_01kxvr3fcneskr35jfxqhekaj0`), all smoke-tested, with eval suites.
+Backed by Runtype's native record store so the live demo has no external dependency. Full IDs +
+run commands in [runtype/BUILD.md](runtype/BUILD.md).
+
+| Capability | Kind | Does |
+|------------|------|------|
+| `weekly_forecast` | flow | Next-7-day demand per menu item per branch |
+| `rebalance_and_procure` ⭐ | agent (opus) | Match surplus↔shortage across branches, then draft the least-cost PO for approval |
+| `promotion_sweep` | flow | Turn surplus / near-expiry stock into a menu promotion |
+| `consumer_concierge` | agent | Answer "is my dish available tonight?" from live stock + forecast |
+| `inventory_admin` | agent | Per-branch stock detail + days-of-cover projections + reorder plans |
+| `menu_intelligence` | flow | Web-scrape restaurants → branches → menus → ingredients for a cuisine |
+
+Surfaces: Owner Console, Diner Chat, Branch Admin Console (chat, Persona embeds) and a **Mesh
+Bridge (MCP)** surface — the connector Cotal nodes call.
+
+**InsForge** — project `AGISummit` (`k3trn3a2`, us-east), provisioned and verified:
+- `db/schema.sql` + `db/seed.sql` — the Trattoria Verde franchise (3 branches, 5 menu items, BOM,
+  18 inventory rows, ~900 rows of 60-day sales), rigged so the demo fires on first run.
+- `db/market-intel.sql` — the scraped market: **8 cuisines · 16 restaurants · 52 branches · 128
+  dishes · 589 ingredients**, plus a `mi_ingredient_frequency` view (cross-cuisine demand signal).
+- Hosts the `web/` frontend (Vercel-backed). See [INSFORGE.md](INSFORGE.md).
+
+**Cotal** — the mesh manifest ([cotal.yaml](cotal.yaml)): 3 branch nodes, a rebalance coordinator,
+procurement, and 2 supplier bidders, on channels `#demand / #rebalance / #procurement /
+#promotions / #decisions`. Nodes run natively as Claude Code and call Mise capabilities over the
+MCP bridge; state lives in InsForge. Full use case + on-stage script in
+[docs/cotal-mesh.md](docs/cotal-mesh.md).
+
+**UI** ([web/](web/)) — self-contained pages, warm ops-console aesthetic, light + dark:
+a landing hub, the Branch Operations dashboard (Persona chat + client-side projections), the Mesh
+Console (a replay of the anycast negotiation), and Market Intelligence (the scraped `mi_*` data).
 
 ## Repo layout
 
 ```
-docs/architecture.md   design, agent topology, demo script
-db/schema.sql          InsForge Postgres schema
-db/seed.sql            demo franchise (Trattoria Verde), 3 branches, menu, BOM, 60d sales
-cotal.yaml             mesh manifest: branch + supplier agent nodes, channels
-runtype/agents.md      agent + flow specs → Runtype resources
-src/                   Python helpers (Anthropic) if needed
+README.md                this file
+docs/architecture.md     design, agent topology, demo script
+docs/cotal-mesh.md       why Cotal + the on-stage mesh demo
+docs/menu-intelligence.md the web-scraper flow, schema, and how to run it
+INSFORGE.md              InsForge project context + runbook
+runtype/BUILD.md         the as-built Runtype product (IDs, capabilities, MCP bridge, evals)
+runtype/agents.md        the original agent/flow specs
+cotal.yaml               Cotal mesh manifest (agent nodes + channels)
+db/schema.sql            InsForge Postgres schema (demo franchise)
+db/seed.sql              Trattoria Verde seed (branches, menu, BOM, 60d sales)
+db/market-intel.sql      market-intelligence schema (mi_* tables)
+web/                     the hosted UI (landing, branch, mesh, market)
+scripts/                 dataset builders + the menu-intel loader
+data/menu-intel/         the 8 scraped cuisine datasets (JSON)
+provision/               operator SPA + local dev backend (in progress)
 ```
 
-## Setup
+## Run it
 
-### 1. InsForge backend
+**Backend (InsForge)** — the project is linked; apply the SQL if standing up a fresh instance:
 ```bash
-npx @insforge/cli login --user-api-key <UAK>
-npx @insforge/cli create           # creates + links a project to this dir, writes AGENTS.md
-# apply schema + seed (via CLI migrate or the dashboard SQL editor):
-#   db/schema.sql   then   db/seed.sql
+npx @insforge/cli login          # or: --user-api-key <UAK>
+npx @insforge/cli link --project-id 9973a08c-1038-4b56-8c1f-12963bb6954b --org-id <ORG> -y
+npx @insforge/cli db import db/schema.sql
+npx @insforge/cli db import db/seed.sql
+npx @insforge/cli db import db/market-intel.sql
 ```
-> ⚠ If the CLI reports `Connection to api.insforge.dev timed out`, the InsForge API is
-> lagging (its response time is exceeding the CLI's ~15s timeout). Retry when it recovers —
-> the endpoint is reachable, just slow. `curl -m 30 https://api.insforge.dev/` to check.
 
-### 2. Runtype agents
+**Runtype agents** — already built (rebuild from [runtype/BUILD.md](runtype/BUILD.md) via the
+Runtype MCP). Cotal nodes connect the Mise capabilities as tools:
 ```bash
-claude mcp add --transport http runtype https://api.runtype.com/v1/mcp/protocol
-# then restart Claude Code and authorize via /mcp so the runtype tools load
+claude mcp add --transport http mise \
+  https://api.runtype.com/v1/products/prod_01kxvr3fcneskr35jfxqhekaj0/surfaces/surf_01kxvzxg98fqb8x1ngbe2a38q4/mcp \
+  --header "Authorization: Bearer $MISE_MCP_KEY"
 ```
-Build the resources from [runtype/agents.md](runtype/agents.md) in this order:
-Tools → `forecast` + `inventory-planner` Flows → `rebalance-coordinator` + `procurement`
-Agents → `promotion-sweep` Flow → `consumer-concierge` Agent → attach surfaces.
 
-### 3. Cotal mesh
+**Cotal mesh** ([cotal.yaml](cotal.yaml)):
 ```bash
-npx cotal-ai setup
-cotal up --detach
-cotal spawn rebalance-coordinator   # then each branch + supplier agent, per terminal
-cotal web                           # dashboard / live activity
+npx cotal-ai setup && cotal up --detach
+cotal spawn rebalance-coordinator   # then each branch + supplier node, per terminal
+cotal web                           # live activity
 ```
 
-## The demo (5 min)
+**UI** — use the hosted URL, or serve locally (the Persona chat and the Market page need a real
+HTTP origin):
+```bash
+cd web && python3 -m http.server 8080   # http://localhost:8080/
+# redeploy: npx @insforge/cli deployments deploy web
+```
 
-Seed data is rigged so the loops fire on the first run: **Downtown** is short on tomatoes,
-**Marina** holds surplus tomatoes near expiry, **Mission** holds surplus basil near expiry.
+## The demo (≈5 min)
 
-1. Weekly run → branches post demand; Downtown flags a tomato shortage.
-2. Marina offers surplus (anycast) → Rebalance Coordinator confirms a B→A transfer.
-3. Net shortage escalates → supplier bids → owner approves one PO in Slack.
-4. Promotion agent turns Mission's surplus basil into a "Pesto Night" special.
-5. Consumer asks the Concierge if the Margherita is available tonight → confident yes.
+Seed data is rigged: **Downtown** short on tomatoes, **Marina** holds surplus tomatoes near expiry,
+**Mission** holds surplus basil near expiry.
 
-See [docs/architecture.md](docs/architecture.md#demo-script-5-min) for the full script.
+1. Trigger the weekly cycle. Branches post demand on `#demand`; Downtown flags a tomato shortage.
+2. **Anycast:** Marina claims it (near-expiry surplus) → coordinator confirms **move 10 kg
+   tomatoes Marina → Downtown**.
+3. Net shortage escalates → suppliers bid → owner approves **buy 26 kg from Bay Foods @ $2.05 =
+   $53.30** (Bay Foods won on price vs NorCal).
+4. Promotion sweep turns Mission's basil surplus into a **"Pesto Night — Pesto Penne 20% off"**.
+5. A diner asks the Concierge if the Margherita is available tonight → confident yes, because the
+   mesh just restocked it.
+
+The [Mesh Console](https://k3trn3a2.insforge.site/mesh.html) replays this negotiation for the
+stage. Full script: [docs/architecture.md](docs/architecture.md) · [docs/cotal-mesh.md](docs/cotal-mesh.md).
