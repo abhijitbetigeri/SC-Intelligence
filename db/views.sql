@@ -61,7 +61,10 @@ left join v_ingredient_burn b
 -- `needed_by` is what rfqs.needed_by should be set from. It is currently nullable with
 -- nothing computing it, which is why the procurement rule ("lowest landed cost that
 -- arrives by needed_by") silently collapses to lowest unit price.
-create or replace view v_replenishment_signal as
+-- CREATE OR REPLACE can only append columns, not insert mid-list, so spoil_qty /
+-- transferable_qty are added via drop+create (same constraint as menu_item_availability).
+drop view if exists v_replenishment_signal;
+create view v_replenishment_signal as
 select
   c.branch_id,
   c.product_id,
@@ -80,6 +83,8 @@ select
     when c.days_of_cover <= 2                           then 'low'      -- burn-based catch
     when c.spoil_qty     >  0                           then 'surplus'
     else 'ok'
-  end as status
+  end as status,
+  c.spoil_qty,
+  c.transferable_qty
 from v_stock_cover c
 join products p on p.id = c.product_id;

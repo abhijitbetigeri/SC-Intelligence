@@ -164,6 +164,25 @@ create table purchase_orders (
 );
 create index on purchase_orders (franchise_id, status);
 
+-- ── Stock alerts (written by the Planner from v_replenishment_signal, goal 1) ─
+-- The audit row behind post_shortage/post_surplus: what the planner posted and why,
+-- keyed off days_of_cover / spoil_qty rather than the hand-authored reorder_point.
+-- Intended to also publish onto the Cotal `#rebalance` channel (cotal.yaml); that live
+-- publish is not wired yet (see runtype/REBUILD-REPORT.md) — this table is the durable
+-- record regardless.
+create table stock_alerts (
+  id           uuid primary key default uuid_generate_v4(),
+  franchise_id uuid not null references franchises(id) on delete cascade,
+  branch_id    uuid not null references branches(id) on delete cascade,
+  product_id   uuid not null references products(id) on delete cascade,
+  kind         text not null check (kind in ('shortage', 'surplus')),
+  qty          numeric(12,3) not null,
+  needed_by    date,                              -- set for shortages
+  status       text not null default 'open',      -- open|acknowledged|resolved
+  created_at   timestamptz not null default now()
+);
+create index on stock_alerts (franchise_id, branch_id, kind, status);
+
 -- ── Promotions (written by the Promotion agent, goal 2) ─────────────────────
 create table promotions (
   id           uuid primary key default uuid_generate_v4(),
