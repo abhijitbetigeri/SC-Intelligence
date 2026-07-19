@@ -18,8 +18,13 @@ This is the **as-built** record of the Runtype product (the specs live in
 | Flow | Promotion Sweep | `flow_01kxvr4d4ffakvvfxgpmrp1ajn` |
 | Agent (opus-4-8) | Supply Chain Coordinator | `agent_01kxvr56tbfakvvfxthdht0js4` |
 | Agent (sonnet-5) | Consumer Concierge | `agent_01kxvr5785e4d8tfpemr6tgf21` |
+| Agent (sonnet-5) | Inventory Admin | `agent_01kxvyhr7deh585q7x2bprv2gk` |
 | Surface (chat) | Owner Console → Coordinator | `surf_01kxvr964ye4d8tfpy1yj8ksjy` |
 | Surface (chat) | Diner Chat → Concierge | `surf_01kxvr96dzenc9yg72ymvhn8xm` |
+| Surface (chat) | Branch Admin Console → Inventory Admin | `surf_01kxvyjat2eh585q89zbskgx6f` |
+
+The **Branch Admin Console** is embedded in a real UI — [../web/branch-admin.html](../web/branch-admin.html)
+— via the Persona widget (client token `ct_live_01kxvyhr…`, all-origins). See [../web/README.md](../web/README.md).
 
 Dashboard: https://use.runtype.com/products/prod_01kxvr3fcneskr35jfxqhekaj0
 
@@ -34,6 +39,9 @@ Dashboard: https://use.runtype.com/products/prod_01kxvr3fcneskr35jfxqhekaj0
    features the menu item that clears it fastest, writes `promotion/latest`.
 4. **consumer_concierge** (agent) — answers "is my dish available tonight?" from live inventory
    × BOM × forecast confidence; leads with a known diner's favorites; surfaces active specials.
+5. **inventory_admin** (agent) — per-branch inventory detail + status, forecast-driven projection
+   analysis (days-of-cover, stock-out & waste risk), and reorder-to-par suggestions. Powers the
+   Branch Operations UI (Persona embed).
 
 ## Record types (the data model)
 

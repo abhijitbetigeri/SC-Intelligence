@@ -9,11 +9,13 @@ availability** of the dishes they love.
 
 Full design + demo script: [docs/architecture.md](docs/architecture.md).
 
-> **Status:** the agent layer is **live on Runtype** — 4 capabilities (forecast, the
-> rebalance+procurement showpiece, promotion sweep, consumer concierge), 2 chat surfaces,
-> all smoke-tested. Resource IDs and how to run each are in
-> [runtype/BUILD.md](runtype/BUILD.md). It runs on Runtype's native record store so the
-> demo has no external-service dependency (InsForge is the intended production backend).
+> **Status:** the agent layer is **live on Runtype** — 5 capabilities (forecast, the
+> rebalance+procurement showpiece, promotion sweep, consumer concierge, inventory admin),
+> 3 chat surfaces, eval suites, all smoke-tested. Resource IDs and how to run each are in
+> [runtype/BUILD.md](runtype/BUILD.md). A branch-admin **inventory dashboard UI** with the
+> embedded [Persona](https://github.com/runtypelabs/persona) chat widget lives in
+> [web/branch-admin.html](web/branch-admin.html) ([web/](web/)). The **InsForge** Postgres
+> backend is provisioned (schema + seed) — see [INSFORGE.md](INSFORGE.md).
 
 ## Stack
 
