@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mise · Market Intelligence</title>
+<script>(function(){try{var t=localStorage.getItem("mise-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -16,6 +17,22 @@
     --gold:#d8b26a; --blue:#6ea6c9; --plum:#c98fc0;
     --mono:'IBM Plex Mono',ui-monospace,monospace; --sans:'IBM Plex Sans',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif;
   }
+  /* light mode (added) - warm-neutral base, accents darkened for contrast on light */
+  :root[data-theme="light"]{
+    --bg:#f6f1e8; --bg2:#efe8db; --panel:#ffffff; --panel2:#f3ecdf;
+    --line:#e6ddcc; --line-soft:#ece4d5;
+    --cream:#2a2016; --muted:#6d5f4b; --faint:#7c6d54;
+    --tomato:#cf4629; --tomato-soft:#b5442c;
+    --basil:#5f8a34; --basil-deep:#4f7d2e; --amber:#986c12; --gold:#8a6a24; --blue:#3f7ea3; --ok:#4f7d4d;
+  }
+  @media (prefers-color-scheme: light){ :root:not([data-theme]){
+    --bg:#f6f1e8; --bg2:#efe8db; --panel:#ffffff; --panel2:#f3ecdf;
+    --line:#e6ddcc; --line-soft:#ece4d5;
+    --cream:#2a2016; --muted:#6d5f4b; --faint:#7c6d54;
+    --tomato:#cf4629; --tomato-soft:#b5442c;
+    --basil:#5f8a34; --basil-deep:#4f7d2e; --amber:#986c12; --gold:#8a6a24; --blue:#3f7ea3; --ok:#4f7d4d;
+  }}
+
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:15px;line-height:1.5;
     -webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden}
@@ -46,7 +63,7 @@
   .tab{appearance:none;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--muted);
     background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 15px;transition:.15s}
   .tab:hover{border-color:var(--tomato-soft);color:var(--cream)}
-  .tab[aria-selected="true"]{background:#2c2116;border-color:var(--tomato);color:#fff}
+  .tab[aria-selected="true"]{background:var(--panel2);border-color:var(--tomato);color:#fff}
   .tab small{color:var(--faint)}
 
   .grid{display:grid;grid-template-columns:1.62fr 1fr;gap:20px;align-items:start}
@@ -64,7 +81,7 @@
   .rest .cz{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tomato-soft)}
   .rest .sum{color:var(--muted);font-size:13px;margin:6px 0 10px}
   .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
-  .chip{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:#2a2016;border:1px solid var(--line);border-radius:6px;padding:3px 8px}
+  .chip{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:3px 8px}
   .chip.city{color:var(--cream)}
   details{margin-top:8px}
   summary{cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--basil);list-style:none;padding:6px 0}
@@ -88,7 +105,7 @@
   .drow .nm{font-size:13px}
   .drow .ct{font-family:var(--mono);font-size:11px;color:var(--gold)}
   .drow .ct small{color:var(--faint)}
-  .bar{height:8px;border-radius:5px;background:#2c2217;overflow:hidden}
+  .bar{height:8px;border-radius:5px;background:var(--panel2);overflow:hidden}
   .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--tomato),var(--gold));transition:width .6s cubic-bezier(.2,.7,.2,1)}
 
   footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
@@ -101,11 +118,12 @@
 <body>
 <div class="wrap">
   <nav style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:22px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.03em">
-    <a href="index.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">◆ Home</a>
-    <a href="branch.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">Branch Ops</a>
-    <a href="mesh.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">Mesh Console</a>
-    <a href="market.html" style="color:#f4ead9;text-decoration:none;background:#2c2116;border:1px solid #e5533d;border-radius:9px;padding:8px 13px">Market Intel</a>
-    <a href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener" style="margin-left:auto;color:#93b061;text-decoration:none;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">GitHub ↗</a>
+    <a href="index.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">◆ Home</a>
+    <a href="branch.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">Branch Ops</a>
+    <a href="mesh.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">Mesh Console</a>
+    <a href="market.html" style="color:var(--cream);text-decoration:none;background:var(--panel2);border:1px solid var(--tomato);border-radius:9px;padding:8px 13px">Market Intel</a>
+    <a href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener" style="margin-left:auto;color:var(--basil);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:8px 13px">GitHub ↗</a>
+    <button id="themeBtn" type="button" aria-label="Toggle light or dark mode" style="margin-left:8px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:15px;line-height:1">☀</button>
   </nav>
   <header class="mast">
     <div class="brand">
@@ -183,5 +201,6 @@ fetch("market-data.json").then(r=>r.json()).then(d=>{
   DATA=d; kpiCards(d.totals); tabs(); renderRest(); renderDemand();
 }).catch(e=>{el("restBody").innerHTML=`<div class="loading">Could not load market-data.json — serve this over HTTP (see web/README).</div>`;});
 </script>
+<script>(function(){var r=document.documentElement,b=document.getElementById("themeBtn");if(!b)return;function cur(){return r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");}function ico(){b.textContent=cur()==="light"?"☾":"☀";}ico();b.addEventListener("click",function(){var n=cur()==="light"?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("mise-theme",n);}catch(e){}ico();});})();</script>
 </body>
 </html>

@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mise · Mesh Console</title>
+<script>(function(){try{var t=localStorage.getItem("mise-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -18,6 +19,22 @@
     --sans:'IBM Plex Sans',system-ui,sans-serif;
     --serif:'Fraunces',Georgia,serif;
   }
+  /* light mode (added) - warm-neutral base, accents darkened for contrast on light */
+  :root[data-theme="light"]{
+    --bg:#f6f1e8; --bg2:#efe8db; --panel:#ffffff; --panel2:#f3ecdf;
+    --line:#e6ddcc; --line-soft:#ece4d5;
+    --cream:#2a2016; --muted:#6d5f4b; --faint:#7c6d54;
+    --tomato:#cf4629; --tomato-soft:#b5442c;
+    --basil:#5f8a34; --basil-deep:#4f7d2e; --amber:#986c12; --gold:#8a6a24; --blue:#3f7ea3; --ok:#4f7d4d;
+  }
+  @media (prefers-color-scheme: light){ :root:not([data-theme]){
+    --bg:#f6f1e8; --bg2:#efe8db; --panel:#ffffff; --panel2:#f3ecdf;
+    --line:#e6ddcc; --line-soft:#ece4d5;
+    --cream:#2a2016; --muted:#6d5f4b; --faint:#7c6d54;
+    --tomato:#cf4629; --tomato-soft:#b5442c;
+    --basil:#5f8a34; --basil-deep:#4f7d2e; --amber:#986c12; --gold:#8a6a24; --blue:#3f7ea3; --ok:#4f7d4d;
+  }}
+
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--cream);font-family:var(--sans);min-height:100vh;
     position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -44,7 +61,7 @@
   .btn{appearance:none;cursor:pointer;font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;
     border:0;border-radius:10px;padding:12px 20px;transition:.15s;font-weight:600}
   .btn.run{background:var(--basil);color:#16110a}
-  .btn.run:hover{background:#a6c375;transform:translateY(-1px)}
+  .btn.run:hover{background:var(--basil);transform:translateY(-1px)}
   .btn.ghost{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
   .btn.ghost:hover{border-color:var(--tomato-soft);color:var(--cream)}
   .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
@@ -71,7 +88,7 @@
   .roster .grp{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
     padding:10px 18px 6px;border-top:1px solid var(--line-soft)}
   .node{display:flex;align-items:center;gap:11px;padding:10px 18px;transition:.25s;border-left:3px solid transparent}
-  .node .dot{width:8px;height:8px;border-radius:50%;background:#4a3a28;flex:none;transition:.25s}
+  .node .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none;transition:.25s}
   .node.online .dot{background:var(--basil);box-shadow:0 0 0 3px rgba(147,176,97,.18)}
   .node.active{background:#2c211688;border-left-color:var(--tomato)}
   .node.active .dot{background:var(--tomato);box-shadow:0 0 0 4px rgba(229,83,61,.28);animation:pulse .8s ease}
@@ -108,7 +125,7 @@
     letter-spacing:.04em;color:var(--blue);border:1px dashed rgba(110,166,201,.4);border-radius:6px;padding:2px 7px}
 
   /* channel + kind colors */
-  .c-demand b{color:var(--muted)} .c-demand .body{border-left-color:#4a3a28}
+  .c-demand b{color:var(--muted)} .c-demand .body{border-left-color:var(--line)}
   .c-rebalance b{color:var(--tomato-soft)} .c-rebalance .body{border-left-color:rgba(229,83,61,.5)}
   .c-procurement b{color:var(--gold)} .c-procurement .body{border-left-color:rgba(216,178,106,.5)}
   .c-decisions b{color:var(--basil)} .c-decisions .body{border-left-color:rgba(147,176,97,.5)}
@@ -139,11 +156,12 @@
 <body>
 <div class="wrap">
   <nav style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:22px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.03em">
-    <a href="index.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">◆ Home</a>
-    <a href="branch.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">Branch Ops</a>
-    <a href="mesh.html" style="color:#f4ead9;text-decoration:none;background:#2c2116;border:1px solid #e5533d;border-radius:9px;padding:8px 13px">Mesh Console</a>
-    <a href="market.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">Market Intel</a>
-    <a href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener" style="margin-left:auto;color:#93b061;text-decoration:none;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">GitHub ↗</a>
+    <a href="index.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">◆ Home</a>
+    <a href="branch.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">Branch Ops</a>
+    <a href="mesh.html" style="color:var(--cream);text-decoration:none;background:var(--panel2);border:1px solid var(--tomato);border-radius:9px;padding:8px 13px">Mesh Console</a>
+    <a href="market.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">Market Intel</a>
+    <a href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener" style="margin-left:auto;color:var(--basil);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:8px 13px">GitHub ↗</a>
+    <button id="themeBtn" type="button" aria-label="Toggle light or dark mode" style="margin-left:8px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:15px;line-height:1">☀</button>
   </nav>
   <header class="mast">
     <div class="brand">
@@ -294,5 +312,6 @@ function run(){
 el("runBtn").addEventListener("click",run);
 el("resetBtn").addEventListener("click",reset);
 </script>
+<script>(function(){var r=document.documentElement,b=document.getElementById("themeBtn");if(!b)return;function cur(){return r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");}function ico(){b.textContent=cur()==="light"?"☾":"☀";}ico();b.addEventListener("click",function(){var n=cur()==="light"?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("mise-theme",n);}catch(e){}ico();});})();</script>
 </body>
 </html>

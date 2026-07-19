@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mise · Branch Operations</title>
+<script>(function(){try{var t=localStorage.getItem("mise-theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -20,6 +21,22 @@
     --sans:'IBM Plex Sans',system-ui,sans-serif;
     --serif:'Fraunces',Georgia,serif;
   }
+  /* light mode (added) - warm-neutral base, accents darkened for contrast on light */
+  :root[data-theme="light"]{
+    --bg:#f6f1e8; --bg2:#efe8db; --panel:#ffffff; --panel2:#f3ecdf;
+    --line:#e6ddcc; --line-soft:#ece4d5;
+    --cream:#2a2016; --muted:#6d5f4b; --faint:#7c6d54;
+    --tomato:#cf4629; --tomato-soft:#b5442c;
+    --basil:#5f8a34; --basil-deep:#4f7d2e; --amber:#986c12; --gold:#8a6a24; --blue:#3f7ea3; --ok:#4f7d4d;
+  }
+  @media (prefers-color-scheme: light){ :root:not([data-theme]){
+    --bg:#f6f1e8; --bg2:#efe8db; --panel:#ffffff; --panel2:#f3ecdf;
+    --line:#e6ddcc; --line-soft:#ece4d5;
+    --cream:#2a2016; --muted:#6d5f4b; --faint:#7c6d54;
+    --tomato:#cf4629; --tomato-soft:#b5442c;
+    --basil:#5f8a34; --basil-deep:#4f7d2e; --amber:#986c12; --gold:#8a6a24; --blue:#3f7ea3; --ok:#4f7d4d;
+  }}
+
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
@@ -62,7 +79,7 @@
   .btab .loc{font-family:var(--sans); font-size:15px; letter-spacing:0; color:var(--cream); font-weight:500}
   .btab .dot{width:7px;height:7px;border-radius:50%;background:var(--faint)}
   .btab:hover{border-color:var(--tomato-soft); transform:translateY(-1px)}
-  .btab[aria-selected="true"]{background:linear-gradient(180deg,#2c211600,#2c2116);
+  .btab[aria-selected="true"]{background:linear-gradient(180deg,#2c211600,var(--panel2));
     border-color:var(--tomato); box-shadow:0 8px 24px -12px rgba(229,83,61,.7)}
   .btab[aria-selected="true"] .dot{background:var(--tomato); box-shadow:0 0 0 3px rgba(229,83,61,.22)}
   .btab[aria-selected="true"] .loc{color:#fff}
@@ -112,15 +129,15 @@
     white-space:nowrap}
   .badge .d{width:6px;height:6px;border-radius:50%}
   .b-short{color:var(--tomato-soft); border-color:rgba(229,83,61,.45); background:rgba(229,83,61,.10)} .b-short .d{background:var(--tomato)}
-  .b-low{color:#f0c874; border-color:rgba(226,168,56,.4); background:rgba(226,168,56,.08)} .b-low .d{background:var(--amber)}
-  .b-ok{color:#a9c79f; border-color:rgba(127,168,125,.35); background:rgba(127,168,125,.07)} .b-ok .d{background:var(--ok)}
+  .b-low{color:var(--amber); border-color:rgba(226,168,56,.4); background:rgba(226,168,56,.08)} .b-low .d{background:var(--amber)}
+  .b-ok{color:var(--basil); border-color:rgba(127,168,125,.35); background:rgba(127,168,125,.07)} .b-ok .d{background:var(--ok)}
   .b-surplus{color:var(--gold); border-color:rgba(216,178,106,.4); background:rgba(216,178,106,.08)} .b-surplus .d{background:var(--gold)}
   .exp{display:inline-block; margin-left:6px; font-family:var(--mono); font-size:9.5px; letter-spacing:.06em;
     color:var(--tomato-soft); border:1px dashed rgba(229,83,61,.5); border-radius:5px; padding:1px 5px; text-transform:uppercase}
 
   /* days-of-cover cell */
   .cover{display:flex; align-items:center; justify-content:flex-end; gap:9px}
-  .cover .bar{width:70px; height:6px; border-radius:4px; background:#33281c; overflow:hidden; flex:none}
+  .cover .bar{width:70px; height:6px; border-radius:4px; background:var(--panel2); overflow:hidden; flex:none}
   .cover .bar i{display:block; height:100%; border-radius:4px}
   .cover .d{font-weight:600; min-width:44px; text-align:right}
   .c-crit{color:var(--tomato)} .c-warn{color:var(--amber)} .c-ok{color:var(--basil)}
@@ -133,7 +150,7 @@
   .prow .top{display:flex; justify-content:space-between; align-items:baseline; font-family:var(--mono); font-size:12px; margin-bottom:5px}
   .prow .top .nm{font-family:var(--sans); font-size:13.5px; color:var(--cream)}
   .prow .top .dc{font-weight:600}
-  .track{height:8px;border-radius:5px;background:#2c2217;overflow:hidden;position:relative}
+  .track{height:8px;border-radius:5px;background:var(--panel2);overflow:hidden;position:relative}
   .track i{display:block;height:100%;border-radius:5px;transition:width .5s cubic-bezier(.2,.7,.2,1)}
   .track .mark7{position:absolute;top:-3px;bottom:-3px;width:1px;background:repeating-linear-gradient(var(--faint),var(--faint) 2px,transparent 2px,transparent 4px)}
   .prow .risk{font-family:var(--mono); font-size:10.5px; color:var(--faint); margin-top:5px; letter-spacing:.03em}
@@ -156,7 +173,7 @@
   .askline .tx p{color:var(--muted); font-size:13px; margin-top:2px}
   .askline button{appearance:none;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
     color:#1a130d;font-weight:600;background:var(--basil);border:0;border-radius:10px;padding:11px 18px;transition:.15s}
-  .askline button:hover{background:#a6c375;transform:translateY(-1px)}
+  .askline button:hover{background:var(--basil);transform:translateY(-1px)}
 
   footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line-soft);
     font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
@@ -173,11 +190,12 @@
 <body>
 <div class="wrap">
   <nav style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:22px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.03em">
-    <a href="index.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">◆ Home</a>
-    <a href="branch.html" style="color:#f4ead9;text-decoration:none;background:#2c2116;border:1px solid #e5533d;border-radius:9px;padding:8px 13px">Branch Ops</a>
-    <a href="mesh.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">Mesh Console</a>
-    <a href="market.html" style="color:#b6a288;text-decoration:none;background:#221a12;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">Market Intel</a>
-    <a href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener" style="margin-left:auto;color:#93b061;text-decoration:none;border:1px solid #3a2c1e;border-radius:9px;padding:8px 13px">GitHub ↗</a>
+    <a href="index.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">◆ Home</a>
+    <a href="branch.html" style="color:var(--cream);text-decoration:none;background:var(--panel2);border:1px solid var(--tomato);border-radius:9px;padding:8px 13px">Branch Ops</a>
+    <a href="mesh.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">Mesh Console</a>
+    <a href="market.html" style="color:var(--muted);text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 13px">Market Intel</a>
+    <a href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener" style="margin-left:auto;color:var(--basil);text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:8px 13px">GitHub ↗</a>
+    <button id="themeBtn" type="button" aria-label="Toggle light or dark mode" style="margin-left:8px;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--muted);cursor:pointer;font-size:15px;line-height:1">☀</button>
   </nav>
   <header class="mast fade">
     <div class="brand">
@@ -245,7 +263,7 @@
 <script
   src="https://cdn.runtype.com/persona/latest/install.global.js"
   data-runtype-token="ct_live_01kxvyhr_2055537660436c1136d1cf9c01917237"
-  data-config='{"apiUrl":"https://api.runtype.com","windowKey":"miseChat","colorScheme":"dark","launcher":{"enabled":true,"title":"Inventory Admin","subtitle":"Stock, projections & reorders","position":"bottom-right"},"theme":{"components":{"header":{"background":"#e5533d","titleForeground":"#ffffff","subtitleForeground":"#ffe9e2"},"launcher":{"background":"#e5533d","foreground":"#ffffff"}}}}'
+  data-config='{"apiUrl":"https://api.runtype.com","windowKey":"miseChat","colorScheme":"dark","launcher":{"enabled":true,"title":"Inventory Admin","subtitle":"Stock, projections & reorders","position":"bottom-right"},"theme":{"components":{"header":{"background":"var(--tomato)","titleForeground":"#ffffff","subtitleForeground":"#ffe9e2"},"launcher":{"background":"var(--tomato)","foreground":"#ffffff"}}}}'
 ></script>
 
 <!-- ── Data + logic ───────────────────────────────────────────────────── -->
@@ -424,5 +442,6 @@ window.addEventListener("persona:chat-ready",e=>{ window.miseChat=e.detail; });
 
 render("downtown");
 </script>
+<script>(function(){var r=document.documentElement,b=document.getElementById("themeBtn");if(!b)return;function cur(){return r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");}function ico(){b.textContent=cur()==="light"?"☾":"☀";}ico();b.addEventListener("click",function(){var n=cur()==="light"?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("mise-theme",n);}catch(e){}ico();});})();</script>
 </body>
 </html>
