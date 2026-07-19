@@ -1,9 +1,10 @@
 # InsForge backend — context & runbook
 
 Everything a collaborator (or a future session) needs to work with the InsForge backend
-for this project. InsForge is the **intended production backend**; the live demo currently
-runs on Runtype's native record store (see [runtype/BUILD.md](runtype/BUILD.md)), so InsForge
-is not yet on the critical path.
+for this project. InsForge is the **intended production backend**, now **provisioned** (schema +
+seed applied and verified). The live demo runs on Runtype's native record store (see
+[runtype/BUILD.md](runtype/BUILD.md)); to move onto InsForge, re-point the Runtype record
+reads/writes at InsForge-backed tools/edge functions that mirror [db/schema.sql](db/schema.sql).
 
 > ⚠️ **Never commit secrets.** The admin API key lives in `.insforge/project.json` (full-access,
 > service-role-equivalent) and in `.env.local` for app code — both are gitignored. This file
@@ -44,69 +45,47 @@ npx @insforge/cli current --json
 npx @insforge/cli metadata --json    # auth config, tables, buckets, functions
 ```
 
-## Current status (2026-07-18)
+## Current status (2026-07-19)
 
 - ✅ Authenticated + linked to `k3trn3a2`. `AGENTS.md` and `.insforge/project.json` written.
-- ✅ Backend is **empty** — backend version `1.0.0`, zero tables / buckets / functions.
-- ❌ **Schema + seed NOT applied yet** — blocked by a project-host connectivity fault (below).
+- ✅ **Schema applied** — all 17 tables + the `menu_item_availability` view created from
+  [db/schema.sql](db/schema.sql) (both `uuid-ossp` and `vector`/pgvector extensions worked).
+- ✅ **Seed applied + verified** — 3 branches, 5 menu items, 18 inventory rows, **900 sales
+  rows** (the 60-day `generate_series` history), 2 favorites. Rigged state confirmed: Downtown
+  tomatoes 4 (short), Marina tomatoes 34 (surplus), Mission basil 3.5 (surplus).
+- The backend is live and healthy; DB ops now round-trip in ~2–3s.
 
-## ⚠️ Known issue: project host is slow/timing out on DB ops
+## Resolved: the earlier slow/timeout fault was transient
 
-The **central API** (`api.insforge.dev`) is healthy (~0.5s). The fault is on the **per-project
-EC2 host** `k3trn3a2.us-east.insforge.app`:
-
-```
-GET /                        TCP connect 6.1s | TLS ~14s (done t=20.3s) | TTFB 24.5s → TIMEOUT@25s
-GET /api/database/tables     connection timed out (couldn't connect in 25s)
-GET /api/metadata            200, but TTFB 22s
-db query "select 1"          ~65s then "fetch failed"
-```
-
-So control-plane reads (`metadata`, `migrations list`) occasionally squeak through, but anything
-through PostgREST / the DB (schema, seed, queries) blows past the CLI's ~15s timeout.
-
-**Root cause signature:** ~6s TCP connect + ~14s TLS handshake on the project EC2 — matches the
-original slowness report. **When escalating to InsForge, ask them to check the health of the
-project instance `k3trn3a2` (us-east) specifically, not the central API.**
-
-Re-check health at any time:
+For hours the **per-project host** `k3trn3a2.us-east.insforge.app` showed ~6s TCP connect +
+~14s TLS + `db query` hanging ~65s, while the **central API** (`api.insforge.dev`) stayed fast
+(~0.5s) — so it was host/path-specific, not the network or the central API. It later cleared on
+its own (InsForge confirmed the instance was idle, not overloaded); schema + seed then applied in
+~2–3s each. If it recurs, re-check with:
 
 ```bash
 curl -sS -o /dev/null -m 25 \
   -w "connect=%{time_connect}s tls=%{time_appconnect}s ttfb=%{time_starttransfer}s total=%{time_total}s http=%{http_code}\n" \
   https://k3trn3a2.us-east.insforge.app/
-# Healthy target: connect < 0.5s, tls < 0.5s, total < 2s
+# Healthy: connect < 0.5s, tls < 0.5s, total < 2s.  (Compare against api.insforge.dev to isolate
+# host-specific vs network-wide.)  Escalate on the project instance k3trn3a2, not the central API.
 ```
 
-## Pending work: apply schema + seed (do this once the host is healthy)
+## Re-applying / resetting the data
 
-Source of truth: [db/schema.sql](db/schema.sql) (DDL + `menu_item_availability` view) and
-[db/seed.sql](db/seed.sql) (Trattoria Verde demo data, rigged so the rebalance + Pesto promo
-fire on the first run).
+Schema and seed are already applied. To re-seed from scratch (idempotent-ish; `schema.sql` uses
+`if not exists`, `seed.sql` uses fixed UUIDs so re-running collides — truncate first):
 
 ```bash
-# Confirm the host is fast first (see curl check above), then:
-
-# Schema via a migration (schema changes belong in migrations)
-npx @insforge/cli db migrations new mise-schema      # creates migrations/<ts>_mise-schema.sql
-#   → paste db/schema.sql into that file, then:
-npx @insforge/cli db migrations up --all
-
-# Seed data via raw SQL import (data, not schema)
-npx @insforge/cli db import db/seed.sql
-
-# Verify
-npx @insforge/cli db tables
-npx @insforge/cli db query "select name from branches" --json
+npx @insforge/cli db import db/schema.sql        # DDL (safe to re-run)
+npx @insforge/cli db import db/seed.sql          # data (fixed UUIDs — clear tables first to re-run)
+npx @insforge/cli db query "select count(*) from sales" --json    # expect 900
 ```
 
-Gotchas to watch when applying:
-- Migrations run inside a backend-managed transaction — **no `BEGIN`/`COMMIT`** in the file.
-- `schema.sql` uses `create extension "uuid-ossp"` and `vector` (pgvector). If either extension
-  isn't permitted, switch `uuid_generate_v4()` → `gen_random_uuid()` and/or drop the `embedding
-  vector(1536)` columns (pgvector matching is a "later" feature, not needed for the core demo).
-- RLS (owner vs consumer) is noted at the bottom of `schema.sql` but not yet enabled — add
+Notes:
+- RLS (owner vs consumer) is described at the bottom of `schema.sql` but not yet enabled — add
   policies via a migration when auth roles are wired.
+- `embedding vector(1536)` columns exist but are unused so far (pgvector matching is a later feature).
 
 ## How InsForge relates to the rest of the stack
 
