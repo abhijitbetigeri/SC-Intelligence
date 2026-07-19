@@ -1,5 +1,5 @@
 // User directory — the RBAC seat list. Durable via persist.js, same seam as records.
-// DEMO: seeded local accounts (password `komodos`). PRODUCTION: InsForge Auth.
+// DEMO: seeded local accounts (password `mise`). PRODUCTION: InsForge Auth.
 import { load, save } from './persist.js';
 import { hashPassword, defaultDashboards, publicUser } from './auth.js';
 
@@ -31,16 +31,16 @@ export const userStore = {
 // Idempotent demo directory so login works out of the box. One seat per role, so the
 // "view as" switcher has somewhere to go and RBAC is visible in the demo.
 const DEMO = [
-  { id: 'user_admin', name: 'Admin',        email: 'admin@komodos.local',    role: 'admin' },
-  { id: 'user_maria', name: 'Maria Alvarez', email: 'maria@komodos.local',   role: 'owner' },
-  { id: 'user_david', name: 'David Okonkwo', email: 'david@komodos.local',   role: 'gm' },
-  { id: 'user_tim',   name: 'Tim Reyes',     email: 'tim@komodos.local',     role: 'beverage' },
-  { id: 'user_sofia', name: 'Sofia Marchetti', email: 'sofia@komodos.local', role: 'floor' },
+  { id: 'user_admin', name: 'Admin',        email: 'admin@trattoria.local',    role: 'admin' },
+  { id: 'user_maria', name: 'Maria Alvarez', email: 'maria@trattoria.local',   role: 'owner' },
+  { id: 'user_david', name: 'David Okonkwo', email: 'david@trattoria.local',   role: 'gm' },
+  { id: 'user_tim',   name: 'Tim Reyes',     email: 'tim@trattoria.local',     role: 'beverage' },
+  { id: 'user_sofia', name: 'Sofia Marchetti', email: 'sofia@trattoria.local', role: 'floor' },
 ];
 
 export function seedUsers() {
   if (users.size) return;
-  const passwordHash = hashPassword(process.env.DEMO_PASSWORD || 'komodos');
+  const passwordHash = hashPassword(process.env.DEMO_PASSWORD || 'mise');
   for (const u of DEMO) {
     users.set(u.id, { ...u, active: true, passwordHash, dashboards: defaultDashboards(u.role), venue: 'Above Eleven' });
   }

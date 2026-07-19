@@ -5,16 +5,16 @@ import { Box } from '../components/icons.jsx';
 // Demo seats — one per role, so RBAC is visible immediately. Listed openly because this is
 // a local demo directory; a production build would drop this block entirely.
 const SEATS = [
-  { email: 'maria@komodos.local', name: 'Maria Alvarez', role: 'Owner-operator' },
-  { email: 'david@komodos.local', name: 'David Okonkwo', role: 'General manager' },
-  { email: 'tim@komodos.local',   name: 'Tim Reyes',     role: 'Beverage director' },
-  { email: 'sofia@komodos.local', name: 'Sofia Marchetti', role: 'Floor lead' },
-  { email: 'admin@komodos.local', name: 'Admin',         role: 'Admin — can view as anyone' },
+  { email: 'maria@trattoria.local', name: 'Maria Alvarez', role: 'Owner-operator' },
+  { email: 'david@trattoria.local', name: 'David Okonkwo', role: 'General manager' },
+  { email: 'tim@trattoria.local',   name: 'Tim Reyes',     role: 'Beverage director' },
+  { email: 'sofia@trattoria.local', name: 'Sofia Marchetti', role: 'Floor lead' },
+  { email: 'admin@trattoria.local', name: 'Admin',         role: 'Admin — can view as anyone' },
 ];
 
 export default function Login({ onAuthed }) {
-  const [email, setEmail] = useState('maria@komodos.local');
-  const [password, setPassword] = useState('komodos');
+  const [email, setEmail] = useState('maria@trattoria.local');
+  const [password, setPassword] = useState('mise');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(null);
 
@@ -43,7 +43,7 @@ export default function Login({ onAuthed }) {
             <Box size={19} />
           </div>
           <div>
-            <div className="text-lg font-bold t-display leading-none">Komodos Provision</div>
+            <div className="text-lg font-bold t-display leading-none">Mise</div>
             <div className="eyebrow mt-1.5">Supply chain · guest intelligence</div>
           </div>
         </div>
@@ -68,12 +68,12 @@ export default function Login({ onAuthed }) {
         </form>
 
         <div className="card p-4 mt-3">
-          <div className="eyebrow mb-2.5">Demo seats · password komodos</div>
+          <div className="eyebrow mb-2.5">Demo seats · password mise</div>
           <div className="flex flex-col gap-1">
             {SEATS.map((s) => (
               <button key={s.email} type="button"
                 className="nav-item !justify-start gap-2.5 text-left"
-                onClick={() => { setEmail(s.email); setPassword('komodos'); }}>
+                onClick={() => { setEmail(s.email); setPassword('mise'); }}>
                 <span className="text-[13px] font-medium t-ink">{s.name}</span>
                 <span className="text-[12px] t-mut ml-auto">{s.role}</span>
               </button>

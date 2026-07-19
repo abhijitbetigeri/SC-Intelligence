@@ -19,6 +19,11 @@ import CopilotPersona from './views/CopilotPersona.jsx';
 const USE_PERSONA = true;
 const CopilotDrawer = USE_PERSONA ? CopilotPersona : Copilot;
 
+// Product identity in one place. The komodos-ui design system is deliberately brand-agnostic
+// — one swappable accent, no wordmark baked into any component — so renaming the product is
+// this constant and nothing else.
+const BRAND = { name: 'Mise', eyebrow: 'Trattoria Verde' };
+
 const VIEWS = { overview: Overview, stock: Stock, franchise: Franchise, vips: Vips, admin: Admin };
 const ORDER = ['overview', 'stock', 'franchise', 'vips', 'admin'];
 const LABEL = { overview: 'Overview', stock: 'Stock', franchise: 'Franchise', vips: "Tonight's guests", admin: 'Users & access' };
@@ -158,8 +163,8 @@ export default function App({ user, onSignOut }) {
           <div className="w-9 h-9 rounded-2xl grid place-items-center t-accent"
             style={{ background: 'var(--accent-soft)' }}><Box size={18} /></div>
           <div>
-            <div className="text-[16px] font-bold t-display leading-none">Provision</div>
-            <div className="eyebrow mt-1.5">Komodos</div>
+            <div className="text-[16px] font-bold t-display leading-none">{BRAND.name}</div>
+            <div className="eyebrow mt-1.5">{BRAND.eyebrow}</div>
           </div>
         </div>
         {navList()}
@@ -181,7 +186,7 @@ export default function App({ user, onSignOut }) {
         <div className="md:hidden sticky top-0 z-30 flex items-center gap-2 px-4 py-2.5"
           style={{ background: 'color-mix(in oklab, var(--bg) 88%, transparent)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)' }}>
           <button className="btn !px-3 !py-2" onClick={() => setNavOpen(true)} aria-label="Open menu"><Menu size={17} /></button>
-          <div className="text-[16px] font-bold t-display flex-1 leading-none">Provision</div>
+          <div className="text-[16px] font-bold t-display flex-1 leading-none">{BRAND.name}</div>
           <button className="btn primary !px-3 !py-2" onClick={() => setCoOpen(true)} aria-label="Co-pilot"><Sparkle size={15} /></button>
           <UserSwitcher user={user} compact />
         </div>
@@ -228,8 +233,8 @@ export default function App({ user, onSignOut }) {
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-2xl grid place-items-center t-accent" style={{ background: 'var(--accent-soft)' }}><Box size={18} /></div>
                 <div>
-                  <div className="text-[16px] font-bold t-display leading-none">Provision</div>
-                  <div className="eyebrow mt-1.5">Komodos</div>
+                  <div className="text-[16px] font-bold t-display leading-none">{BRAND.name}</div>
+                  <div className="eyebrow mt-1.5">{BRAND.eyebrow}</div>
                 </div>
               </div>
               <button className="btn !px-2.5 !py-1.5" onClick={() => setNavOpen(false)} aria-label="Close menu"><X size={15} /></button>
