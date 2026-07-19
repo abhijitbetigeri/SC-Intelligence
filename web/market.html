@@ -128,7 +128,7 @@
   <header class="mast">
     <div class="brand">
       <div class="mark">M</div>
-      <div><h1>Market Intelligence</h1><div class="sub">Restaurants · Menus · Ingredients — scraped across cuisines</div></div>
+      <div><h1>Market Intelligence</h1><div class="sub">Restaurants · Menus · Ingredients - scraped across cuisines</div></div>
     </div>
     <div class="srcchip" id="src">source · <b>InsForge mi_* tables</b></div>
   </header>
@@ -144,14 +144,14 @@
     <div class="card">
       <div class="head"><h2>Ingredient demand</h2><span class="note">across the market</span></div>
       <div class="demand">
-        <p class="legend">How many dishes use each ingredient (and across how many cuisines). This is the cross-restaurant supply-chain signal — where shared procurement leverage lives.</p>
+        <p class="legend">How many dishes use each ingredient (and across how many cuisines). This is the cross-restaurant supply-chain signal - where shared procurement leverage lives.</p>
         <div id="demandBody"></div>
       </div>
     </div>
   </div>
 
   <footer>
-    <span>Mise — AGI Summit 2026 · <a href="../docs/menu-intelligence.md">how it's scraped →</a></span>
+    <span>Mise - AGI Summit 2026 · <a href="../docs/menu-intelligence.md">how it's scraped →</a></span>
     <span><a href="branch.html">Branch dashboard →</a> · <a href="mesh.html">Mesh Console →</a></span>
   </footer>
 </div>
@@ -171,7 +171,7 @@ function tabs(){
 }
 function renderRest(){
   const cz = filter==="all"?DATA.cuisines:DATA.cuisines.filter(c=>c.id===filter);
-  el("restTitle").textContent = filter==="all"?"Restaurants — all cuisines":(cz[0]?cz[0].name:"")+" restaurants";
+  el("restTitle").textContent = filter==="all"?"Restaurants - all cuisines":(cz[0]?cz[0].name:"")+" restaurants";
   let html="";
   cz.forEach(c=>c.restaurants.forEach(r=>{
     const branches=(r.branches||[]).map(b=>`<span class="chip city">${b.city||b.name||""}${b.region?`<span style="color:var(--faint)"> · ${b.region}</span>`:""}</span>`).join("");
@@ -199,7 +199,7 @@ function renderDemand(){
 }
 fetch("market-data.json").then(r=>r.json()).then(d=>{
   DATA=d; kpiCards(d.totals); tabs(); renderRest(); renderDemand();
-}).catch(e=>{el("restBody").innerHTML=`<div class="loading">Could not load market-data.json — serve this over HTTP (see web/README).</div>`;});
+}).catch(e=>{el("restBody").innerHTML=`<div class="loading">Could not load market-data.json - serve this over HTTP (see web/README).</div>`;});
 </script>
 <script>(function(){var r=document.documentElement,b=document.getElementById("themeBtn");if(!b)return;function cur(){return r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");}function ico(){b.textContent=cur()==="light"?"☾":"☀";}ico();b.addEventListener("click",function(){var n=cur()==="light"?"dark":"light";r.setAttribute("data-theme",n);try{localStorage.setItem("mise-theme",n);}catch(e){}ico();});})();</script>
 </body>

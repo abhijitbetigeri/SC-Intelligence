@@ -194,11 +194,11 @@
   </div>
 
   <div class="outcome" id="outcome">
-    <h3>What the mesh decided — one owner approval</h3>
+    <h3>What the mesh decided - one owner approval</h3>
     <div class="lines">
-      <div class="ln"><span class="ic">↔</span><span>Transfer <span class="hl">10 kg Roma tomatoes</span> — Marina → Downtown <span style="color:var(--faint)">(near-expiry surplus rescued, nothing bought)</span></span></div>
+      <div class="ln"><span class="ic">↔</span><span>Transfer <span class="hl">10 kg Roma tomatoes</span> - Marina → Downtown <span style="color:var(--faint)">(near-expiry surplus rescued, nothing bought)</span></span></div>
       <div class="ln"><span class="ic">$</span><span>Buy <span class="hl">26 kg</span> from <span class="hl">Bay Foods</span> @ $2.05 = <span class="hl">$53.30</span> <span style="color:var(--faint)">(won the anycast auction vs NorCal $2.20)</span></span></div>
-      <div class="ln"><span class="ic">%</span><span>Auto-special: <span class="hl">Pesto Night — 20% off</span> <span style="color:var(--faint)">(Mission basil surplus, no branch needed it)</span></span></div>
+      <div class="ln"><span class="ic">%</span><span>Auto-special: <span class="hl">Pesto Night - 20% off</span> <span style="color:var(--faint)">(Mission basil surplus, no branch needed it)</span></span></div>
       <div class="ln"><span class="ic">✓</span><span>Waste avoided: <span class="hl">10 kg</span> near-expiry tomatoes · net spend just <span class="hl">$53.30</span></span></div>
     </div>
   </div>
@@ -224,15 +224,15 @@ const PHASES=[
   {id:"procurement",label:"Procurement"},{id:"promotions",label:"Promotions"},
 ];
 const NM=Object.fromEntries(NODES.map(n=>[n.id,n.nm]));
-// scripted negotiation — mirrors the verified rebalance run
+// scripted negotiation - mirrors the verified rebalance run
 const EVENTS=[
   {ph:"demand",ch:"demand",from:"branch-downtown",to:"#demand",kind:"post",txt:`Forecast 7d: <span class="hl">273</span> Margherita, 123 Marinara. Tomato burn <span class="hl">14.4 kg/day</span> · on hand <span class="hl">4 kg</span> (0.3d cover).`,rt:"weekly_forecast · inventory_admin"},
   {ph:"demand",ch:"demand",from:"branch-marina",to:"#demand",kind:"surplus",txt:`Roma tomatoes <span class="hl">34 kg</span> vs par 24 → <span class="hl">10 kg surplus</span>, earliest lot expires in <span class="hl">2 days</span>.`},
   {ph:"demand",ch:"demand",from:"branch-mission",to:"#demand",kind:"surplus",txt:`Basil <span class="hl">3.5 kg</span> vs par 1.6 → surplus, expires in 2 days. No tomato surplus here.`},
 
-  {ph:"rebalance",ch:"rebalance",from:"branch-downtown",to:"#rebalance · broadcast",kind:"shortage",txt:`<span class="hl">SHORTAGE</span> Roma tomatoes — need <span class="hl">36 kg</span> by Saturday (on hand 4, reorder 12).`},
+  {ph:"rebalance",ch:"rebalance",from:"branch-downtown",to:"#rebalance · broadcast",kind:"shortage",txt:`<span class="hl">SHORTAGE</span> Roma tomatoes - need <span class="hl">36 kg</span> by Saturday (on hand 4, reorder 12).`},
   {ph:"rebalance",ch:"rebalance",from:"rebalance-coordinator",to:"surplus holders",kind:"anycast",txt:`Anycast: who can cover Downtown's tomato shortage from surplus?`},
-  {ph:"rebalance",ch:"rebalance",from:"branch-marina",to:"rebalance-coordinator",kind:"claim",txt:`<span class="hl">CLAIM</span> — I hold 10 kg over par, expiring in 2d. Propose transfer <span class="hl">10 kg → Downtown</span>.`},
+  {ph:"rebalance",ch:"rebalance",from:"branch-marina",to:"rebalance-coordinator",kind:"claim",txt:`<span class="hl">CLAIM</span> - I hold 10 kg over par, expiring in 2d. Propose transfer <span class="hl">10 kg → Downtown</span>.`},
   {ph:"rebalance",ch:"rebalance",from:"branch-mission",to:"#rebalance",kind:"post",txt:`No tomato surplus to offer.`},
   {ph:"rebalance",ch:"rebalance",from:"rebalance-coordinator",to:"branch-marina · branch-downtown",kind:"confirm",txt:`<span class="hl">CONFIRM</span> transfer 10 kg Roma: Marina → Downtown (nearest branch, near-expiry first).`,rt:"rebalance_and_procure"},
   {ph:"rebalance",ch:"decisions",from:"rebalance-coordinator",to:"#decisions",kind:"confirm",txt:`TRANSFER <span class="hl">t_TOM-ROMA_marina_downtown</span> · 10 kg · status=proposed. Net unmet: <span class="hl">26 kg</span>.`},
@@ -244,8 +244,8 @@ const EVENTS=[
   {ph:"procurement",ch:"procurement",from:"procurement",to:"#procurement",kind:"award",txt:`<span class="hl">AWARD</span> Bay Foods @ $2.05 → 26 kg = <span class="hl">$53.30</span> (lowest landed cost, meets Sat).`,rt:"rebalance_and_procure"},
   {ph:"procurement",ch:"decisions",from:"procurement",to:"#decisions",kind:"award",txt:`PO <span class="hl">po_TOM-ROMA_bayfoods</span> · 26 kg · $53.30 · status=pending → owner approval.`},
 
-  {ph:"promotions",ch:"promotions",from:"branch-mission",to:"#promotions",kind:"surplus",txt:`Near-expiry basil surplus 1.9 kg, no branch needs it — trigger a special.`},
-  {ph:"promotions",ch:"promotions",from:"branch-mission",to:"consumer app",kind:"post",txt:`<span class="hl">Pesto Night — 20% off Pesto Penne</span> (clears basil fastest before it spoils).`,rt:"promotion_sweep"},
+  {ph:"promotions",ch:"promotions",from:"branch-mission",to:"#promotions",kind:"surplus",txt:`Near-expiry basil surplus 1.9 kg, no branch needs it - trigger a special.`},
+  {ph:"promotions",ch:"promotions",from:"branch-mission",to:"consumer app",kind:"post",txt:`<span class="hl">Pesto Night - 20% off Pesto Penne</span> (clears basil fastest before it spoils).`,rt:"promotion_sweep"},
 ];
 
 let SPEED=950, running=false, timers=[];

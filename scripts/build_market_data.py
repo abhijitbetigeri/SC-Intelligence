@@ -8,8 +8,19 @@ CUISINE_ID = {"italian":"italian","american":"american","french":"french","chine
               "burmese":"burmese","indian":"indian","middle eastern":"middle-eastern",
               "middle-eastern":"middle-eastern","mexican":"mexican"}
 
+# canonicalize common variants so the demand signal groups them
+CANON = {
+    "chicken breast":"chicken","chicken thigh":"chicken","chicken thighs":"chicken","boneless chicken":"chicken",
+    "ground beef":"beef","beef steak":"beef","ground pork":"pork",
+    "green onion":"onion","green onions":"onion","scallion":"onion","scallions":"onion","spring onion":"onion","spring onions":"onion",
+    "roma tomatoes":"tomato","cherry tomatoes":"tomato","sun-dried tomatoes":"tomato","diced tomatoes":"tomato",
+    "fresh basil":"basil","fresh cilantro":"cilantro","fresh ginger":"ginger","fresh mint":"mint",
+    "garlic clove":"garlic","garlic cloves":"garlic",
+    "mozzarella cheese":"mozzarella","parmesan cheese":"parmesan","cheddar cheese":"cheddar",
+}
 def norm(n):  # normalize an ingredient for the frequency aggregate
-    return " ".join(n.strip().lower().split())
+    k = " ".join(n.strip().lower().split())
+    return CANON.get(k, k)
 
 def main(src, out):
     cuisines = []
@@ -23,7 +34,7 @@ def main(src, out):
                 dish_id = f"{cid}:{r['name']}:{i}"
                 for ing in dish.get("ingredients", []):
                     k = norm(ing["name"])
-                    e = freq.setdefault(k, {"label": ing["name"].strip().lower(), "dishes": set(), "restaurants": set(), "cuisines": set()})
+                    e = freq.setdefault(k, {"label": k, "dishes": set(), "restaurants": set(), "cuisines": set()})
                     e["dishes"].add(dish_id); e["restaurants"].add(r["name"]); e["cuisines"].add(cid)
 
     # light plural merge: onion/onions, tomato/tomatoes

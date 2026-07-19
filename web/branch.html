@@ -202,7 +202,7 @@
       <div class="mark">M</div>
       <div>
         <h1>Mise · Branch Operations</h1>
-        <div class="sub">Intelligence Supply Chain — Trattoria Verde</div>
+        <div class="sub">Intelligence Supply Chain - Trattoria Verde</div>
       </div>
     </div>
     <div class="clockchip">Cycle basis · <b>7-day forecast</b></div>
@@ -248,13 +248,13 @@
     <div class="ic">📦</div>
     <div class="tx">
       <b>Ask the Inventory Admin</b>
-      <p>Live projection analysis, reorder math, and waste-risk flags — powered by the Runtype agent.</p>
+      <p>Live projection analysis, reorder math, and waste-risk flags - powered by the Runtype agent.</p>
     </div>
     <button id="askBtn">Open assistant</button>
   </div>
 
   <footer>
-    <span>Mise — AGI Summit 2026 · <a href="mesh.html">Mesh Console →</a> · <a href="market.html">Market Intelligence →</a></span>
+    <span>Mise - AGI Summit 2026 · <a href="mesh.html">Mesh Console →</a> · <a href="market.html">Market Intelligence →</a></span>
     <span>Chat: <a href="https://github.com/runtypelabs/persona" target="_blank" rel="noopener">Persona</a> × Runtype agent · Backend: InsForge</span>
   </footer>
 </div>
@@ -263,7 +263,7 @@
 <script
   src="https://cdn.runtype.com/persona/latest/install.global.js"
   data-runtype-token="ct_live_01kxvyhr_2055537660436c1136d1cf9c01917237"
-  data-config='{"apiUrl":"https://api.runtype.com","windowKey":"miseChat","colorScheme":"dark","launcher":{"enabled":true,"title":"Inventory Admin","subtitle":"Stock, projections & reorders","position":"bottom-right"},"theme":{"components":{"header":{"background":"var(--tomato)","titleForeground":"#ffffff","subtitleForeground":"#ffe9e2"},"launcher":{"background":"var(--tomato)","foreground":"#ffffff"}}}}'
+  data-config='{"apiUrl":"https://api.runtype.com","windowKey":"miseChat","colorScheme":"auto","launcher":{"enabled":true,"title":"Inventory Admin","subtitle":"Stock, projections & reorders","position":"bottom-right"},"theme":{"components":{"header":{"background":"var(--tomato)","titleForeground":"#ffffff","subtitleForeground":"#ffe9e2"},"launcher":{"background":"var(--tomato)","foreground":"#ffffff"}}}}'
 ></script>
 
 <!-- ── Data + logic ───────────────────────────────────────────────────── -->
@@ -283,7 +283,7 @@ const MENU = {
   caprese:{name:"Caprese Salad",bom:{"TOM-ROMA":.12,"MOZZ":.10,"BASIL":.015}},
   arrabbiata:{name:"Penne Arrabbiata",bom:{"TOM-ROMA":.16,"PENNE":.12,"OLIVEOIL":.015}},
 };
-// Suppliers that carry each SKU (cheapest first) — from the catalog
+// Suppliers that carry each SKU (cheapest first) - from the catalog
 const SUPPLIERS = {
   "TOM-ROMA":[{s:"Bay Foods",p:2.05,min:10,lead:2},{s:"NorCal Produce",p:2.20,min:5,lead:1}],
   "BASIL":[{s:"NorCal Produce",p:8.00,min:1,lead:1}],
@@ -395,9 +395,9 @@ function render(branch){
     const w=r.cover===Infinity?100:Math.max(3,Math.min(100,(r.cover/14)*100));
     const dcCls=coverClass(r.cover);
     let risk="", rcls="";
-    if(r.wasteRisk){ risk=`⚠ surplus won't clear before ${r.exp}d expiry — waste risk`; rcls="waste"; }
-    else if(r.cover<1){ risk=`✗ runs out in ~${Math.round(r.cover*24)}h — order now`; rcls="bad"; }
-    else if(r.cover<7){ risk=`↓ runs out in ${fmt(r.cover)}d — reorder this week`; rcls="bad"; }
+    if(r.wasteRisk){ risk=`⚠ surplus won't clear before ${r.exp}d expiry - waste risk`; rcls="waste"; }
+    else if(r.cover<1){ risk=`✗ runs out in ~${Math.round(r.cover*24)}h - order now`; rcls="bad"; }
+    else if(r.cover<7){ risk=`↓ runs out in ${fmt(r.cover)}d - reorder this week`; rcls="bad"; }
     else risk=`✓ ${r.cover===Infinity?"ample":fmt(r.cover)+"d"} cover`;
     return `<div class="prow">
       <div class="top"><span class="nm">${r.name}</span><span class="dc ${dcCls}">${r.cover===Infinity?"∞":fmt(r.cover)+"d"}</span></div>
@@ -411,7 +411,7 @@ function render(branch){
     .map(r=>({...r,gap:+(r.par-r.oh).toFixed(1)}))
     .sort((a,b)=>a.cover-b.cover);
   const rb=document.getElementById("reorderBody");
-  if(!need.length){ rb.innerHTML=`<div class="empty">All ingredients at or above par — nothing to reorder.</div>`; }
+  if(!need.length){ rb.innerHTML=`<div class="empty">All ingredients at or above par - nothing to reorder.</div>`; }
   else rb.innerHTML=need.map(r=>{
     const sup=(SUPPLIERS[r.sku]||[])[0];
     const order=sup?Math.max(r.gap,sup.min):r.gap;
