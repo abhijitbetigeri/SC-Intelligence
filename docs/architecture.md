@@ -37,6 +37,9 @@ promotions to burn down surplus, and give consumers **predictable availability**
 
 ## Architecture — three layers
 
+> **Slide-ready diagram:** [architecture-diagram.html](architecture-diagram.html) (open in a
+> browser, screenshot for a deck). The ASCII version below says the same thing in text.
+
 ```
                     CONSUMERS                              OWNERS / BRANCH ADMINS
                         │                                          │

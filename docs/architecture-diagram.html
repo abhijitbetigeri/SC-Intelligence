@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mise — Architecture</title>
+<style>
+  :root{
+    --bg:#f6f1e8; --panel:#ffffff; --panel2:#f4efe6; --line:#e6ddcc;
+    --ink:#241c14; --muted:#6d5f4b; --faint:#948871;
+    --accent:#cf4629; --accent-ink:#fff6f2;
+    --cotal:#3f7ea3; --runtype:#5f8a34; --insforge:#9a7a2e; --persona:#9a5a91;
+    --cotal-bg:rgba(63,126,163,.09); --runtype-bg:rgba(95,138,52,.10); --insforge-bg:rgba(154,122,46,.10);
+    --disp:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --shadow:0 18px 40px -24px rgba(70,45,25,.30);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#15100b; --panel:#201811; --panel2:#291f15; --line:#3a2c1e;
+      --ink:#f2ebdd; --muted:#b3a58f; --faint:#8a7a61;
+      --accent:#e5533d; --accent-ink:#1a120c;
+      --cotal:#6ea6c9; --runtype:#93b061; --insforge:#d8b26a; --persona:#c98fc0;
+      --cotal-bg:rgba(110,166,201,.12); --runtype-bg:rgba(147,176,97,.12); --insforge-bg:rgba(216,178,106,.12);
+      --shadow:0 22px 50px -26px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f1e8; --panel:#ffffff; --panel2:#f4efe6; --line:#e6ddcc;
+    --ink:#241c14; --muted:#6d5f4b; --faint:#948871;
+    --accent:#cf4629; --accent-ink:#fff6f2;
+    --cotal:#3f7ea3; --runtype:#5f8a34; --insforge:#9a7a2e; --persona:#9a5a91;
+    --cotal-bg:rgba(63,126,163,.09); --runtype-bg:rgba(95,138,52,.10); --insforge-bg:rgba(154,122,46,.10);
+    --shadow:0 18px 40px -24px rgba(70,45,25,.30);
+  }
+  :root[data-theme="dark"]{
+    --bg:#15100b; --panel:#201811; --panel2:#291f15; --line:#3a2c1e;
+    --ink:#f2ebdd; --muted:#b3a58f; --faint:#8a7a61;
+    --accent:#e5533d; --accent-ink:#1a120c;
+    --cotal:#6ea6c9; --runtype:#93b061; --insforge:#d8b26a; --persona:#c98fc0;
+    --cotal-bg:rgba(110,166,201,.12); --runtype-bg:rgba(147,176,97,.12); --insforge-bg:rgba(216,178,106,.12);
+    --shadow:0 22px 50px -26px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--disp);margin:0;line-height:1.5;
+    -webkit-font-smoothing:antialiased}
+  .board{max-width:1120px;margin:0 auto;padding:40px 30px 46px}
+
+  header.h{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:8px}
+  .h .mk{display:flex;align-items:center;gap:13px}
+  .h .m{width:44px;height:44px;border-radius:11px;background:var(--accent);color:#fff;display:grid;place-items:center;
+    font-weight:800;font-size:24px;flex:none;box-shadow:0 6px 16px -6px rgba(229,83,61,.6)}
+  .h h1{margin:0;font-size:30px;letter-spacing:-.02em;font-weight:800}
+  .h .sub{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-top:4px}
+  .h .mantra{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right;line-height:1.7}
+  .h .mantra b{color:var(--ink)}
+  .rule{height:1px;background:var(--line);margin:16px 0 22px}
+
+  /* actors + UI */
+  .actors{display:flex;gap:10px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+  .actor{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--panel);border:1px solid var(--line);
+    border-radius:999px;padding:7px 15px}
+  .actor b{color:var(--ink)}
+
+  .band{background:var(--panel);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);
+    padding:16px 18px 17px 20px;position:relative;overflow:hidden}
+  .band::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--rail,var(--accent))}
+  .band .bh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+  .band .tag{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--rail)}
+  .band .nm{font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .band .role{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-left:auto}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);
+    border-radius:8px;padding:5px 10px;white-space:nowrap}
+  .chip b{color:var(--ink);font-weight:600}
+  .chip.star{border-color:var(--accent);color:var(--ink)}
+  .chip.star::before{content:"★ ";color:var(--accent)}
+  .chip.ch{color:var(--rail);border-color:color-mix(in srgb,var(--rail) 40%,var(--line))}
+  .band.ui{--rail:var(--persona)}
+  .band.ui .chip.view b{color:var(--ink)}
+  .subrow{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:11px;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .subrow .grp{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+  .subrow .lbl{color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-size:9.5px}
+
+  /* connector arrows */
+  .conn{display:flex;align-items:center;justify-content:center;gap:10px;padding:9px 0;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .conn .ar{color:var(--accent);font-size:15px;line-height:1}
+  .conn b{color:var(--muted)}
+
+  .cband{display:grid;grid-template-columns:1fr;gap:0}
+
+  /* demo cycle strip */
+  .cycle{margin-top:26px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(180deg,var(--panel),var(--bg));
+    box-shadow:var(--shadow);padding:16px 20px 18px}
+  .cycle .ct{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px}
+  .step{flex:1 1 130px;min-width:130px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 12px}
+  .step .k{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+  .step .v{font-weight:700;font-size:14px;margin-top:4px;letter-spacing:-.01em}
+  .step .v small{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--muted);display:block;margin-top:2px}
+  .step.win{border-color:var(--accent)}
+  .step.win .v{color:var(--accent)}
+  .arrowcol{display:flex;align-items:center;color:var(--accent);font-size:16px;font-weight:700}
+
+  footer.f{margin-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    font-family:var(--mono);font-size:11px;color:var(--faint)}
+  footer.f b{color:var(--muted)}
+  @media (max-width:680px){ .h .mantra{text-align:left} .arrowcol{display:none} .step{flex-basis:44%} }
+</style>
+
+</head>
+<body>
+<div class="board">
+  <header class="h">
+    <div class="mk">
+      <div class="m">M</div>
+      <div>
+        <h1>Mise — Architecture</h1>
+        <div class="sub">Intelligence supply chain for restaurants · multi-agent coordination</div>
+      </div>
+    </div>
+    <div class="mantra">
+      <b>Cotal</b> decides who talks &amp; when<br>
+      <b>Runtype</b> decides the smart move<br>
+      <b>InsForge</b> remembers &amp; hosts
+    </div>
+  </header>
+  <div class="rule"></div>
+
+  <div class="actors">
+    <span class="actor">👤 <b>Consumers</b></span>
+    <span class="actor">🧑‍🍳 <b>Owners &amp; branch admins</b></span>
+  </div>
+  <div class="conn"><span class="ar">↕</span> interact through the UI</div>
+
+  <!-- UI -->
+  <section class="band ui">
+    <div class="bh"><span class="tag">Interface</span><span class="nm">Hosted UI</span><span class="role">k3trn3a2.insforge.site · light + dark</span></div>
+    <div class="chips">
+      <span class="chip view">Landing</span>
+      <span class="chip view"><b>Mesh Console</b> · the negotiation</span>
+      <span class="chip view"><b>Branch Operations</b> · operator + AI assistant</span>
+      <span class="chip view"><b>Market Intelligence</b> · scraped market</span>
+      <span class="chip ch">Persona chat widget</span>
+    </div>
+  </section>
+
+  <div class="conn"><b>agents &amp; operators act through the layers</b> <span class="ar">↓</span></div>
+
+  <!-- COTAL -->
+  <section class="band" style="--rail:var(--cotal);background:linear-gradient(90deg,var(--cotal-bg),var(--panel) 55%)">
+    <div class="bh"><span class="tag">Coordination</span><span class="nm">Cotal — the agent mesh</span><span class="role">peer-to-peer · no central planner</span></div>
+    <div class="chips">
+      <span class="chip ch">#demand</span>
+      <span class="chip ch">#rebalance · <b>anycast</b></span>
+      <span class="chip ch">#procurement</span>
+      <span class="chip ch">#promotions</span>
+      <span class="chip ch">#decisions</span>
+    </div>
+    <div class="subrow">
+      <span class="grp"><span class="lbl">nodes</span><span class="chip">3 branch agents</span><span class="chip">rebalance coordinator</span><span class="chip">procurement</span><span class="chip">2 supplier bidders</span></span>
+    </div>
+  </section>
+
+  <div class="conn"><span class="ar">↑↓</span> <b>a node that must DECIDE calls a capability</b> over the MCP bridge</div>
+
+  <!-- RUNTYPE -->
+  <section class="band" style="--rail:var(--runtype);background:linear-gradient(90deg,var(--runtype-bg),var(--panel) 55%)">
+    <div class="bh"><span class="tag">Reasoning</span><span class="nm">Runtype — 6 capabilities</span><span class="role">agents + flows · exposed as MCP tools</span></div>
+    <div class="chips">
+      <span class="chip">weekly_forecast</span>
+      <span class="chip star">rebalance_and_procure <b>· opus</b></span>
+      <span class="chip">promotion_sweep</span>
+      <span class="chip">consumer_concierge</span>
+      <span class="chip">inventory_admin</span>
+      <span class="chip">menu_intelligence</span>
+    </div>
+    <div class="subrow"><span class="grp"><span class="lbl">models</span><span class="chip"><b>claude-opus-4-8</b> · rebalance</span><span class="chip"><b>claude-sonnet-5</b> · rest</span><span class="chip">eval suites</span></span></div>
+  </section>
+
+  <div class="conn"><span class="ar">↓</span> <b>reads / writes shared state</b></div>
+
+  <!-- INSFORGE -->
+  <section class="band" style="--rail:var(--insforge);background:linear-gradient(90deg,var(--insforge-bg),var(--panel) 55%)">
+    <div class="bh"><span class="tag">State + hosting</span><span class="nm">InsForge — Postgres</span><span class="role">shared state · serves the frontend</span></div>
+    <div class="chips">
+      <span class="chip">inventory</span>
+      <span class="chip">rebalance_transfers</span>
+      <span class="chip">rfqs · bids</span>
+      <span class="chip">purchase_orders</span>
+      <span class="chip">forecasts</span>
+      <span class="chip">promotions</span>
+      <span class="chip"><b>mi_*</b> market data</span>
+    </div>
+  </section>
+
+  <!-- DEMO CYCLE -->
+  <section class="cycle">
+    <div class="ct">One cycle · the rebalance loop (verified)</div>
+    <div class="flow">
+      <div class="step"><div class="k">Shortage</div><div class="v">36 kg tomatoes<small>Downtown, this weekend</small></div></div>
+      <div class="arrowcol">→</div>
+      <div class="step"><div class="k">Transfer first</div><div class="v">10 kg<small>Marina → Downtown (near-expiry)</small></div></div>
+      <div class="arrowcol">→</div>
+      <div class="step"><div class="k">Net shortage</div><div class="v">26 kg<small>only this is bought</small></div></div>
+      <div class="arrowcol">→</div>
+      <div class="step"><div class="k">Auction</div><div class="v">Bay Foods<small>$2.05 beats NorCal $2.20</small></div></div>
+      <div class="arrowcol">→</div>
+      <div class="step win"><div class="k">One approval</div><div class="v">$53.30 PO<small>least waste, least cost</small></div></div>
+    </div>
+  </section>
+
+  <footer class="f">
+    <span>Mise · AGI Summit 2026 · reasoning by Anthropic (opus-4-8 / sonnet-5)</span>
+    <span><b>Live:</b> k3trn3a2.insforge.site · <b>Code:</b> github.com/abhijitbetigeri/SC-Intelligence</span>
+  </footer>
+</div>
+
+</body>
+</html>
