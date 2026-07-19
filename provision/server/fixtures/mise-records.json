@@ -1,0 +1,166 @@
+[
+  {
+    "id": "record_fixture_catalog",
+    "type": "catalog",
+    "name": "trattoria-verde",
+    "metadata": {
+      "franchise": "Trattoria Verde",
+      "branches": [
+        { "id": "downtown", "name": "Downtown", "city": "San Francisco", "lat": 37.7897, "lon": -122.4000 },
+        { "id": "marina",   "name": "Marina",   "city": "San Francisco", "lat": 37.8030, "lon": -122.4360 },
+        { "id": "mission",  "name": "Mission",  "city": "San Francisco", "lat": 37.7599, "lon": -122.4148 }
+      ],
+      "products": [
+        { "sku": "TOM-ROMA", "name": "Roma tomatoes", "unit": "kg", "shelf_life_days": 6 },
+        { "sku": "MOZZ",     "name": "Mozzarella",    "unit": "kg", "shelf_life_days": 12 },
+        { "sku": "BASIL",    "name": "Fresh basil",   "unit": "kg", "shelf_life_days": 3 },
+        { "sku": "FLOUR",    "name": "00 flour",      "unit": "kg", "shelf_life_days": 180 },
+        { "sku": "PENNE",    "name": "Penne pasta",   "unit": "kg", "shelf_life_days": 365 },
+        { "sku": "OLIVEOIL", "name": "Olive oil",     "unit": "l",  "shelf_life_days": 365 }
+      ],
+      "menu_items": [
+        { "name": "Margherita Pizza", "price": 16.00, "bom": { "TOM-ROMA": 0.150, "MOZZ": 0.120, "BASIL": 0.010, "FLOUR": 0.250 } },
+        { "name": "Marinara Pizza",   "price": 14.00, "bom": { "TOM-ROMA": 0.180, "FLOUR": 0.250 } },
+        { "name": "Pesto Penne",      "price": 18.00, "bom": { "BASIL": 0.030, "PENNE": 0.120, "OLIVEOIL": 0.020 } },
+        { "name": "Caprese Salad",    "price": 12.00, "bom": { "TOM-ROMA": 0.120, "MOZZ": 0.100, "BASIL": 0.015 } },
+        { "name": "Penne Arrabbiata", "price": 15.00, "bom": { "TOM-ROMA": 0.160, "PENNE": 0.120, "OLIVEOIL": 0.015 } }
+      ],
+      "suppliers": [
+        {
+          "name": "NorCal Produce", "lead_time_days": 1,
+          "products": [
+            { "sku": "TOM-ROMA", "unit_price": 2.20, "min_order": 5 },
+            { "sku": "BASIL",    "unit_price": 8.00, "min_order": 1 }
+          ]
+        },
+        {
+          "name": "Bay Foods Wholesale", "lead_time_days": 2,
+          "products": [
+            { "sku": "TOM-ROMA", "unit_price": 2.05, "min_order": 10 },
+            { "sku": "MOZZ",     "unit_price": 6.50, "min_order": 2 },
+            { "sku": "PENNE",    "unit_price": 1.80, "min_order": 5 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "record_fixture_branch_downtown",
+    "type": "branch-state",
+    "name": "downtown",
+    "metadata": {
+      "id": "downtown", "name": "Downtown", "city": "San Francisco",
+      "weekend_lift": 1.6,
+      "inventory": [
+        { "sku": "TOM-ROMA", "name": "Roma tomatoes", "unit": "kg", "on_hand": 4.0,  "par": 40.0, "reorder": 12.0, "earliest_expiry_days": 4,   "daily_burn": 14.16 },
+        { "sku": "BASIL",    "name": "Fresh basil",   "unit": "kg", "on_hand": 1.2,  "par": 2.0,  "reorder": 0.6,  "earliest_expiry_days": 2,   "daily_burn": 1.36 },
+        { "sku": "MOZZ",     "name": "Mozzarella",    "unit": "kg", "on_hand": 18.0, "par": 20.0, "reorder": 6.0,  "earliest_expiry_days": 9,   "daily_burn": 6.22 },
+        { "sku": "FLOUR",    "name": "00 flour",      "unit": "kg", "on_hand": 40.0, "par": 50.0, "reorder": 15.0, "earliest_expiry_days": 120, "daily_burn": 14.08 },
+        { "sku": "PENNE",    "name": "Penne pasta",   "unit": "kg", "on_hand": 20.0, "par": 25.0, "reorder": 8.0,  "earliest_expiry_days": 300, "daily_burn": 5.48 },
+        { "sku": "OLIVEOIL", "name": "Olive oil",     "unit": "l",  "on_hand": 8.0,  "par": 10.0, "reorder": 3.0,  "earliest_expiry_days": 300, "daily_burn": 0.81 }
+      ]
+    }
+  },
+  {
+    "id": "record_fixture_branch_marina",
+    "type": "branch-state",
+    "name": "marina",
+    "metadata": {
+      "id": "marina", "name": "Marina", "city": "San Francisco",
+      "weekend_lift": 1.6,
+      "inventory": [
+        { "sku": "TOM-ROMA", "name": "Roma tomatoes", "unit": "kg", "on_hand": 34.0, "par": 24.0, "reorder": 8.0,  "earliest_expiry_days": 2,   "daily_burn": 10.10 },
+        { "sku": "BASIL",    "name": "Fresh basil",   "unit": "kg", "on_hand": 1.6,  "par": 2.0,  "reorder": 0.6,  "earliest_expiry_days": 2,   "daily_burn": 0.95 },
+        { "sku": "MOZZ",     "name": "Mozzarella",    "unit": "kg", "on_hand": 14.0, "par": 16.0, "reorder": 5.0,  "earliest_expiry_days": 9,   "daily_burn": 4.45 },
+        { "sku": "FLOUR",    "name": "00 flour",      "unit": "kg", "on_hand": 35.0, "par": 45.0, "reorder": 14.0, "earliest_expiry_days": 120, "daily_burn": 10.08 },
+        { "sku": "PENNE",    "name": "Penne pasta",   "unit": "kg", "on_hand": 18.0, "par": 22.0, "reorder": 7.0,  "earliest_expiry_days": 300, "daily_burn": 3.92 },
+        { "sku": "OLIVEOIL", "name": "Olive oil",     "unit": "l",  "on_hand": 7.0,  "par": 9.0,  "reorder": 3.0,  "earliest_expiry_days": 300, "daily_burn": 0.58 }
+      ]
+    }
+  },
+  {
+    "id": "record_fixture_branch_mission",
+    "type": "branch-state",
+    "name": "mission",
+    "metadata": {
+      "id": "mission", "name": "Mission", "city": "San Francisco",
+      "weekend_lift": 1.6,
+      "inventory": [
+        { "sku": "BASIL",    "name": "Fresh basil",   "unit": "kg", "on_hand": 3.5,  "par": 1.6,  "reorder": 0.5,  "earliest_expiry_days": 2,   "daily_burn": 0.78 },
+        { "sku": "TOM-ROMA", "name": "Roma tomatoes", "unit": "kg", "on_hand": 16.0, "par": 20.0, "reorder": 6.0,  "earliest_expiry_days": 5,   "daily_burn": 8.10 },
+        { "sku": "MOZZ",     "name": "Mozzarella",    "unit": "kg", "on_hand": 12.0, "par": 14.0, "reorder": 4.0,  "earliest_expiry_days": 9,   "daily_burn": 3.56 },
+        { "sku": "FLOUR",    "name": "00 flour",      "unit": "kg", "on_hand": 30.0, "par": 40.0, "reorder": 12.0, "earliest_expiry_days": 120, "daily_burn": 8.06 },
+        { "sku": "PENNE",    "name": "Penne pasta",   "unit": "kg", "on_hand": 16.0, "par": 20.0, "reorder": 6.0,  "earliest_expiry_days": 300, "daily_burn": 3.14 },
+        { "sku": "OLIVEOIL", "name": "Olive oil",     "unit": "l",  "on_hand": 6.0,  "par": 8.0,  "reorder": 3.0,  "earliest_expiry_days": 300, "daily_burn": 0.46 }
+      ]
+    }
+  },
+  {
+    "id": "record_fixture_transfer_1",
+    "type": "transfer",
+    "name": "t-tomato-marina-downtown",
+    "metadata": {
+      "sku": "TOM-ROMA", "product": "Roma tomatoes", "unit": "kg",
+      "from_branch": "marina", "to_branch": "downtown", "qty": 10,
+      "status": "proposed",
+      "reason": "Marina holds surplus above par with 2 days to expiry; Downtown is below reorder point. Nearest branch, nearest-expiry stock first."
+    }
+  },
+  {
+    "id": "record_fixture_po_1",
+    "type": "po",
+    "name": "po-tomato-downtown",
+    "metadata": {
+      "sku": "TOM-ROMA", "product": "Roma tomatoes", "unit": "kg",
+      "to_branch": "downtown", "qty": 26,
+      "supplier": "Bay Foods Wholesale", "unit_price": 2.05, "total": 53.30,
+      "eta_days": 2, "status": "pending",
+      "reason": "Lowest landed cost meeting needed_by, honoring min-order quantities."
+    }
+  },
+  {
+    "id": "record_fixture_promotion",
+    "type": "promotion",
+    "name": "latest",
+    "metadata": {
+      "promotions": [
+        {
+          "branch": "marina", "branch_name": "Marina", "menu_item": "Marinara Pizza",
+          "kind": "discount", "discount_pct": 20,
+          "headline": "Marinara Night — 20% off while the tomatoes are at their peak",
+          "reason": "Tomato surplus at Marina expiring in 2 days."
+        },
+        {
+          "branch": "mission", "branch_name": "Mission", "menu_item": "Pesto Penne",
+          "kind": "discount", "discount_pct": 20,
+          "headline": "Pesto Night — 20% off while the basil is fresh",
+          "reason": "Basil surplus at Mission expiring in 2 days."
+        }
+      ]
+    }
+  },
+  {
+    "id": "record_fixture_forecast",
+    "type": "forecast",
+    "name": "latest",
+    "metadata": {
+      "period": "next 7 days",
+      "generated_by": "weekly_forecast flow",
+      "branches": {
+        "downtown": [
+          { "menu_item": "Margherita Pizza", "predicted_qty": 271, "confidence": 0.82 },
+          { "menu_item": "Marinara Pizza",   "predicted_qty": 123, "confidence": 0.78 },
+          { "menu_item": "Pesto Penne",      "predicted_qty": 172, "confidence": 0.80 }
+        ],
+        "marina": [
+          { "menu_item": "Margherita Pizza", "predicted_qty": 194, "confidence": 0.79 },
+          { "menu_item": "Pesto Penne",      "predicted_qty": 123, "confidence": 0.76 }
+        ],
+        "mission": [
+          { "menu_item": "Margherita Pizza", "predicted_qty": 155, "confidence": 0.77 },
+          { "menu_item": "Pesto Penne",      "predicted_qty": 99,  "confidence": 0.75 }
+        ]
+      }
+    }
+  }
+]

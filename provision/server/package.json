@@ -1,0 +1,20 @@
+{
+  "name": "@provision/server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Komodos Provision backend — single-origin Express (ESM) serving the SPA + JSON API. Records repository, auth/RBAC, deterministic simulation, and env-gated InsForge / Runtype / Cotal seams.",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.112.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
