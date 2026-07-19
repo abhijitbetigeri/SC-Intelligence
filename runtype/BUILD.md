@@ -69,8 +69,31 @@ execute_agent agent_01kxvr5785e4d8tfpemr6tgf21  "Hi, I'm Alex. Is my usual avail
 Both chat surfaces have live client tokens; drop a Persona widget with
 `generate_persona_embed_code` to embed the Owner Console / Diner Chat.
 
+## Eval suites (regression harness)
+
+One suite per capability, seeded with the verified smoke-test cases (`origin:
+saved_from_run`) and graded with a mix of deterministic checks + an AI judge. Re-run with
+`run_eval_suite` after any prompt/step/tool change.
+
+| Suite | Target | ID | Last result |
+|-------|--------|----|-------------|
+| Rebalance & Procure | Coordinator agent | `evsuite_01kxvtzj7gfes8bq1tde860mhz` | judge + all gate graders pass ✅ |
+| Consumer Concierge | Concierge agent | `evsuite_01kxvv0c47fey9faj841p123gt` | pass ✅ |
+| Weekly Forecast | Forecast flow | `evsuite_01kxvv0fndeh69ck530f4rvdby` | pass ✅ |
+| Promotion Sweep | Promotion flow | `evsuite_01kxvv0knrexwtgaygp1vyfa5k` | not yet run (quota) ⏳ |
+
+Notes:
+- The Rebalance suite originally had two `called_tool` graders (`runtype_record_list`,
+  `runtype_record_upsert`) that false-failed — the trace tool name doesn't match the bare
+  builtin name. They were removed; the AI judge already verifies the transfer-first /
+  cheaper-supplier logic and the persisted plan. Restore a tool-use grader once the exact
+  trace tool-name format is confirmed.
+
 ## Known gaps
 
+- **Execution quota:** the account's test key caps daily executions (hit `402 Limit Exceeded`
+  after the day's smoke tests + eval runs). The Promotion eval suite is built but hasn't had a
+  clean run yet; re-run all suites when the quota resets. A live demo needs a higher limit.
 - **Schedules** (weekly forecast + promotion cron) were rejected with `402 Frequency Not
   Allowed` — the account plan doesn't allow cron scheduling. The flows run on demand instead.
 - Suppliers are modelled as catalog data, not live bidding agents (the Cotal RFQ/anycast loop
