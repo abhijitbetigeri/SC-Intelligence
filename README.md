@@ -22,7 +22,7 @@ Full design + demo script: [docs/architecture.md](docs/architecture.md).
 
 | Layer | Tool |
 |-------|------|
-| Agent coordination mesh | **Cotal.ai** — branches & suppliers as agent nodes ([cotal.yaml](cotal.yaml)) |
+| Agent coordination mesh | **Cotal.ai** — branches & suppliers as autonomous agent nodes negotiating stock ([cotal.yaml](cotal.yaml) · [why Cotal + demo](docs/cotal-mesh.md) · [Mesh Console](web/mesh.html)) |
 | Agent runtime + surfaces | **Runtype** — agents/flows deployed to owner + consumer surfaces ([runtype/agents.md](runtype/agents.md)) |
 | Backend / state | **InsForge** — Postgres, auth, realtime, pgvector ([db/schema.sql](db/schema.sql)) |
 | Reasoning | **Anthropic** (`claude-sonnet-5` / `claude-opus-4-8`) |

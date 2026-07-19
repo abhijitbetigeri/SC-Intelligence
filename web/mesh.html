@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mise · Mesh Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#141009; --bg2:#1b1610; --panel:#211a12; --panel2:#2a2016;
+    --line:#3a2c1e; --line-soft:#2f2418;
+    --cream:#f4ead9; --muted:#b6a288; --faint:#8a7860;
+    --tomato:#e5533d; --tomato-soft:#f0a493;
+    --basil:#93b061; --amber:#e2a838; --gold:#d8b26a; --blue:#6ea6c9;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --sans:'IBM Plex Sans',system-ui,sans-serif;
+    --serif:'Fraunces',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--cream);font-family:var(--sans);min-height:100vh;
+    position:relative;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(120% 80% at 80% -10%,rgba(229,83,61,.12),transparent 60%),
+    radial-gradient(90% 70% at 10% 110%,rgba(147,176,97,.08),transparent 55%)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:28px 24px 80px}
+
+  header.mast{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+    padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .brand{display:flex;align-items:center;gap:13px}
+  .mark{width:42px;height:42px;border-radius:11px;flex:none;background:linear-gradient(150deg,var(--tomato),#b83a28);
+    display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:23px;color:#fff;
+    box-shadow:0 6px 20px -6px rgba(229,83,61,.6),inset 0 1px 0 rgba(255,255,255,.25)}
+  .brand h1{font-family:var(--serif);font-weight:600;font-size:26px;letter-spacing:-.01em;line-height:1}
+  .brand .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:5px}
+  .space{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;
+    padding:7px 13px;background:var(--panel)}
+  .space b{color:var(--basil)}
+
+  .controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+  .btn{appearance:none;cursor:pointer;font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;
+    border:0;border-radius:10px;padding:12px 20px;transition:.15s;font-weight:600}
+  .btn.run{background:var(--basil);color:#16110a}
+  .btn.run:hover{background:#a6c375;transform:translateY(-1px)}
+  .btn.ghost{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--tomato-soft);color:var(--cream)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .speed{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--faint);margin-left:auto}
+  .speed button{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:8px;
+    padding:6px 11px;cursor:pointer;font-family:var(--mono);font-size:11px}
+  .speed button[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+
+  /* phase ribbon */
+  .phases{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+  .ph{flex:1;min-width:120px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--faint);border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px;background:var(--panel);
+    display:flex;align-items:center;gap:8px;transition:.3s}
+  .ph .n{width:6px;height:6px;border-radius:50%;background:var(--faint)}
+  .ph.active{color:var(--cream);border-color:var(--tomato)}
+  .ph.active .n{background:var(--tomato);box-shadow:0 0 0 4px rgba(229,83,61,.2)}
+  .ph.done{color:var(--basil);border-color:rgba(147,176,97,.4)} .ph.done .n{background:var(--basil)}
+
+  .layout{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start}
+
+  /* node roster */
+  .roster{background:var(--panel);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden;position:sticky;top:20px}
+  .roster h2{font-family:var(--serif);font-weight:600;font-size:16px;padding:15px 18px 12px}
+  .roster .grp{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);
+    padding:10px 18px 6px;border-top:1px solid var(--line-soft)}
+  .node{display:flex;align-items:center;gap:11px;padding:10px 18px;transition:.25s;border-left:3px solid transparent}
+  .node .dot{width:8px;height:8px;border-radius:50%;background:#4a3a28;flex:none;transition:.25s}
+  .node.online .dot{background:var(--basil);box-shadow:0 0 0 3px rgba(147,176,97,.18)}
+  .node.active{background:#2c211688;border-left-color:var(--tomato)}
+  .node.active .dot{background:var(--tomato);box-shadow:0 0 0 4px rgba(229,83,61,.28);animation:pulse .8s ease}
+  @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.5)}100%{transform:scale(1)}}
+  .node .nm{font-size:13.5px;font-weight:500}
+  .node .rl{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:1px;text-transform:uppercase;letter-spacing:.05em}
+  .node.off .nm{color:var(--faint)}
+
+  /* feed */
+  .feed{background:var(--panel);border:1px solid var(--line-soft);border-radius:16px;min-height:520px;overflow:hidden}
+  .feed .fhead{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line-soft)}
+  .feed .fhead h2{font-family:var(--serif);font-weight:600;font-size:17px}
+  .feed .fhead .cnt{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .stream{padding:8px 0 14px;max-height:640px;overflow-y:auto}
+  .stream .empty{padding:60px 24px;text-align:center;color:var(--faint);font-family:var(--mono);font-size:13px;line-height:1.8}
+  .stream .empty b{color:var(--muted);display:block;font-size:15px;margin-bottom:6px}
+
+  .msg{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:11px 20px;position:relative;
+    opacity:0;transform:translateY(8px);animation:slidein .4s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes slidein{to{opacity:1;transform:none}}
+  .msg .ch{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;padding-top:3px;text-align:right;white-space:nowrap}
+  .msg .ch b{display:block;font-weight:600}
+  .msg .ch small{color:var(--faint);font-size:9.5px}
+  .msg .body{border-left:2px solid var(--line);padding-left:14px}
+  .msg .route{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px}
+  .msg .who{font-size:13px;font-weight:600}
+  .msg .arw{color:var(--faint);font-family:var(--mono);font-size:12px}
+  .msg .to{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .msg .kindtag{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;
+    padding:2px 7px;border-radius:5px;border:1px solid}
+  .msg .txt{font-size:13.5px;color:var(--cream);line-height:1.5}
+  .msg .txt .hl{font-family:var(--mono);font-weight:600}
+  .msg .rt{display:inline-flex;align-items:center;gap:5px;margin-top:6px;font-family:var(--mono);font-size:10px;
+    letter-spacing:.04em;color:var(--blue);border:1px dashed rgba(110,166,201,.4);border-radius:6px;padding:2px 7px}
+
+  /* channel + kind colors */
+  .c-demand b{color:var(--muted)} .c-demand .body{border-left-color:#4a3a28}
+  .c-rebalance b{color:var(--tomato-soft)} .c-rebalance .body{border-left-color:rgba(229,83,61,.5)}
+  .c-procurement b{color:var(--gold)} .c-procurement .body{border-left-color:rgba(216,178,106,.5)}
+  .c-decisions b{color:var(--basil)} .c-decisions .body{border-left-color:rgba(147,176,97,.5)}
+  .c-promotions b{color:#d99ad2} .c-promotions .body{border-left-color:rgba(217,154,210,.45)}
+  .k-shortage{color:var(--tomato-soft);border-color:rgba(229,83,61,.45);background:rgba(229,83,61,.1)}
+  .k-surplus{color:var(--gold);border-color:rgba(216,178,106,.4);background:rgba(216,178,106,.08)}
+  .k-claim{color:var(--basil);border-color:rgba(147,176,97,.45);background:rgba(147,176,97,.1)}
+  .k-anycast{color:var(--blue);border-color:rgba(110,166,201,.45);background:rgba(110,166,201,.1)}
+  .k-bid{color:var(--gold);border-color:rgba(216,178,106,.4);background:rgba(216,178,106,.08)}
+  .k-award,.k-confirm{color:var(--basil);border-color:rgba(147,176,97,.45);background:rgba(147,176,97,.1)}
+  .k-post{color:var(--muted);border-color:var(--line);background:transparent}
+
+  .outcome{margin-top:22px;background:linear-gradient(120deg,var(--panel2),var(--panel));border:1px solid var(--line);
+    border-radius:16px;padding:20px 22px;opacity:0;transform:translateY(10px);transition:.5s}
+  .outcome.show{opacity:1;transform:none}
+  .outcome h3{font-family:var(--serif);font-weight:600;font-size:19px;margin-bottom:12px}
+  .outcome .lines{display:grid;gap:9px}
+  .outcome .ln{display:flex;gap:11px;font-size:13.5px;align-items:baseline}
+  .outcome .ln .ic{font-family:var(--mono);color:var(--basil)}
+  .outcome .ln .hl{font-family:var(--mono);font-weight:600;color:var(--gold)}
+
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line-soft);font-family:var(--mono);
+    font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer a{color:var(--basil);text-decoration:none}
+  @media (max-width:860px){.layout{grid-template-columns:1fr}.roster{position:static}.msg{grid-template-columns:1fr}.msg .ch{text-align:left}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <div class="mark">M</div>
+      <div><h1>Mesh Console</h1><div class="sub">Cotal coordination · agents negotiating stock</div></div>
+    </div>
+    <div class="space">Space · <b>trattoria-verde</b></div>
+  </header>
+
+  <div class="controls">
+    <button class="btn run" id="runBtn">▶ Run rebalance cycle</button>
+    <button class="btn ghost" id="resetBtn" disabled>Reset</button>
+    <div class="speed">Tempo
+      <button data-sp="1400" aria-pressed="false">0.7×</button>
+      <button data-sp="950" aria-pressed="true">1×</button>
+      <button data-sp="480" aria-pressed="false">2×</button>
+    </div>
+  </div>
+
+  <div class="phases" id="phases"></div>
+
+  <div class="layout">
+    <aside class="roster" id="roster"></aside>
+    <section class="feed">
+      <div class="fhead"><h2>Channel activity</h2><span class="cnt" id="cnt">idle</span></div>
+      <div class="stream" id="stream">
+        <div class="empty" id="empty"><b>Mesh is idle.</b>Hit “Run rebalance cycle” to watch the branches<br>negotiate the weekend tomato shortage in real time.</div>
+      </div>
+    </section>
+  </div>
+
+  <div class="outcome" id="outcome">
+    <h3>What the mesh decided — one owner approval</h3>
+    <div class="lines">
+      <div class="ln"><span class="ic">↔</span><span>Transfer <span class="hl">10 kg Roma tomatoes</span> — Marina → Downtown <span style="color:var(--faint)">(near-expiry surplus rescued, nothing bought)</span></span></div>
+      <div class="ln"><span class="ic">$</span><span>Buy <span class="hl">26 kg</span> from <span class="hl">Bay Foods</span> @ $2.05 = <span class="hl">$53.30</span> <span style="color:var(--faint)">(won the anycast auction vs NorCal $2.20)</span></span></div>
+      <div class="ln"><span class="ic">%</span><span>Auto-special: <span class="hl">Pesto Night — 20% off</span> <span style="color:var(--faint)">(Mission basil surplus, no branch needed it)</span></span></div>
+      <div class="ln"><span class="ic">✓</span><span>Waste avoided: <span class="hl">10 kg</span> near-expiry tomatoes · net spend just <span class="hl">$53.30</span></span></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Choreography replay of the Cotal mesh · <a href="../docs/cotal-mesh.md">why Cotal →</a></span>
+    <span>Reasoning: Runtype MCP · State: InsForge · <a href="index.html">Branch dashboard →</a></span>
+  </footer>
+</div>
+
+<script>
+const NODES=[
+  {id:"branch-downtown",nm:"Downtown",rl:"branch",grp:"Branches"},
+  {id:"branch-marina",nm:"Marina",rl:"branch",grp:"Branches"},
+  {id:"branch-mission",nm:"Mission",rl:"branch",grp:"Branches"},
+  {id:"rebalance-coordinator",nm:"Rebalance Coordinator",rl:"lead",grp:"Coordination"},
+  {id:"procurement",nm:"Procurement",rl:"procurement",grp:"Coordination"},
+  {id:"supplier-norcal",nm:"NorCal Produce",rl:"supplier",grp:"Suppliers"},
+  {id:"supplier-bayfoods",nm:"Bay Foods Wholesale",rl:"supplier",grp:"Suppliers"},
+];
+const PHASES=[
+  {id:"demand",label:"Demand"},{id:"rebalance",label:"Rebalance"},
+  {id:"procurement",label:"Procurement"},{id:"promotions",label:"Promotions"},
+];
+const NM=Object.fromEntries(NODES.map(n=>[n.id,n.nm]));
+// scripted negotiation — mirrors the verified rebalance run
+const EVENTS=[
+  {ph:"demand",ch:"demand",from:"branch-downtown",to:"#demand",kind:"post",txt:`Forecast 7d: <span class="hl">273</span> Margherita, 123 Marinara. Tomato burn <span class="hl">14.4 kg/day</span> · on hand <span class="hl">4 kg</span> (0.3d cover).`,rt:"weekly_forecast · inventory_admin"},
+  {ph:"demand",ch:"demand",from:"branch-marina",to:"#demand",kind:"surplus",txt:`Roma tomatoes <span class="hl">34 kg</span> vs par 24 → <span class="hl">10 kg surplus</span>, earliest lot expires in <span class="hl">2 days</span>.`},
+  {ph:"demand",ch:"demand",from:"branch-mission",to:"#demand",kind:"surplus",txt:`Basil <span class="hl">3.5 kg</span> vs par 1.6 → surplus, expires in 2 days. No tomato surplus here.`},
+
+  {ph:"rebalance",ch:"rebalance",from:"branch-downtown",to:"#rebalance · broadcast",kind:"shortage",txt:`<span class="hl">SHORTAGE</span> Roma tomatoes — need <span class="hl">36 kg</span> by Saturday (on hand 4, reorder 12).`},
+  {ph:"rebalance",ch:"rebalance",from:"rebalance-coordinator",to:"surplus holders",kind:"anycast",txt:`Anycast: who can cover Downtown's tomato shortage from surplus?`},
+  {ph:"rebalance",ch:"rebalance",from:"branch-marina",to:"rebalance-coordinator",kind:"claim",txt:`<span class="hl">CLAIM</span> — I hold 10 kg over par, expiring in 2d. Propose transfer <span class="hl">10 kg → Downtown</span>.`},
+  {ph:"rebalance",ch:"rebalance",from:"branch-mission",to:"#rebalance",kind:"post",txt:`No tomato surplus to offer.`},
+  {ph:"rebalance",ch:"rebalance",from:"rebalance-coordinator",to:"branch-marina · branch-downtown",kind:"confirm",txt:`<span class="hl">CONFIRM</span> transfer 10 kg Roma: Marina → Downtown (nearest branch, near-expiry first).`,rt:"rebalance_and_procure"},
+  {ph:"rebalance",ch:"decisions",from:"rebalance-coordinator",to:"#decisions",kind:"confirm",txt:`TRANSFER <span class="hl">t_TOM-ROMA_marina_downtown</span> · 10 kg · status=proposed. Net unmet: <span class="hl">26 kg</span>.`},
+
+  {ph:"procurement",ch:"procurement",from:"rebalance-coordinator",to:"procurement",kind:"shortage",txt:`Net franchise shortage: <span class="hl">26 kg</span> Roma tomatoes by Saturday. Over to you.`},
+  {ph:"procurement",ch:"procurement",from:"procurement",to:"suppliers · broadcast",kind:"anycast",txt:`<span class="hl">RFQ</span> Roma tomatoes 26 kg, needed_by Sat. Bids?`},
+  {ph:"procurement",ch:"procurement",from:"supplier-norcal",to:"procurement",kind:"bid",txt:`BID <span class="hl">$2.20/kg</span>, eta 1 day (min 5).`},
+  {ph:"procurement",ch:"procurement",from:"supplier-bayfoods",to:"procurement",kind:"bid",txt:`BID <span class="hl">$2.05/kg</span>, eta 2 days (min 10).`},
+  {ph:"procurement",ch:"procurement",from:"procurement",to:"#procurement",kind:"award",txt:`<span class="hl">AWARD</span> Bay Foods @ $2.05 → 26 kg = <span class="hl">$53.30</span> (lowest landed cost, meets Sat).`,rt:"rebalance_and_procure"},
+  {ph:"procurement",ch:"decisions",from:"procurement",to:"#decisions",kind:"award",txt:`PO <span class="hl">po_TOM-ROMA_bayfoods</span> · 26 kg · $53.30 · status=pending → owner approval.`},
+
+  {ph:"promotions",ch:"promotions",from:"branch-mission",to:"#promotions",kind:"surplus",txt:`Near-expiry basil surplus 1.9 kg, no branch needs it — trigger a special.`},
+  {ph:"promotions",ch:"promotions",from:"branch-mission",to:"consumer app",kind:"post",txt:`<span class="hl">Pesto Night — 20% off Pesto Penne</span> (clears basil fastest before it spoils).`,rt:"promotion_sweep"},
+];
+
+let SPEED=950, running=false, timers=[];
+const el=id=>document.getElementById(id);
+
+// build roster
+(function(){
+  let html="", lastGrp="";
+  NODES.forEach(n=>{ if(n.grp!==lastGrp){html+=`<div class="grp">${n.grp}</div>`;lastGrp=n.grp;}
+    html+=`<div class="node off" id="node-${n.id}"><span class="dot"></span><div><div class="nm">${n.nm}</div><div class="rl">${n.rl}</div></div></div>`;});
+  el("roster").innerHTML=`<h2>Mesh nodes</h2>`+html;
+})();
+el("phases").innerHTML=PHASES.map(p=>`<div class="ph" id="ph-${p.id}"><span class="n"></span>${p.label}</div>`).join("");
+
+// tempo
+document.querySelectorAll(".speed button").forEach(b=>b.addEventListener("click",()=>{
+  if(running)return; SPEED=+b.dataset.sp;
+  document.querySelectorAll(".speed button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+}));
+
+function reset(){
+  timers.forEach(clearTimeout);timers=[];running=false;
+  el("stream").innerHTML=`<div class="empty"><b>Mesh is idle.</b>Hit “Run rebalance cycle” to watch the branches<br>negotiate the weekend tomato shortage in real time.</div>`;
+  el("cnt").textContent="idle"; el("outcome").classList.remove("show");
+  el("runBtn").disabled=false; el("resetBtn").disabled=true;
+  NODES.forEach(n=>el("node-"+n.id).className="node off");
+  PHASES.forEach(p=>el("ph-"+p.id).className="ph");
+}
+function firePhase(id){PHASES.forEach(p=>{const e=el("ph-"+p.id);
+  if(p.id===id)e.className="ph active"; else if(e.classList.contains("active")||e.classList.contains("done"))e.className="ph done";});}
+
+function render(ev,i){
+  // node activity
+  const a=el("node-"+ev.from); if(a){a.classList.remove("active");void a.offsetWidth;a.classList.add("active");
+    setTimeout(()=>a.classList.remove("active"),SPEED*.9);}
+  firePhase(ev.ph);
+  const kindLabel={post:"post",shortage:"shortage",surplus:"surplus",claim:"claim",anycast:"anycast",bid:"bid",award:"award",confirm:"confirm"}[ev.kind]||ev.kind;
+  const card=document.createElement("div");
+  card.className=`msg c-${ev.ch}`;
+  card.innerHTML=`
+    <div class="ch"><b>#${ev.ch}</b><small>msg ${i+1}</small></div>
+    <div class="body">
+      <div class="route"><span class="who">${NM[ev.from]||ev.from}</span>
+        <span class="arw">→</span><span class="to">${ev.to}</span>
+        <span class="kindtag k-${ev.kind}">${kindLabel}</span></div>
+      <div class="txt">${ev.txt}</div>
+      ${ev.rt?`<span class="rt">⚙ calls Runtype · ${ev.rt}</span>`:""}
+    </div>`;
+  el("stream").appendChild(card);
+  card.scrollIntoView({behavior:"smooth",block:"end"});
+  el("cnt").textContent=`${i+1} / ${EVENTS.length} messages`;
+}
+
+function run(){
+  if(running)return; reset(); running=true;
+  el("runBtn").disabled=true; el("resetBtn").disabled=false; el("stream").innerHTML="";
+  // bring nodes online with a quick stagger
+  NODES.forEach((n,k)=>timers.push(setTimeout(()=>el("node-"+n.id).className="node online",120*k)));
+  const start=NODES.length*120+300;
+  EVENTS.forEach((ev,i)=>timers.push(setTimeout(()=>render(ev,i),start+i*SPEED)));
+  timers.push(setTimeout(()=>{el("outcome").classList.add("show");el("cnt").textContent=`cycle complete · ${EVENTS.length} messages`;running=false;
+    el("outcome").scrollIntoView({behavior:"smooth",block:"nearest"});},start+EVENTS.length*SPEED+400));
+}
+el("runBtn").addEventListener("click",run);
+el("resetBtn").addEventListener("click",reset);
+</script>
+</body>
+</html>

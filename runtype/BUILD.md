@@ -22,6 +22,12 @@ This is the **as-built** record of the Runtype product (the specs live in
 | Surface (chat) | Owner Console → Coordinator | `surf_01kxvr964ye4d8tfpy1yj8ksjy` |
 | Surface (chat) | Diner Chat → Concierge | `surf_01kxvr96dzenc9yg72ymvhn8xm` |
 | Surface (chat) | Branch Admin Console → Inventory Admin | `surf_01kxvyjat2eh585q89zbskgx6f` |
+| Surface (mcp) | Mesh Bridge → forecast/rebalance/promotion/inventory | `surf_01kxvzxg98fqb8x1ngbe2a38q4` |
+
+The **Mesh Bridge (MCP)** surface is the Cotal↔Runtype connector: Cotal nodes (Claude Code)
+`claude mcp add` the URL `…/products/prod_01kxvr3fcneskr35jfxqhekaj0/surfaces/surf_01kxvzxg98fqb8x1ngbe2a38q4/mcp`
+with `Authorization: Bearer $MISE_MCP_KEY` (surface key "Cotal Mesh key", `mcp_e5caf93d…`, kept out of git)
+and call the four ops capabilities as tools. See [../docs/cotal-mesh.md](../docs/cotal-mesh.md).
 
 The **Branch Admin Console** is embedded in a real UI — [../web/index.html](../web/index.html)
 — via the Persona widget (client token `ct_live_01kxvyhr…`, all-origins). See [../web/README.md](../web/README.md).
