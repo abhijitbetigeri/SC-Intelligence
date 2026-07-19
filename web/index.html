@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Mise - restaurants that restock themselves</title>
 <meta name="description" content="An intelligence supply chain for restaurants: autonomous branch and supplier agents that forecast demand, trade surplus, and keep dishes in stock." />
-<!-- Aesthetic: dark-tech precision, native CSS (not a design system). Single locked accent. -->
+<script>(function(){try{var t=localStorage.getItem('mise-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<!-- Aesthetic: dark-tech precision, native CSS (not a design system). Single locked accent. Light + dark. -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -20,14 +21,34 @@
     --disp:'Bricolage Grotesque',system-ui,sans-serif;
     --sans:'Hanken Grotesk',system-ui,sans-serif;
     --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --noise:.05; --glow:rgba(229,83,61,.16);
+  }
+  /* light mode - same locked accent, warm-neutral base (explicit toggle + system auto) */
+  :root[data-theme="light"]{
+    --bg:#f8f5ef; --bg2:#f1ece2; --panel:#ffffff; --panel-2:#f5f0e7;
+    --line:#e6ddcd; --line-2:#eee7db;
+    --ink:#241c14; --sub:#6b5d4c; --dim:#77694f;
+    --accent:#cf4629; --accent-soft:#b23c26;
+    --shadow:0 22px 44px -26px rgba(90,55,30,.30), 0 1px 0 rgba(0,0,0,.03) inset;
+    --noise:.03; --glow:rgba(229,83,61,.10);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme]){
+      --bg:#f8f5ef; --bg2:#f1ece2; --panel:#ffffff; --panel-2:#f5f0e7;
+      --line:#e6ddcd; --line-2:#eee7db;
+      --ink:#241c14; --sub:#6b5d4c; --dim:#77694f;
+      --accent:#cf4629; --accent-soft:#b23c26;
+      --shadow:0 22px 44px -26px rgba(90,55,30,.30), 0 1px 0 rgba(0,0,0,.03) inset;
+      --noise:.03; --glow:rgba(229,83,61,.10);
+    }
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;
     -webkit-font-smoothing:antialiased;min-height:100dvh;position:relative;overflow-x:hidden}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-    background:radial-gradient(90% 60% at 78% -12%,rgba(229,83,61,.16),transparent 62%)}
-  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;
+    background:radial-gradient(90% 60% at 78% -12%,var(--glow),transparent 62%)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:var(--noise);
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   .shell{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
   a{color:inherit}
@@ -43,6 +64,10 @@
   nav.top .links a{font-family:var(--mono);font-size:13px;color:var(--sub);text-decoration:none;padding:9px 13px;border-radius:9px;transition:.15s}
   nav.top .links a:hover{color:var(--ink);background:var(--panel)}
   nav.top .links a.src{color:var(--ink)}
+  .themetoggle{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;margin-left:4px;
+    border-radius:9px;background:var(--panel);border:1px solid var(--line);color:var(--sub);cursor:pointer;font-size:16px;transition:.15s}
+  .themetoggle:hover{color:var(--ink);border-color:var(--accent-soft)}
+  .themetoggle:active{transform:scale(.94)}
 
   /* hero - asymmetric split, fits viewport */
   .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center;
@@ -135,6 +160,7 @@
       <a href="branch.html">Branch Ops</a>
       <a href="market.html">Market</a>
       <a class="src" href="https://github.com/abhijitbetigeri/SC-Intelligence" target="_blank" rel="noopener">Source</a>
+      <button class="themetoggle" id="themeBtn" type="button" aria-label="Toggle light or dark mode"><i class="ph ph-sun"></i></button>
     </div>
   </nav>
 
@@ -217,6 +243,18 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
   }, {threshold:.18});
   document.querySelectorAll(".rise:not(.in)").forEach(el=>io.observe(el));
+
+  // light / dark toggle - persists in localStorage, defaults to system preference
+  const root=document.documentElement, tb=document.getElementById("themeBtn");
+  const curTheme=()=> root.getAttribute("data-theme") || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  const syncIcon=()=>{ tb.innerHTML = curTheme()==="light" ? '<i class="ph ph-moon"></i>' : '<i class="ph ph-sun"></i>'; };
+  syncIcon();
+  tb.addEventListener("click", ()=>{
+    const next = curTheme()==="light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("mise-theme", next); }catch(e){}
+    syncIcon();
+  });
 </script>
 </body>
 </html>
