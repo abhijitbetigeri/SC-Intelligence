@@ -5,139 +5,166 @@
 
 AGI Summit 2026 Hackathon · Vertical AI + Multi-Agent System
 
+This is the **as-built** architecture. For exhaustive resource IDs and run commands see
+[../runtype/BUILD.md](../runtype/BUILD.md) (Runtype), [../INSFORGE.md](../INSFORGE.md) (backend),
+and [cotal-mesh.md](cotal-mesh.md) (the mesh + demo script).
+
 ---
 
 ## The problem
 
-Restaurants run on guesswork. Owners over-order (waste, spoilage, cash tied up) or
-under-order (stockouts of the exact dishes customers came for). Franchises make it worse:
-one branch dumps surplus tomatoes while another two miles away 86's the marinara.
+Restaurant inventory is a distributed system with no shared state. Every branch orders in
+isolation, so a franchise over-orders at one location (waste, spoilage, cash tied up) while
+stocking out at another. The obvious fix — move surplus between branches before buying new — never
+happens, because there is no coordination layer and no central planner that scales.
 
 ## The idea
 
 An **intelligence layer across the supply chain** — supplier → franchise → branch → consumer —
-where specialist agents forecast demand per menu item, keep each branch stocked to that demand,
-**rebalance surplus between branches of the same franchise**, auto-trigger promotions to burn
-down surplus, and give consumers **predictable availability** of the dishes they love.
+where each branch and supplier is an autonomous agent: forecast demand per menu item, keep each
+branch stocked to that demand, **rebalance surplus between branches before buying**, auto-trigger
+promotions to burn down surplus, and give consumers **predictable availability**.
 
-## Three goals (from the product owner)
+## Three goals
 
-1. **Demand-driven supply chain + franchise rebalancing.** Forecast customer demand per menu
-   item per branch → derive ingredient needs → procure to demand. For franchise-owned groups,
-   coordinate *across branches* to distribute and rebalance stock before buying more.
-   Dashboard surfaces waste risk and guarantees top-selling items stay covered.
-2. **Autonomous promotion trigger.** Weekly, an agent inspects inventory vs. movement. Surplus
-   or slow-moving stock → it triggers a promotion/marketing action for that menu item to sell
-   through before spoilage.
-3. **Consumer predictability.** Diners get a better experience because their favorite / the
-   most-popular items are reliably in stock — the system prioritizes keeping them available and
-   can tell a consumer the live/predicted availability of what they like.
+1. **Demand-driven supply chain + franchise rebalancing** (the multi-agent showpiece) — forecast
+   per item per branch → derive ingredient needs → rebalance across branches → procure only the net.
+2. **Autonomous promotions** — surplus / near-expiry stock triggers a menu promotion before spoilage.
+3. **Consumer predictability** — favorites and popular items stay in stock; the concierge can tell
+   a diner live/predicted availability.
 
 ---
 
-## Architecture
+## Architecture — three layers
 
 ```
-                          ┌─────────────────────── COTAL MESH (one Space per franchise) ───────────────────────┐
-                          │                                                                                     │
-  Suppliers  ◀──RFQ────►  │  #procurement        #rebalance            #demand            #promotions           │
-   (agents)               │       ▲                  ▲                    ▲                     ▲                │
-                          │       │        ┌─────────┴─────────┐         │                     │                │
-                          │  Procurement   │  Branch A   Branch B  Branch C  (agent nodes,     │                │
-                          │    Agent       │  presence + surplus/shortage, anycast rebalance)  │                │
-                          │                └───────────────────────────────────────────────────┘               │
-                          └─────────────────────────────────────────────────────────────────────────────────────┘
-        RUNTYPE (agents/flows + surfaces)                       INSFORGE (backend)
-        ├─ Forecast Agent      → owner dashboard (web)          ├─ Postgres: inventory, sales, forecasts, ...
-        ├─ Inventory Planner   → owner Slack (approvals)        ├─ Auth: owner vs consumer (RLS)
-        ├─ Rebalance Coord.    → consumer web chat / SMS        ├─ Realtime: live inventory + rebalance feed
-        ├─ Procurement Agent                                    ├─ pgvector: dish/ingredient/supplier matching
-        ├─ Promotion Agent                                      └─ (Stripe optional: consumer orders)
-        └─ Consumer Concierge
-```
+                    CONSUMERS                              OWNERS / BRANCH ADMINS
+                        │                                          │
+        ┌───────────────┴──────────────────────────────────────────┴───────────────┐
+  UI    │   Landing   ·   Mesh Console   ·   Branch Operations   ·   Market Intel     │  (hosted on InsForge)
+        └───────────────┬──────────────────────────────────────────┬───────────────┘
+                        │  Persona chat widget (owner & consumer)   │
+   ┌────────────────────────────────────────────────────────────────────────────────┐
+   │  COTAL — COORDINATION                                                            │
+   │  branch + supplier nodes negotiate over channels; anycast on #rebalance          │
+   │  #demand → #rebalance → #procurement → #promotions → #decisions                   │
+   └────────────────────┬───────────────────────────────────────────────────────────┘
+                        │  a node, when it must DECIDE, calls capabilities via the MCP bridge ↓
+   ┌────────────────────┴───────────────────────────────────────────────────────────┐
+   │  RUNTYPE — REASONING  (6 capabilities, agents + flows, exposed over an MCP surface)│
+   │  weekly_forecast · rebalance_and_procure (opus) · promotion_sweep ·               │
+   │  consumer_concierge · inventory_admin · menu_intelligence                         │
+   └────────────────────┬───────────────────────────────────────────────────────────┘
+                        │  reads / writes state ↓
+   ┌────────────────────┴───────────────────────────────────────────────────────────┐
+   │  INSFORGE — STATE + HOSTING  (Postgres)                                          │
+   │  inventory · rebalance_transfers · rfqs · bids · purchase_orders · forecasts ·    │
+   │  promotions · mi_* market data     +     serves the frontend                     │
+   └──────────────────────────────────────────────────────────────────────────────────┘
 
-### Layer responsibilities
+   Reasoning inside every agent: Anthropic — claude-opus-4-8 (rebalance) / claude-sonnet-5 (rest)
+```
 
 | Layer | Tool | Role |
 |-------|------|------|
-| Coordination mesh | **Cotal.ai** | Branches + suppliers are agent nodes; presence, channels, anycast bidding/rebalancing |
-| Agent runtime + surfaces | **Runtype** | Agents & flows built once, deployed to owner dashboard/Slack + consumer chat/SMS |
-| Backend / state | **InsForge** | Postgres, auth+RLS, realtime, pgvector, (Stripe) |
-| Reasoning | **Anthropic** | Model brains inside each agent |
+| Coordination | **Cotal** | Branches & suppliers as agent nodes; presence, channels, anycast rebalancing. Decides *who talks to whom and when*. |
+| Reasoning | **Runtype** | 6 agent/flow capabilities over an MCP bridge. Decides *what the smart move is*. |
+| State + hosting | **InsForge** | Postgres for inventory/transfers/POs/forecasts + the scraped market; hosts the UI. *Remembers.* |
+| Conversation | **Persona** | Embedded chat widget behind the owner/consumer assistants. |
+| Model | **Anthropic** | `claude-opus-4-8` for the multi-constraint rebalance; `claude-sonnet-5` elsewhere. |
 
----
+> **State note.** The live agent demo currently reads/writes **Runtype's native record store**
+> (`catalog`, `branch-state`, `forecast`, `promotion`, `transfer`, `po`, `consumer`) so it is fully
+> self-contained. **InsForge Postgres** is provisioned as the production backend (mirrors
+> [../db/schema.sql](../db/schema.sql) + seed), holds the scraped `mi_*` market data, and hosts the
+> frontend. To move the demo onto Postgres, re-point the record tools at InsForge-backed tools.
 
-## Agents
+## Capabilities (Runtype, as built)
 
-| Agent | Scope | What it does | Cotal role | Runtype form |
-|-------|-------|--------------|------------|--------------|
-| **Forecast** | per branch | Predicts next-period demand per menu item from sales history + signals (day-of-week, weather, events) | posts to `#demand` | Flow |
-| **Inventory Planner** | per branch | Explodes forecast → ingredient needs (recipe BOM); computes par levels, reorder points, surplus | writes needs/surplus | Flow |
-| **Branch** | per branch | Represents the branch live in the mesh; declares surplus/shortage, claims rebalance offers | agent node (presence, tags=location) | Agent |
-| **Rebalance Coordinator** | franchise | Matches surplus ↔ shortage across branches before any external buy | anycast on `#rebalance` | Agent |
-| **Procurement** | franchise | For net shortage, broadcasts RFQ; supplier agents bid; assembles PO for owner approval | multicast `#procurement` | Agent |
-| **Promotion** | per branch | Weekly: surplus / near-expiry / slow-movers → triggers a promotion for that menu item | posts `#promotions` | Flow |
-| **Consumer Concierge** | consumer | Answers "is my favorite available tonight?", recommends in-stock dishes, surfaces specials | reads availability | Agent |
-| **Supplier** (sim) | external | Subscribes to RFQs, bids on what it can fulfill (anycast: one claims) | agent node | Agent |
+Product `Mise` (`prod_01kxvr3fcneskr35jfxqhekaj0`), all smoke-tested, with eval suites.
 
-### The rebalance loop (the showpiece)
+| Capability | Kind / model | What it does | Cotal role |
+|------------|--------------|--------------|------------|
+| `weekly_forecast` | flow · sonnet-5 | Next-7-day demand per menu item per branch, with confidence | posts to `#demand` |
+| `rebalance_and_procure` ⭐ | agent · **opus-4-8** | Match surplus↔shortage across branches (nearest branch, nearest expiry), then least-cost PO for the net | owns `#rebalance` / `#procurement` |
+| `promotion_sweep` | flow · sonnet-5 | Surplus / near-expiry → a menu promotion that clears it fastest | posts `#promotions` |
+| `consumer_concierge` | agent · sonnet-5 | "Is my dish available tonight?" from stock × BOM × forecast; leads with favorites | reads availability |
+| `inventory_admin` | agent · sonnet-5 | Per-branch stock detail, days-of-cover projection, reorder-to-par | powers the Branch UI |
+| `menu_intelligence` | flow · sonnet-5 | Web-scrape a cuisine → restaurants, branches, menus, ingredients | — (market data) |
 
-1. Forecast + Planner run per branch → Branch A predicts a **shortage** of 15 kg tomatoes for the
-   weekend; Branch B is sitting on a **surplus** of 20 kg nearing expiry.
-2. Branch A broadcasts its need on `#rebalance`.
-3. **Anycast**: branches holding surplus tomatoes are addressed; Branch B claims it, proposes a transfer.
-4. Rebalance Coordinator confirms the transfer (cheaper + kills waste vs. buying new).
-5. Only the *net* franchise shortage escalates to Procurement → supplier RFQ.
-6. Owner sees one clean approval: *"Transfer 15 kg tomatoes B→A, buy 5 kg from Supplier X. Approve?"*
+**Surfaces:** Owner Console, Diner Chat, Branch Admin Console (chat, Persona embeds), and the
+**Mesh Bridge (MCP)** surface — the connector a Cotal node adds with `claude mcp add` to call the
+four ops capabilities as tools.
 
-This is a live, on-stage, **agents-talking-to-agents** moment — hard to fake, easy to feel.
+## The rebalance loop (the showpiece) — verified
 
-### The promotion loop (goal 2)
+1. Forecast + planner run per branch → **Downtown** is short **36 kg** tomatoes for the weekend
+   (par 40, on-hand 4); **Marina** holds ~10 kg surplus nearing expiry.
+2. Downtown broadcasts a SHORTAGE on `#rebalance`.
+3. **Anycast:** surplus-holders are addressed; Marina claims it (near-expiry, nearest branch) and
+   proposes a **10 kg transfer** → coordinator confirms, writes `rebalance_transfers`, posts `#decisions`.
+4. Only the **net 26 kg** escalates to `#procurement`. Two supplier agents bid; **Bay Foods wins at
+   $2.05/kg** over NorCal's $2.20 → a **$53.30** PO (`status=pending`).
+5. Owner approves one clean card. *One shortage in, one decision out: least waste, least cost.*
 
-Weekly cron → Promotion Agent scans inventory: item with surplus/near-expiry stock **and** the
-menu items that depend on it → generates a promotion (discount %, bundle, or "chef's special"),
-writes it to `promotions`, and pushes it to the consumer surface. Surplus becomes revenue instead
-of waste.
+**Promotion loop:** Mission's near-expiry basil, needed by no branch, becomes **"Pesto Night —
+Pesto Penne 20% off"** (the item that clears basil fastest). **Consumer loop:** the concierge tells
+a diner the Margherita is available tonight, because the mesh just restocked it.
 
-### The consumer loop (goal 3)
+## Cotal mesh
 
-Consumer favorites are first-class. Concierge answers availability from **current stock +
-forecast confidence**, so a diner hears *"Your Margherita is in stock now and predicted available
-all weekend"* — and the supply chain is already working to keep it that way.
+Manifest [../cotal.yaml](../cotal.yaml), space `trattoria-verde`, nodes run natively as Claude Code:
+- **3 branch nodes** (downtown / marina / mission) — declare shortage/surplus, claim transfers.
+- **rebalance-coordinator** (lead) — matches surplus↔shortage, confirms transfers, sums net shortage.
+- **procurement** — opens RFQs, awards least landed cost.
+- **2 supplier nodes** (NorCal, Bay Foods) — bid on RFQs (anycast: one wins).
+- Channels: `#demand · #rebalance · #procurement · #promotions · #decisions`.
 
----
+**Status:** the mesh is the coordination *design* plus a working **MCP connector**; you run it with
+`cotal up` / `cotal spawn` on your machine. The **Mesh Console** ([../web/mesh.html](../web/mesh.html))
+is a faithful **replay** of the negotiation for a rehearsable stage visual. Full use case + on-stage
+script: [cotal-mesh.md](cotal-mesh.md).
 
-## 2-day MVP scope
+## Menu intelligence (market data)
 
-**Build (spine):** InsForge schema + seed → Forecast + Planner flows → Cotal mesh with 3 Branch
-agents + Rebalance Coordinator → the rebalance loop with owner approval → owner dashboard showing
-live inventory, forecasts, the rebalance/PO proposal.
+A reusable Runtype flow (`flow_01kxw1z553e8qte3mb253seweh`): **Exa search → select targets →
+Firecrawl scrape → LLM extract** → structured restaurants / branches / dishes / ingredients. Run
+for 8 cuisines and loaded into InsForge `mi_*` tables (**16 restaurants · 53 branches · 128 dishes**),
+with a `mi_ingredient_frequency` view — the cross-cuisine demand signal. Details:
+[menu-intelligence.md](menu-intelligence.md). *(Restaurants/branches/dishes are real from live
+search; ingredients are LLM-derived and flagged until the Firecrawl menu-URL fix feeds real menus.)*
 
-**Layer if time:** Promotion agent + consumer availability chat; supplier RFQ bidding; pgvector
-matching.
+## Data model
 
-**Cut for demo:** real supplier APIs (simulate with agents), payments, mobile, auth polish.
+**Runtype records (live demo):** `catalog/trattoria-verde` (branches, products, menu+BOM, suppliers),
+`branch-state/{downtown,marina,mission}` (inventory + sales), `forecast/latest`, `promotion/latest`,
+`transfer/*`, `po/*`, `consumer/alex`.
 
-## Demo script (5 min)
+**InsForge Postgres (production backend):** the franchise schema — `franchises, branches, products,
+suppliers, supplier_products, menu_items, menu_item_ingredients, inventory, sales, forecasts,
+rebalance_transfers, rfqs, bids, purchase_orders, promotions, consumers, favorites` + the
+`menu_item_availability` view; and the market schema — `mi_cuisines, mi_restaurants, mi_branches,
+mi_dishes, mi_dish_ingredients` + `mi_ingredient_frequency`.
 
-1. Dashboard: 3 branches of "Trattoria" franchise, live inventory, forecasts for the weekend.
-2. Trigger the weekly run. Watch the Cotal console: branches post demand, A flags a tomato
-   shortage, B offers surplus, anycast match, coordinator confirms transfer.
-3. Net shortage escalates → supplier bids → owner gets a single approval in Slack. Approve.
-4. Promotion agent spots surplus basil at Branch C → auto-creates a "Pesto Night" special;
-   it appears on the consumer app.
-5. Consumer asks the Concierge "is the Margherita available tonight at Branch A?" → confident yes,
-   *because the mesh just restocked it.*
+## The UI (three views → three layers)
 
----
+Hosted at **https://k3trn3a2.insforge.site** (light + dark).
 
-## Repo layout
+| View | Layer it shows | For the demo |
+|------|----------------|--------------|
+| **Mesh Console** `/mesh.html` | Cotal coordination | Run the rebalance cycle; watch the agents negotiate to one approval |
+| **Branch Operations** `/branch.html` | Runtype + InsForge (operator view) | Stock, days-of-cover, reorder plan + a live Persona AI assistant |
+| **Market Intelligence** `/market.html` | menu_intelligence + InsForge | 8 cuisines; the cross-cuisine ingredient-demand bars |
 
-```
-docs/architecture.md      ← this file
-db/schema.sql             ← InsForge Postgres schema
-db/seed.sql               ← demo franchise, branches, menu, BOM, sales history
-cotal.yaml                ← mesh manifest: branch + supplier agent nodes, channels
-runtype/agents.md         ← agent + flow specs (system prompts, tools, flow steps) → Runtype resources
-src/                      ← Python helpers (Anthropic) if needed
-```
+## What's live vs. designed (be precise on stage)
+
+| Piece | Status |
+|-------|--------|
+| Runtype agents/flows (all 6) | **Live + verified** — the $53.30 plan is real agent output |
+| MCP bridge (Cotal → Runtype connector) | **Live** (surface ready, key minted) |
+| InsForge (schema, seed, market data, hosting) | **Live** |
+| Persona chat (Branch Ops) | **Live** (real Runtype agent) |
+| Cotal mesh (nodes negotiating over channels) | **Designed + connector live**; Mesh Console is a faithful replay |
+
+Framing that stays true: *"each branch and supplier is modeled as an autonomous agent on a Cotal
+mesh; the reasoning runs as live Runtype agents, and the console replays the negotiation."*
