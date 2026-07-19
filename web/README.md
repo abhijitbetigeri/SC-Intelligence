@@ -6,7 +6,9 @@ chat widget embedded for live projection analysis.
 > **Live (hosted on InsForge):** https://k3trn3a2.insforge.site — the Persona chat is fully
 > functional there (real HTTPS origin). Redeploy with `npx @insforge/cli deployments deploy web`.
 
-- **File:** [index.html](index.html) — single self-contained page, no build step.
+- **Files:** [index.html](index.html) is the landing **hub** (links every view); the dashboard itself
+  is [branch.html](branch.html). Also [mesh.html](mesh.html) (Cotal Mesh Console) and
+  [market.html](market.html) (Market Intelligence). All single self-contained pages, no build step.
 - **What it shows (per branch — Downtown / Marina / Mission):**
   - Inventory detail: on-hand vs par vs reorder, unit, and a status badge (SHORT / LOW / OK /
     SURPLUS) plus a NEAR-EXPIRY flag.

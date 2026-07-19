@@ -29,7 +29,7 @@ The **Mesh Bridge (MCP)** surface is the Cotal↔Runtype connector: Cotal nodes 
 with `Authorization: Bearer $MISE_MCP_KEY` (surface key "Cotal Mesh key", `mcp_e5caf93d…`, kept out of git)
 and call the four ops capabilities as tools. See [../docs/cotal-mesh.md](../docs/cotal-mesh.md).
 
-The **Branch Admin Console** is embedded in a real UI — [../web/index.html](../web/index.html)
+The **Branch Admin Console** is embedded in a real UI — [../web/branch.html](../web/branch.html)
 — via the Persona widget (client token `ct_live_01kxvyhr…`, all-origins). See [../web/README.md](../web/README.md).
 
 Dashboard: https://use.runtype.com/products/prod_01kxvr3fcneskr35jfxqhekaj0

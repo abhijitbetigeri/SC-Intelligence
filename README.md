@@ -17,9 +17,10 @@ Full design + demo script: [docs/architecture.md](docs/architecture.md).
 > Resource IDs and how to run each are in
 > [runtype/BUILD.md](runtype/BUILD.md). A branch-admin **inventory dashboard UI** with the
 > embedded [Persona](https://github.com/runtypelabs/persona) chat widget lives in
-> [web/index.html](web/index.html) ([web/](web/)) and is **hosted on InsForge at
-> https://k3trn3a2.insforge.site**. The **InsForge** Postgres backend is provisioned
-> (schema + seed) — see [INSFORGE.md](INSFORGE.md).
+> [web/branch.html](web/branch.html), alongside a **Mesh Console** ([web/mesh.html](web/mesh.html))
+> and **Market Intelligence** ([web/market.html](web/market.html)) view. All three are reachable
+> from a landing hub and **hosted on InsForge at https://k3trn3a2.insforge.site**. The **InsForge**
+> Postgres backend is provisioned (schema + seed) — see [INSFORGE.md](INSFORGE.md).
 
 ## Stack
 
