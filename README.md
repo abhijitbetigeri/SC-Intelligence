@@ -9,9 +9,12 @@ availability** of the dishes they love.
 
 Full design + demo script: [docs/architecture.md](docs/architecture.md).
 
-> **Status:** the agent layer is **live on Runtype** — 5 capabilities (forecast, the
-> rebalance+procurement showpiece, promotion sweep, consumer concierge, inventory admin),
-> 3 chat surfaces, eval suites, all smoke-tested. Resource IDs and how to run each are in
+> **Status:** the agent layer is **live on Runtype** — 6 capabilities (forecast, the
+> rebalance+procurement showpiece, promotion sweep, consumer concierge, inventory admin, and a
+> web-scraping **menu intelligence** flow), 3 chat surfaces + an MCP bridge, eval suites, all
+> smoke-tested. A multi-cuisine market dataset (8 cuisines · 16 restaurants · 128 dishes · 589
+> ingredients) is scraped into InsForge — see [docs/menu-intelligence.md](docs/menu-intelligence.md).
+> Resource IDs and how to run each are in
 > [runtype/BUILD.md](runtype/BUILD.md). A branch-admin **inventory dashboard UI** with the
 > embedded [Persona](https://github.com/runtypelabs/persona) chat widget lives in
 > [web/index.html](web/index.html) ([web/](web/)) and is **hosted on InsForge at

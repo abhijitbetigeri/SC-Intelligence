@@ -48,6 +48,10 @@ Dashboard: https://use.runtype.com/products/prod_01kxvr3fcneskr35jfxqhekaj0
 5. **inventory_admin** (agent) — per-branch inventory detail + status, forecast-driven projection
    analysis (days-of-cover, stock-out & waste risk), and reorder-to-par suggestions. Powers the
    Branch Operations UI (Persona embed).
+6. **menu_intelligence** (flow, input `cuisine`) — web-scrapes top restaurants for a cuisine (Exa
+   search → Firecrawl → LLM extract) → restaurants, branches, dishes, ingredients. Loaded into
+   InsForge `mi_*` tables. Flow `flow_01kxw1z553e8qte3mb253seweh`; see
+   [../docs/menu-intelligence.md](../docs/menu-intelligence.md).
 
 ## Record types (the data model)
 

@@ -1,0 +1,593 @@
+{
+ "cuisine": "Burmese",
+ "restaurants": [
+  {
+   "name": "Top Burmese Restaurants",
+   "rank": 1,
+   "website": "https://topburmese.com/",
+   "summary": "A growing Burmese restaurant group offering authentic Myanmar cuisine with online ordering across multiple locations.",
+   "branches": [
+    {
+     "name": "Top Burmese",
+     "city": "Unknown",
+     "region": "USA"
+    }
+   ],
+   "dishes": [
+    {
+     "name": "Tea Leaf Salad (Lahpet Thoke)",
+     "section": "appetizer",
+     "description": "Fermented tea leaves tossed with crunchy nuts, seeds, and fresh vegetables in a tangy dressing",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "fermented tea leaves",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "peanuts",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "fried garlic",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "sesame seeds",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "cabbage",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "tomato",
+       "is_core": false,
+       "derived": true
+      },
+      {
+       "name": "lime juice",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Samusa Soup",
+     "section": "appetizer",
+     "description": "Crispy vegetable samosas served in a light, spiced curry-style broth",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "samosa pastry",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "potato",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "cabbage",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "onion",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "curry broth",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "cilantro",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Mohinga",
+     "section": "main",
+     "description": "Myanmar's national dish - a savory fish-based noodle soup with rice noodles and aromatic toppings",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "catfish",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "rice noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "lemongrass",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "banana stem",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "fish sauce",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "hard-boiled egg",
+       "is_core": false,
+       "derived": true
+      },
+      {
+       "name": "chickpea flour",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Ohn No Khao Swe (Coconut Chicken Noodle Soup)",
+     "section": "main",
+     "description": "Rich coconut milk broth with chicken and egg noodles, a Burmese comfort food classic",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "chicken",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "coconut milk",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "egg noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "turmeric",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "onion",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chili oil",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Burmese Pork Curry",
+     "section": "main",
+     "description": "Slow-cooked pork in a fragrant onion and turmeric-based curry sauce",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "pork",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "onion",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "turmeric",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "garlic",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "ginger",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chili powder",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Shan Noodles",
+     "section": "main",
+     "description": "Flat rice noodles from Shan State tossed with pickled vegetables, chicken, and a peanut-tomato sauce",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "rice noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chicken",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "tomato",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "peanuts",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "pickled mustard greens",
+       "is_core": false,
+       "derived": true
+      },
+      {
+       "name": "garlic oil",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Falooda",
+     "section": "dessert",
+     "description": "Sweet layered dessert drink with rose syrup, vermicelli, jelly, and milk",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "rose syrup",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "vermicelli",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "milk",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "basil seeds",
+       "is_core": false,
+       "derived": true
+      },
+      {
+       "name": "jelly",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Burmese Milk Tea",
+     "section": "drink",
+     "description": "Strong black tea sweetened with condensed and evaporated milk",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "black tea",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "condensed milk",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "evaporated milk",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Burma Food Group",
+   "rank": 2,
+   "website": "https://burmafoodgroup.com/",
+   "summary": "A family of Burmese-rooted restaurants serving traditional Myanmar dishes across several branch locations.",
+   "branches": [
+    {
+     "name": "Burma Food Group location",
+     "city": "Unknown",
+     "region": "USA"
+    }
+   ],
+   "dishes": [
+    {
+     "name": "Tofu Salad (Tohu Thoke)",
+     "section": "appetizer",
+     "description": "Chickpea tofu sliced thin and mixed with herbs, onions, and a tangy tamarind dressing",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "chickpea tofu",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "onion",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "cilantro",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "tamarind sauce",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "fried shallots",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Burmese Fritters (Split Pea Fritters)",
+     "section": "appetizer",
+     "description": "Crispy fried split pea fritters served with a spicy dipping sauce",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "split peas",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "onion",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "turmeric",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "rice flour",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chili sauce",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Mohinga",
+     "section": "main",
+     "description": "Traditional catfish and rice noodle soup, a beloved Burmese breakfast staple",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "catfish",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "rice noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "lemongrass",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "banana stem",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "fish sauce",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chickpea flour",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Burmese Chicken Curry",
+     "section": "main",
+     "description": "Bone-in chicken simmered in an aromatic onion, garlic, and turmeric curry",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "chicken",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "onion",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "garlic",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "turmeric",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "ginger",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "tomato",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Ohn No Khao Swe",
+     "section": "main",
+     "description": "Coconut chicken noodle soup with a rich, spiced coconut broth",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "chicken",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "coconut milk",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "egg noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "turmeric",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "fish sauce",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Nan Gyi Thoke",
+     "section": "main",
+     "description": "Thick rice noodle salad tossed with chicken curry, boiled egg, and crunchy garnishes",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "thick rice noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chicken",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "boiled egg",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "chickpea flour",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "fried onions",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Fried Rice Noodles with Vegetables",
+     "section": "side",
+     "description": "Wok-tossed rice noodles with seasonal vegetables and light soy seasoning",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "rice noodles",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "cabbage",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "carrot",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "soy sauce",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "garlic",
+       "is_core": false,
+       "derived": true
+      }
+     ]
+    },
+    {
+     "name": "Burmese Milk Tea",
+     "section": "drink",
+     "description": "Rich and sweet milk tea, a popular after-meal beverage",
+     "price": null,
+     "ingredients": [
+      {
+       "name": "black tea",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "condensed milk",
+       "is_core": true,
+       "derived": true
+      },
+      {
+       "name": "evaporated milk",
+       "is_core": true,
+       "derived": true
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
