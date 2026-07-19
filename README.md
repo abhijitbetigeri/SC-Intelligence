@@ -14,8 +14,9 @@ Full design + demo script: [docs/architecture.md](docs/architecture.md).
 > 3 chat surfaces, eval suites, all smoke-tested. Resource IDs and how to run each are in
 > [runtype/BUILD.md](runtype/BUILD.md). A branch-admin **inventory dashboard UI** with the
 > embedded [Persona](https://github.com/runtypelabs/persona) chat widget lives in
-> [web/branch-admin.html](web/branch-admin.html) ([web/](web/)). The **InsForge** Postgres
-> backend is provisioned (schema + seed) — see [INSFORGE.md](INSFORGE.md).
+> [web/index.html](web/index.html) ([web/](web/)) and is **hosted on InsForge at
+> https://k3trn3a2.insforge.site**. The **InsForge** Postgres backend is provisioned
+> (schema + seed) — see [INSFORGE.md](INSFORGE.md).
 
 ## Stack
 

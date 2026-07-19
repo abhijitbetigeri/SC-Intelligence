@@ -23,7 +23,7 @@ This is the **as-built** record of the Runtype product (the specs live in
 | Surface (chat) | Diner Chat → Concierge | `surf_01kxvr96dzenc9yg72ymvhn8xm` |
 | Surface (chat) | Branch Admin Console → Inventory Admin | `surf_01kxvyjat2eh585q89zbskgx6f` |
 
-The **Branch Admin Console** is embedded in a real UI — [../web/branch-admin.html](../web/branch-admin.html)
+The **Branch Admin Console** is embedded in a real UI — [../web/index.html](../web/index.html)
 — via the Persona widget (client token `ct_live_01kxvyhr…`, all-origins). See [../web/README.md](../web/README.md).
 
 Dashboard: https://use.runtype.com/products/prod_01kxvr3fcneskr35jfxqhekaj0

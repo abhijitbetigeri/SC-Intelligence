@@ -3,7 +3,10 @@
 A branch-admin **inventory management dashboard** with the **[Persona](https://github.com/runtypelabs/persona)**
 chat widget embedded for live projection analysis.
 
-- **File:** [branch-admin.html](branch-admin.html) — single self-contained page, no build step.
+> **Live (hosted on InsForge):** https://k3trn3a2.insforge.site — the Persona chat is fully
+> functional there (real HTTPS origin). Redeploy with `npx @insforge/cli deployments deploy web`.
+
+- **File:** [index.html](index.html) — single self-contained page, no build step.
 - **What it shows (per branch — Downtown / Marina / Mission):**
   - Inventory detail: on-hand vs par vs reorder, unit, and a status badge (SHORT / LOW / OK /
     SURPLUS) plus a NEAR-EXPIRY flag.
@@ -31,10 +34,11 @@ The **dashboard renders fully offline** (data + projections are computed client-
 
 ```bash
 cd web && python3 -m http.server 8080
-# open http://localhost:8080/branch-admin.html
+# open http://localhost:8080/
 ```
 
-Or deploy it anywhere (the embedded client token is all-origins for the demo).
+Or deploy it anywhere (the embedded client token is all-origins for the demo). It is hosted on
+InsForge via `npx @insforge/cli deployments deploy web` — see [../INSFORGE.md](../INSFORGE.md).
 
 ## Notes
 
