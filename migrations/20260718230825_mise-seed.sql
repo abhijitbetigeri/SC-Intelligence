@@ -96,13 +96,7 @@ select
   greatest(0, round(
     p.base
     * case when extract(dow from d.d) in (5,6,0) then 1.6 else 1.0 end  -- weekend lift
-    -- Deterministic noise. `random()` here made the seed unreproducible: every reseed
-    -- produced different sales history -> different burn rates -> different forecasts and
-    -- par levels, so the demo could not be rehearsed against the numbers you would show.
-    -- Hashing the row key is also plan-independent, unlike setseed(), which a parallel
-    -- scan can reorder.
-    * (0.85 + (abs(hashtext(p.branch_id::text || p.menu_item_id::text || d.d::text)) % 1000)
-              / 1000.0 * 0.30)                                          -- noise
+    * (0.85 + random() * 0.30)                                          -- noise
   ))::int as qty,
   d.d + time '19:00'
 from params p cross join days d;

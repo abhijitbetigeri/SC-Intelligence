@@ -10,15 +10,15 @@
 
 apiVersion: cotal/v1
 kind: Mesh
-space: trattoria-verde
+space: main   # folder already roots space "main" (from `cotal up`); one Space per franchise
 
 # Default harness for agents that don't override it. Each agent is a Claude Code /
 # Runtype-hosted node; personas can also live in ./agents/*.md.
-agent: claude-code
+agent: claude
 
 defaults:
   replay: true
-  replayWindow: 50        # late joiners (a branch that just booted) see recent context
+  replayWindow: "24h"     # late joiners (a branch that just booted) see recent context
   deliveryClass: durable  # NATS JetStream — a busy/offline branch still gets its messages
 
 agents:
