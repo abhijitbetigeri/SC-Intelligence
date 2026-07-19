@@ -1,0 +1,6192 @@
+{
+ "generated": "2026-07-19T02:33:22.166191+00:00",
+ "source": "InsForge mi_* tables (scraped by the Menu Intelligence flow)",
+ "totals": {
+  "cuisines": 8,
+  "restaurants": 16,
+  "branches": 52,
+  "dishes": 128,
+  "ingredients": 290
+ },
+ "cuisines": [
+  {
+   "id": "american",
+   "name": "American",
+   "restaurants": [
+    {
+     "name": "The Cheesecake Factory",
+     "rank": 1,
+     "website": "https://www.thecheesecakefactory.com/",
+     "summary": "Popular American casual-dining chain known for its extensive menu and signature cheesecakes.",
+     "branches": [
+      {
+       "name": "The Cheesecake Factory - Beverly Hills",
+       "city": "Beverly Hills",
+       "region": "California"
+      },
+      {
+       "name": "The Cheesecake Factory - Chicago Water Tower",
+       "city": "Chicago",
+       "region": "Illinois"
+      },
+      {
+       "name": "The Cheesecake Factory - Times Square",
+       "city": "New York",
+       "region": "New York"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Original Cheesecake",
+       "section": "dessert",
+       "description": "The one and only. Rich, creamy cheesecake in a graham cracker crust, the recipe that started it all.",
+       "price": 8.95,
+       "ingredients": [
+        {
+         "name": "cream cheese",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "eggs",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "graham cracker crust",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "sour cream",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Madeira",
+       "section": "main",
+       "description": "Saut\u00e9ed chicken breast topped with fresh asparagus and melted mozzarella, covered with Madeira wine sauce and mushrooms.",
+       "price": 20.95,
+       "ingredients": [
+        {
+         "name": "chicken breast",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "asparagus",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "mozzarella cheese",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "madeira wine",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "mushrooms",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Avocado Egg Rolls",
+       "section": "appetizer",
+       "description": "Crispy rolls stuffed with avocado, sun-dried tomatoes, and spices, served with a creamy tamarind-cashew dipping sauce.",
+       "price": 12.95,
+       "ingredients": [
+        {
+         "name": "avocado",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "sun-dried tomatoes",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "egg roll wrapper",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cashews",
+         "is_core": false,
+         "derived": false
+        },
+        {
+         "name": "tamarind sauce",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Bang-Bang Chicken and Shrimp",
+       "section": "main",
+       "description": "Crispy chicken breast strips, shrimp, veggies, and spicy cream sauce tossed with rice noodles.",
+       "price": 21.95,
+       "ingredients": [
+        {
+         "name": "chicken breast",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "shrimp",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "rice noodles",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "spicy cream sauce",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "mixed vegetables",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Louisiana Chicken Pasta",
+       "section": "main",
+       "description": "Spicy Cajun-seasoned crispy chicken breast served over pasta with mushrooms, bell peppers, and onions in a spicy new Orleans sauce.",
+       "price": 21.95,
+       "ingredients": [
+        {
+         "name": "chicken breast",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "pasta",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "mushrooms",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "bell peppers",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "cajun seasoning",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fried Macaroni and Cheese",
+       "section": "appetizer",
+       "description": "Crispy fried mac and cheese balls served with marinara sauce for dipping.",
+       "price": 11.95,
+       "ingredients": [
+        {
+         "name": "macaroni pasta",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "cheddar cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "breadcrumbs",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "marinara sauce",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "SkinnyLicious Grilled Salmon",
+       "section": "main",
+       "description": "Grilled salmon served with fresh asparagus and mixed vegetables, a lighter menu option.",
+       "price": 22.95,
+       "ingredients": [
+        {
+         "name": "salmon",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "asparagus",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "mixed vegetables",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Oreo Dream Extreme Cheesecake",
+       "section": "dessert",
+       "description": "Chocolate cake, Oreo cookies, chocolate chip cookie dough, and creamy cheesecake, all covered in chocolate icing.",
+       "price": 9.95,
+       "ingredients": [
+        {
+         "name": "cream cheese",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "oreo cookies",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "chocolate cake",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "cookie dough",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "chocolate icing",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Chili's Grill & Bar",
+     "rank": 2,
+     "website": "https://www.chilis.com/",
+     "summary": "Widely recognized American grill and bar chain offering classic Tex-Mex and American comfort food.",
+     "branches": [
+      {
+       "name": "Chili's - Dallas Uptown",
+       "city": "Dallas",
+       "region": "Texas"
+      },
+      {
+       "name": "Chili's - Orlando I-Drive",
+       "city": "Orlando",
+       "region": "Florida"
+      },
+      {
+       "name": "Chili's - Atlanta Midtown",
+       "city": "Atlanta",
+       "region": "Georgia"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Original Baby Back Ribs",
+       "section": "main",
+       "description": "Fall-off-the-bone ribs slow-cooked and basted with signature BBQ sauce.",
+       "price": 18.99,
+       "ingredients": [
+        {
+         "name": "pork ribs",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "bbq sauce",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "spice rub",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Awesome Blossom Petals",
+       "section": "appetizer",
+       "description": "Crispy fried onion petals served with a bold seasoned dipping sauce.",
+       "price": 9.99,
+       "ingredients": [
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "batter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "seasoned dipping sauce",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Classic Nachos",
+       "section": "appetizer",
+       "description": "Crispy tortilla chips topped with melted cheese, jalape\u00f1os, pico de gallo, and sour cream.",
+       "price": 10.99,
+       "ingredients": [
+        {
+         "name": "tortilla chips",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "cheese blend",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "jalapenos",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "pico de gallo",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "sour cream",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Chicken Fajitas",
+       "section": "main",
+       "description": "Sizzling grilled chicken with bell peppers and onions, served with tortillas, cheese, and pico de gallo.",
+       "price": 16.99,
+       "ingredients": [
+        {
+         "name": "chicken breast",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "bell peppers",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "flour tortillas",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "cheese",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Southwestern Eggrolls",
+       "section": "appetizer",
+       "description": "Crispy eggrolls filled with chicken, black beans, corn, jalape\u00f1o Jack cheese, and spinach, served with avocado ranch.",
+       "price": 10.49,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "black beans",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "corn",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "jack cheese",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "avocado ranch dressing",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Molten Chocolate Cake",
+       "section": "dessert",
+       "description": "Warm chocolate cake with a molten center, topped with vanilla ice cream.",
+       "price": 7.99,
+       "ingredients": [
+        {
+         "name": "chocolate cake",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "chocolate sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vanilla ice cream",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Presidente Margarita",
+       "section": "drink",
+       "description": "Premium tequila margarita with fresh lime juice and orange liqueur, served on the rocks.",
+       "price": 9.99,
+       "ingredients": [
+        {
+         "name": "tequila",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "lime juice",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "orange liqueur",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      },
+      {
+       "name": "Loaded Mashed Potatoes",
+       "section": "side",
+       "description": "Creamy mashed potatoes topped with cheese, bacon, and green onions.",
+       "price": 5.99,
+       "ingredients": [
+        {
+         "name": "potatoes",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "cheese",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "bacon",
+         "is_core": true,
+         "derived": false
+        },
+        {
+         "name": "green onions",
+         "is_core": true,
+         "derived": false
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "burmese",
+   "name": "Burmese",
+   "restaurants": [
+    {
+     "name": "Top Burmese Restaurants",
+     "rank": 1,
+     "website": "https://topburmese.com/",
+     "summary": "A growing Burmese restaurant group offering authentic Myanmar cuisine with online ordering across multiple locations.",
+     "branches": [
+      {
+       "name": "Top Burmese",
+       "city": "Unknown",
+       "region": "USA"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Tea Leaf Salad (Lahpet Thoke)",
+       "section": "appetizer",
+       "description": "Fermented tea leaves tossed with crunchy nuts, seeds, and fresh vegetables in a tangy dressing",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "fermented tea leaves",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peanuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fried garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sesame seeds",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cabbage",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "lime juice",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Samusa Soup",
+       "section": "appetizer",
+       "description": "Crispy vegetable samosas served in a light, spiced curry-style broth",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "samosa pastry",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "potato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cabbage",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "curry broth",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cilantro",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mohinga",
+       "section": "main",
+       "description": "Myanmar's national dish - a savory fish-based noodle soup with rice noodles and aromatic toppings",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "catfish",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "rice noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemongrass",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "banana stem",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fish sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "hard-boiled egg",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "chickpea flour",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Ohn No Khao Swe (Coconut Chicken Noodle Soup)",
+       "section": "main",
+       "description": "Rich coconut milk broth with chicken and egg noodles, a Burmese comfort food classic",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "coconut milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "egg noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "turmeric",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili oil",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Burmese Pork Curry",
+       "section": "main",
+       "description": "Slow-cooked pork in a fragrant onion and turmeric-based curry sauce",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "pork",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "turmeric",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ginger",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili powder",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Shan Noodles",
+       "section": "main",
+       "description": "Flat rice noodles from Shan State tossed with pickled vegetables, chicken, and a peanut-tomato sauce",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peanuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pickled mustard greens",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "garlic oil",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Falooda",
+       "section": "dessert",
+       "description": "Sweet layered dessert drink with rose syrup, vermicelli, jelly, and milk",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rose syrup",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vermicelli",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "basil seeds",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "jelly",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Burmese Milk Tea",
+       "section": "drink",
+       "description": "Strong black tea sweetened with condensed and evaporated milk",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "black tea",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "condensed milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "evaporated milk",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Burma Food Group",
+     "rank": 2,
+     "website": "https://burmafoodgroup.com/",
+     "summary": "A family of Burmese-rooted restaurants serving traditional Myanmar dishes across several branch locations.",
+     "branches": [
+      {
+       "name": "Burma Food Group location",
+       "city": "Unknown",
+       "region": "USA"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Tofu Salad (Tohu Thoke)",
+       "section": "appetizer",
+       "description": "Chickpea tofu sliced thin and mixed with herbs, onions, and a tangy tamarind dressing",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chickpea tofu",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cilantro",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tamarind sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fried shallots",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Burmese Fritters (Split Pea Fritters)",
+       "section": "appetizer",
+       "description": "Crispy fried split pea fritters served with a spicy dipping sauce",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "split peas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "turmeric",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "rice flour",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mohinga",
+       "section": "main",
+       "description": "Traditional catfish and rice noodle soup, a beloved Burmese breakfast staple",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "catfish",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "rice noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemongrass",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "banana stem",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fish sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chickpea flour",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Burmese Chicken Curry",
+       "section": "main",
+       "description": "Bone-in chicken simmered in an aromatic onion, garlic, and turmeric curry",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "turmeric",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ginger",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Ohn No Khao Swe",
+       "section": "main",
+       "description": "Coconut chicken noodle soup with a rich, spiced coconut broth",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "coconut milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "egg noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "turmeric",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fish sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Nan Gyi Thoke",
+       "section": "main",
+       "description": "Thick rice noodle salad tossed with chicken curry, boiled egg, and crunchy garnishes",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "thick rice noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "boiled egg",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chickpea flour",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fried onions",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fried Rice Noodles with Vegetables",
+       "section": "side",
+       "description": "Wok-tossed rice noodles with seasonal vegetables and light soy seasoning",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cabbage",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "carrot",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Burmese Milk Tea",
+       "section": "drink",
+       "description": "Rich and sweet milk tea, a popular after-meal beverage",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "black tea",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "condensed milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "evaporated milk",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chinese",
+   "name": "Chinese",
+   "restaurants": [
+    {
+     "name": "P.F. Chang's",
+     "rank": 1,
+     "website": "https://www.pfchangs.com/",
+     "summary": "Nationwide Chinese-American chain known for dishes like lettuce wraps, Mongolian beef, and dan dan noodles.",
+     "branches": [
+      {
+       "name": "P.F. Chang's Scottsdale",
+       "city": "Scottsdale",
+       "region": "Arizona"
+      },
+      {
+       "name": "P.F. Chang's New York",
+       "city": "New York",
+       "region": "New York"
+      },
+      {
+       "name": "P.F. Chang's Chicago",
+       "city": "Chicago",
+       "region": "Illinois"
+      },
+      {
+       "name": "P.F. Chang's Los Angeles",
+       "city": "Los Angeles",
+       "region": "California"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Chang's Chicken Lettuce Wraps",
+       "section": "appetizer",
+       "description": "Minced chicken, mushrooms, and water chestnuts served with crisp lettuce cups for wrapping.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mushrooms",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "water chestnuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "iceberg lettuce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "rice noodles",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Dynamite Shrimp",
+       "section": "appetizer",
+       "description": "Crispy shrimp tossed in a spicy dynamite sauce, topped with scallions.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "shrimp",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mayonnaise",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cornstarch",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "scallions",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mongolian Beef",
+       "section": "main",
+       "description": "Stir-fried flank steak with scallions in a savory-sweet soy garlic sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "flank steak",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "scallions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "brown sugar",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Dan Dan Noodles",
+       "section": "main",
+       "description": "Spicy Szechuan noodles tossed with minced pork, chili oil, and peanuts.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "wheat noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ground pork",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili oil",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peanuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sichuan peppercorn",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Kung Pao Chicken",
+       "section": "main",
+       "description": "Wok-tossed chicken with peanuts, chili peppers, and vegetables in a spicy sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peanuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "dried chili peppers",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bell peppers",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chang's Spare Ribs",
+       "section": "appetizer",
+       "description": "Slow-cooked pork ribs glazed with a sweet and savory house sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "pork ribs",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "hoisin sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "five-spice powder",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Singapore Street Noodles",
+       "section": "main",
+       "description": "Curry-spiced thin rice noodles stir-fried with shrimp, chicken, and vegetables.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shrimp",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "curry powder",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bean sprouts",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Great Wall of Chocolate",
+       "section": "dessert",
+       "description": "Warm chocolate cake with a molten center, served with vanilla ice cream.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chocolate",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "eggs",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "flour",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vanilla ice cream",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Panda Express",
+     "rank": 2,
+     "website": "https://www.pandaexpress.com/",
+     "summary": "Largest American Chinese fast-casual chain offering orange chicken, chow mein, and other Americanized Chinese staples.",
+     "branches": [
+      {
+       "name": "Panda Express Rosemead",
+       "city": "Rosemead",
+       "region": "California"
+      },
+      {
+       "name": "Panda Express Houston",
+       "city": "Houston",
+       "region": "Texas"
+      },
+      {
+       "name": "Panda Express Orlando",
+       "city": "Orlando",
+       "region": "Florida"
+      },
+      {
+       "name": "Panda Express Seattle",
+       "city": "Seattle",
+       "region": "Washington"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Orange Chicken",
+       "section": "main",
+       "description": "Crispy chicken bites wok-tossed in a sweet and tangy orange sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "orange sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cornstarch",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Beijing Beef",
+       "section": "main",
+       "description": "Crispy beef strips stir-fried with bell peppers and onions in a sweet-tangy sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bell peppers",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sweet chili sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cornstarch",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Kung Pao Chicken",
+       "section": "main",
+       "description": "Chicken, peanuts, vegetables, and chili peppers in a savory chili sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peanuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "zucchini",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili peppers",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chow Mein",
+       "section": "side",
+       "description": "Stir-fried wheat noodles with cabbage, celery, and onions.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "wheat noodles",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cabbage",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "celery",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fried Rice",
+       "section": "side",
+       "description": "Wok-fried rice with peas, carrots, eggs, and green onions.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "white rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "eggs",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "carrots",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Broccoli Beef",
+       "section": "main",
+       "description": "Tender beef and broccoli stir-fried in a mild ginger soy sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "broccoli",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "soy sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ginger",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Egg Roll",
+       "section": "appetizer",
+       "description": "Crispy fried roll filled with cabbage, carrots, and chicken.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "egg roll wrapper",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cabbage",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "carrots",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Cream Cheese Rangoon",
+       "section": "appetizer",
+       "description": "Crispy wontons filled with a sweet cream cheese filling.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "wonton wrapper",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cream cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "garlic powder",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "french",
+   "name": "French",
+   "restaurants": [
+    {
+     "name": "Boucherie",
+     "rank": 1,
+     "website": "https://www.boucherieus.com/",
+     "summary": "A French brasserie group offering classic bistro fare and steakhouse favorites across multiple U.S. locations.",
+     "branches": [
+      {
+       "name": "Boucherie Union Square",
+       "city": "New York",
+       "region": "New York"
+      },
+      {
+       "name": "Boucherie West Village",
+       "city": "New York",
+       "region": "New York"
+      },
+      {
+       "name": "La Grande Boucherie",
+       "city": "Miami",
+       "region": "Florida"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "French Onion Soup",
+       "section": "appetizer",
+       "description": "Classic slow-caramelized onion soup topped with a thick layer of melted Gruy\u00e8re cheese and crusty bread.",
+       "price": 16,
+       "ingredients": [
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "beef broth",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "Gruy\u00e8re cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "baguette",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Escargot de Bourgogne",
+       "section": "appetizer",
+       "description": "Snails baked in garlic-herb butter, served bubbling hot with bread for dipping.",
+       "price": 18,
+       "ingredients": [
+        {
+         "name": "snails",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "parsley",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Steak Frites",
+       "section": "main",
+       "description": "Grilled hanger steak served with a mound of crispy golden fries and a side of herb butter or peppercorn sauce.",
+       "price": 34,
+       "ingredients": [
+        {
+         "name": "hanger steak",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "potatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peppercorn sauce",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Duck Confit",
+       "section": "main",
+       "description": "Slow-cooked duck leg with crispy skin, served over fris\u00e9e salad or with roasted potatoes.",
+       "price": 32,
+       "ingredients": [
+        {
+         "name": "duck leg",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "duck fat",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "thyme",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "fris\u00e9e",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Coq au Vin",
+       "section": "main",
+       "description": "Braised chicken in red wine sauce with mushrooms, pearl onions, and lardons.",
+       "price": 29,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "red wine",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mushrooms",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pearl onions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bacon lardons",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Pommes Frites",
+       "section": "side",
+       "description": "Classic thin-cut French fries, crispy and golden, served with aioli or ketchup.",
+       "price": 9,
+       "ingredients": [
+        {
+         "name": "potatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vegetable oil",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "salt",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Cr\u00e8me Br\u00fbl\u00e9e",
+       "section": "dessert",
+       "description": "Rich vanilla custard topped with a crackling layer of caramelized sugar.",
+       "price": 12,
+       "ingredients": [
+        {
+         "name": "egg yolks",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "heavy cream",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vanilla",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Kir Royale",
+       "section": "drink",
+       "description": "A festive French cocktail of cr\u00e8me de cassis topped with sparkling champagne.",
+       "price": 14,
+       "ingredients": [
+        {
+         "name": "cr\u00e8me de cassis",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "champagne",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Mon Ami Gabi",
+     "rank": 2,
+     "website": "https://www.lettuce.com/restaurants/mon-ami-gabi/",
+     "summary": "A classic French bistro chain by Lettuce Entertain You known for steak frites and onion soup, with multiple locations across the U.S.",
+     "branches": [
+      {
+       "name": "Mon Ami Gabi Chicago",
+       "city": "Chicago",
+       "region": "Illinois"
+      },
+      {
+       "name": "Mon Ami Gabi Las Vegas",
+       "city": "Las Vegas",
+       "region": "Nevada"
+      },
+      {
+       "name": "Mon Ami Gabi Reston",
+       "city": "Reston",
+       "region": "Virginia"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "French Onion Soup Gratin\u00e9e",
+       "section": "appetizer",
+       "description": "Traditional bistro onion soup with caramelized onions, rich beef broth, and melted Gruy\u00e8re on top.",
+       "price": 11,
+       "ingredients": [
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "beef broth",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "Gruy\u00e8re cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "baguette",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Escargots \u00e0 la Bourguignonne",
+       "section": "appetizer",
+       "description": "Snails baked in garlic parsley butter, a Mon Ami Gabi signature starter.",
+       "price": 14,
+       "ingredients": [
+        {
+         "name": "snails",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "parsley",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Steak Frites",
+       "section": "main",
+       "description": "The restaurant's most famous dish \u2014 a perfectly grilled steak served with crispy, hand-cut French fries.",
+       "price": 32,
+       "ingredients": [
+        {
+         "name": "sirloin steak",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "potatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "herbs",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Steak au Poivre",
+       "section": "main",
+       "description": "Peppercorn-crusted steak finished with a creamy cognac peppercorn sauce.",
+       "price": 36,
+       "ingredients": [
+        {
+         "name": "filet mignon",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "black peppercorns",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cognac",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "heavy cream",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Salmon en Papillote",
+       "section": "main",
+       "description": "Salmon fillet baked in parchment with vegetables and herbs, served with a light lemon butter sauce.",
+       "price": 28,
+       "ingredients": [
+        {
+         "name": "salmon",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "seasonal vegetables",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Pommes Frites",
+       "section": "side",
+       "description": "Crispy, thin-cut fries served alongside steak or as a side, a bistro staple.",
+       "price": 7,
+       "ingredients": [
+        {
+         "name": "potatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vegetable oil",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "salt",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Cr\u00e8me Br\u00fbl\u00e9e",
+       "section": "dessert",
+       "description": "Silky vanilla custard with a crisp caramelized sugar crust, a bistro classic dessert.",
+       "price": 10,
+       "ingredients": [
+        {
+         "name": "egg yolks",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "heavy cream",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "vanilla",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "French 75",
+       "section": "drink",
+       "description": "A refreshing cocktail combining gin, lemon juice, sugar, and champagne.",
+       "price": 13,
+       "ingredients": [
+        {
+         "name": "gin",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "champagne",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "indian",
+   "name": "Indian",
+   "restaurants": [
+    {
+     "name": "Saravanaa Bhavan",
+     "rank": 1,
+     "website": "https://www.saravanaabhavan.us/",
+     "summary": "World-renowned South Indian vegetarian chain famous for dosas, idlis, and traditional Tamil cuisine with multiple US locations.",
+     "branches": [
+      {
+       "name": "Saravanaa Bhavan Chicago",
+       "city": "Chicago",
+       "region": "Illinois"
+      },
+      {
+       "name": "Saravanaa Bhavan New Jersey",
+       "city": "Edison",
+       "region": "New Jersey"
+      },
+      {
+       "name": "Saravanaa Bhavan New York",
+       "city": "New York",
+       "region": "New York"
+      },
+      {
+       "name": "Saravanaa Bhavan California",
+       "city": "San Jose",
+       "region": "California"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Ghee Roast Dosa",
+       "section": "main",
+       "description": "Crispy fermented rice-and-lentil crepe cooked with ghee until golden and roasted on the edges.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "urad dal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ghee",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fenugreek seeds",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mysore Masala Dosa",
+       "section": "main",
+       "description": "Dosa spread with spicy red chutney and filled with a lightly spiced potato masala.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "urad dal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "potato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "red chili chutney",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mustard seeds",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "curry leaves",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Idli",
+       "section": "main",
+       "description": "Soft steamed rice-and-lentil cakes served with sambar and coconut chutney.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "urad dal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sambar",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "coconut chutney",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Medu Vada",
+       "section": "appetizer",
+       "description": "Deep-fried crispy lentil doughnuts with a soft interior, served with chutney and sambar.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "urad dal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ginger",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "green chili",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "curry leaves",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "oil",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Uttapam",
+       "section": "main",
+       "description": "Thick savory rice-and-lentil pancake topped with onions, tomatoes, and chilies.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "urad dal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "green chili",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Ven Pongal",
+       "section": "main",
+       "description": "Savory rice and moong dal porridge tempered with pepper, cumin, and ghee.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "moong dal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ghee",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "black pepper",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "cumin",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "cashew",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Rava Kesari",
+       "section": "dessert",
+       "description": "Sweet semolina pudding flavored with saffron, cardamom, and ghee, garnished with cashews.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "semolina (rava)",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ghee",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "saffron",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "cardamom",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "cashew",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Filter Coffee",
+       "section": "drink",
+       "description": "Traditional South Indian decoction coffee brewed with chicory and blended with hot milk.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "coffee decoction",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Bawarchi Biryanis",
+     "rank": 2,
+     "website": "https://www.bawarchibiryanis.com/",
+     "summary": "Popular Indian restaurant chain specializing in authentic biryanis and North/South Indian cuisine with multiple franchise locations across the US.",
+     "branches": [
+      {
+       "name": "Bawarchi Frisco",
+       "city": "Frisco",
+       "region": "Texas"
+      },
+      {
+       "name": "Bawarchi Houston",
+       "city": "Houston",
+       "region": "Texas"
+      },
+      {
+       "name": "Bawarchi Alpharetta",
+       "city": "Alpharetta",
+       "region": "Georgia"
+      },
+      {
+       "name": "Bawarchi Naperville",
+       "city": "Naperville",
+       "region": "Illinois"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Hyderabadi Chicken Dum Biryani",
+       "section": "main",
+       "description": "Fragrant basmati rice layered and slow-cooked with marinated chicken, saffron, and fried onions.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "basmati rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "saffron",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "yogurt",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fried onions",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "biryani masala",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mutton Biryani",
+       "section": "main",
+       "description": "Slow-cooked dum-style biryani with tender mutton pieces and aromatic basmati rice.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "basmati rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mutton",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "yogurt",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ginger garlic paste",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "saffron",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "biryani masala",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Veg Dum Biryani",
+       "section": "main",
+       "description": "Basmati rice dum-cooked with mixed vegetables and aromatic whole spices.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "basmati rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mixed vegetables",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "yogurt",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "biryani masala",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fried onions",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken 65",
+       "section": "appetizer",
+       "description": "Spicy deep-fried chicken bites marinated with red chili, curry leaves, and yogurt.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "yogurt",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "red chili powder",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "curry leaves",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "ginger garlic paste",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "corn starch",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Paneer Butter Masala",
+       "section": "main",
+       "description": "Soft paneer cubes simmered in a creamy tomato-butter gravy with mild spices.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "paneer",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cream",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cashew paste",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "garam masala",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Butter Naan",
+       "section": "side",
+       "description": "Soft leavened flatbread baked in a tandoor and brushed with butter.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "maida (flour)",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "yogurt",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "yeast",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Gulab Jamun",
+       "section": "dessert",
+       "description": "Soft fried milk-solid dumplings soaked in rose-cardamom flavored sugar syrup.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "khoya (milk solids)",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar syrup",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cardamom",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "rose water",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mango Lassi",
+       "section": "drink",
+       "description": "Chilled yogurt-based drink blended with sweet mango pulp.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "yogurt",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mango pulp",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "milk",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "italian",
+   "name": "Italian",
+   "restaurants": [
+    {
+     "name": "Maggiano's Little Italy",
+     "rank": 1,
+     "website": "https://www.maggianos.com/",
+     "summary": "Large-scale Italian-American chain known for family-style classics and banquet dining across the U.S.",
+     "branches": [
+      {
+       "name": "Maggiano's Little Italy - Chicago",
+       "city": "Chicago",
+       "region": "Illinois"
+      },
+      {
+       "name": "Maggiano's Little Italy - New York",
+       "city": "New York",
+       "region": "New York"
+      },
+      {
+       "name": "Maggiano's Little Italy - Las Vegas",
+       "city": "Las Vegas",
+       "region": "Nevada"
+      },
+      {
+       "name": "Maggiano's Little Italy - Houston",
+       "city": "Houston",
+       "region": "Texas"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Mom's Lasagna",
+       "section": "main",
+       "description": "Layers of pasta with beef, pork, ricotta, mozzarella, and marinara sauce, baked until bubbly.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "pasta sheets",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ground beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ground pork",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ricotta cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mozzarella cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "marinara sauce",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Parmesan",
+       "section": "main",
+       "description": "Breaded chicken breast topped with marinara and melted mozzarella, served over spaghetti.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken breast",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "breadcrumbs",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "marinara sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mozzarella cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "spaghetti",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fried Zucchini",
+       "section": "appetizer",
+       "description": "Crispy fried zucchini sticks served with a side of marinara and ranch dressing.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "zucchini",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "flour batter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "marinara sauce",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "ranch dressing",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Rigatoni \"D\"",
+       "section": "main",
+       "description": "Rigatoni pasta tossed with grilled chicken, sun-dried tomatoes, mushrooms, and prosciutto in a light cream sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "rigatoni pasta",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "grilled chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sun-dried tomatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mushrooms",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "prosciutto",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cream sauce",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Four Meat Ravioli",
+       "section": "main",
+       "description": "House-made ravioli filled with beef, veal, pork, and prosciutto, served in a light marinara sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "pasta dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "veal",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pork",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "prosciutto",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "marinara sauce",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Shrimp Scampi",
+       "section": "main",
+       "description": "Sauteed shrimp in a garlic butter white wine sauce tossed with angel hair pasta.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "shrimp",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "white wine",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "angel hair pasta",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chopped Salad",
+       "section": "side",
+       "description": "Chopped romaine, salami, provolone, tomatoes, and chickpeas tossed in a red wine vinaigrette.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "romaine lettuce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "salami",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "provolone cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chickpeas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "red wine vinaigrette",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chocolate Zuccotto Cake",
+       "section": "dessert",
+       "description": "Rich chocolate cake layered with chocolate mousse and fudge, dome-shaped and decadent.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chocolate cake",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chocolate mousse",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "fudge",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Biaggi's Ristorante Italiano",
+     "rank": 2,
+     "website": "https://biaggis.com/",
+     "summary": "Midwest-based Italian restaurant chain offering scratch-made pasta, wood-fired dishes, and a full bar menu.",
+     "branches": [
+      {
+       "name": "Biaggi's - Peoria",
+       "city": "Peoria",
+       "region": "Illinois"
+      },
+      {
+       "name": "Biaggi's - Omaha",
+       "city": "Omaha",
+       "region": "Nebraska"
+      },
+      {
+       "name": "Biaggi's - Kansas City",
+       "city": "Kansas City",
+       "region": "Missouri"
+      },
+      {
+       "name": "Biaggi's - Rockford",
+       "city": "Rockford",
+       "region": "Illinois"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Bruschetta Al Pomodoro",
+       "section": "appetizer",
+       "description": "Toasted crostini topped with diced tomatoes, basil, garlic, and olive oil.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "baguette",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "basil",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "olive oil",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Tortelloni Alla Panna",
+       "section": "main",
+       "description": "Cheese-filled tortelloni tossed in a creamy Parmesan sauce with peas and prosciutto.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "tortelloni pasta",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ricotta cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cream sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "parmesan cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "peas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "prosciutto",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Marsala",
+       "section": "main",
+       "description": "Sauteed chicken breast in a Marsala wine and mushroom sauce, served with mashed potatoes.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken breast",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "marsala wine",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mushrooms",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mashed potatoes",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Steak Gorgonzola",
+       "section": "main",
+       "description": "Grilled steak medallions topped with gorgonzola cream sauce, served over pasta and spinach.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "beef steak",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "gorgonzola cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cream sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pasta",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "spinach",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Wood-Fired Margherita Flatbread",
+       "section": "appetizer",
+       "description": "Thin-crust flatbread topped with fresh mozzarella, tomatoes, and basil, baked in a wood-fired oven.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "flatbread dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mozzarella cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "basil",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Baked Lasagna Bolognese",
+       "section": "main",
+       "description": "Layered pasta with slow-cooked Bolognese meat sauce, bechamel, and melted cheese.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "pasta sheets",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ground beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bolognese sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bechamel sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mozzarella cheese",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Limoncello Cream Cake",
+       "section": "dessert",
+       "description": "Light sponge cake soaked in limoncello liqueur, layered with lemon cream filling.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "sponge cake",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "limoncello liqueur",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon cream",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Italian Martini",
+       "section": "drink",
+       "description": "A house cocktail blending vodka, amaretto, and pineapple juice.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "vodka",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "amaretto liqueur",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pineapple juice",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mexican",
+   "name": "Mexican",
+   "restaurants": [
+    {
+     "name": "Abuelo's Mexican Restaurant",
+     "rank": 1,
+     "website": "https://abuelos.com/",
+     "summary": "Upscale Mexican chain known for authentic recipes, fresh ingredients, and a wide variety of regional dishes across multiple U.S. locations.",
+     "branches": [
+      {
+       "name": "Abuelo's - Amarillo",
+       "city": "Amarillo",
+       "region": "Texas"
+      },
+      {
+       "name": "Abuelo's - Oklahoma City",
+       "city": "Oklahoma City",
+       "region": "Oklahoma"
+      },
+      {
+       "name": "Abuelo's - Little Rock",
+       "city": "Little Rock",
+       "region": "Arkansas"
+      },
+      {
+       "name": "Abuelo's - Wichita",
+       "city": "Wichita",
+       "region": "Kansas"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Queso Dip",
+       "section": "appetizer",
+       "description": "Creamy melted cheese dip served warm with tortilla chips, a signature starter at Abuelo's.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "white cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "milk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "green chilies",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tortilla chips",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Mamacita's Enchiladas",
+       "section": "main",
+       "description": "Signature enchiladas filled with seasoned chicken, topped with a creamy poblano sauce and cheese.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "corn tortillas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shredded chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "poblano cream sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cheese",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Camarones a la Diabla",
+       "section": "main",
+       "description": "Spicy shrimp saut\u00e9ed in a fiery diabla sauce, served with rice and tortillas.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "shrimp",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "diabla chile sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chile Relleno",
+       "section": "main",
+       "description": "Roasted poblano pepper stuffed with cheese, lightly battered and fried, topped with ranchero sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "poblano pepper",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "egg batter",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ranchero sauce",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fajitas Grill",
+       "section": "main",
+       "description": "Sizzling platter of marinated grilled beef or chicken with peppers, onions, and tortillas.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "beef or chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bell peppers",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "flour tortillas",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Tortilla Soup",
+       "section": "appetizer",
+       "description": "Traditional Mexican soup with shredded chicken, tomato broth, and crispy tortilla strips.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "chicken broth",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shredded chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tortilla strips",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Sopapillas",
+       "section": "dessert",
+       "description": "Warm, puffy fried pastries dusted with cinnamon sugar and drizzled with honey.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "flour dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cinnamon sugar",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "honey",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "House Margarita",
+       "section": "drink",
+       "description": "Classic frozen or on-the-rocks margarita made with fresh lime juice and premium tequila.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "tequila",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lime juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "triple sec",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ice",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "El Fenix",
+     "rank": 2,
+     "website": "https://www.elfenix.com/",
+     "summary": "Historic Tex-Mex chain founded in 1918, serving classic combination plates and enchiladas across Texas.",
+     "branches": [
+      {
+       "name": "El Fenix - Downtown Dallas",
+       "city": "Dallas",
+       "region": "Texas"
+      },
+      {
+       "name": "El Fenix - Fort Worth",
+       "city": "Fort Worth",
+       "region": "Texas"
+      },
+      {
+       "name": "El Fenix - Plano",
+       "city": "Plano",
+       "region": "Texas"
+      },
+      {
+       "name": "El Fenix - Arlington",
+       "city": "Arlington",
+       "region": "Texas"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Original Chile con Queso",
+       "section": "appetizer",
+       "description": "El Fenix's founding recipe queso dip, made with melted cheese and diced tomatoes, served with chips.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "diced tomatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "jalape\u00f1os",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tortilla chips",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Cheese Enchiladas with Chili Gravy",
+       "section": "main",
+       "description": "Classic Tex-Mex cheese enchiladas smothered in a rich, spiced chili gravy sauce.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "corn tortillas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shredded cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chili gravy",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onions",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Tex-Mex Combination Plate",
+       "section": "main",
+       "description": "A hearty plate combining enchiladas, tamale, rice, and beans, representing classic Tex-Mex comfort food.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "beef enchilada",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tamale",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "refried beans",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "Mexican rice",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Beef Tamales",
+       "section": "main",
+       "description": "Traditional masa dough filled with seasoned shredded beef, steamed in corn husks.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "masa dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shredded beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "corn husk",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "red chili sauce",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Chalupas",
+       "section": "main",
+       "description": "Crispy corn tortillas topped with refried beans, chicken, lettuce, cheese, and sour cream.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "crispy corn tortilla",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shredded chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "refried beans",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lettuce and cheese",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Queso Flameado",
+       "section": "appetizer",
+       "description": "Melted cheese flamb\u00e9ed tableside with chorizo, served with warm tortillas.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "melted cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chorizo",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "flour tortillas",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Sopapillas",
+       "section": "dessert",
+       "description": "Golden fried pastry puffs served with honey, a beloved El Fenix dessert since 1918.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "flour dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "honey",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cinnamon sugar",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Frozen Margarita",
+       "section": "drink",
+       "description": "El Fenix's popular frozen margarita, blending tequila and lime in a smooth icy texture.",
+       "price": null,
+       "ingredients": [
+        {
+         "name": "tequila",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lime juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "triple sec",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ice",
+         "is_core": true,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "middle-eastern",
+   "name": "Middle Eastern",
+   "restaurants": [
+    {
+     "name": "Naf Naf Grill",
+     "rank": 1,
+     "website": "https://nafnafgrill.com/",
+     "summary": "Fast-casual Middle Eastern chain known for pitas, bowls, and hummus with numerous locations across the U.S.",
+     "branches": [
+      {
+       "name": "Naf Naf Grill - Chicago",
+       "city": "Chicago",
+       "region": "Illinois"
+      },
+      {
+       "name": "Naf Naf Grill - Naperville",
+       "city": "Naperville",
+       "region": "Illinois"
+      },
+      {
+       "name": "Naf Naf Grill - Columbus",
+       "city": "Columbus",
+       "region": "Ohio"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Original Pita",
+       "section": "main",
+       "description": "Warm pita filled with a choice of protein, garlic sauce, hummus, and fresh toppings.",
+       "price": 9.5,
+       "ingredients": [
+        {
+         "name": "pita bread",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken or beef",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "hummus",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lettuce",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Double Trouble Pita",
+       "section": "main",
+       "description": "Pita stuffed with two proteins (chicken and steak) plus garlic sauce and toppings.",
+       "price": 10.5,
+       "ingredients": [
+        {
+         "name": "pita bread",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "chicken",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "steak",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pickles",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Shawarma Pita",
+       "section": "main",
+       "description": "Marinated shawarma-spiced chicken wrapped in pita with garlic sauce and fresh vegetables.",
+       "price": 9.75,
+       "ingredients": [
+        {
+         "name": "chicken thigh",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shawarma spice blend",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pita bread",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "onion",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Falafel Pita",
+       "section": "main",
+       "description": "Crispy chickpea falafel balls in pita with tahini sauce and salad toppings.",
+       "price": 8.75,
+       "ingredients": [
+        {
+         "name": "chickpeas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "parsley",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pita bread",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tahini sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cucumber",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Hummus Trio",
+       "section": "appetizer",
+       "description": "Sampler of classic, spicy, and roasted garlic hummus served with pita chips.",
+       "price": 6.5,
+       "ingredients": [
+        {
+         "name": "chickpeas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tahini",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "olive oil",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pita chips",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Naf Fries",
+       "section": "side",
+       "description": "Crispy fries topped with garlic sauce, feta, and herbs.",
+       "price": 4.5,
+       "ingredients": [
+        {
+         "name": "potatoes",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "feta cheese",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "parsley",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Baklava",
+       "section": "dessert",
+       "description": "Layered phyllo pastry filled with chopped nuts and sweet syrup.",
+       "price": 3.25,
+       "ingredients": [
+        {
+         "name": "phyllo dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "walnuts",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "honey syrup",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fresh Lemonade",
+       "section": "drink",
+       "description": "Refreshing house-made lemonade with a hint of mint.",
+       "price": 2.75,
+       "ingredients": [
+        {
+         "name": "lemon juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "water",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "mint leaves",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Pita Inn",
+     "rank": 2,
+     "website": "https://pitainn.com/",
+     "summary": "Popular Mediterranean and Middle Eastern eatery chain offering fresh pitas, shawarma, and falafel across multiple Chicago-area branches.",
+     "branches": [
+      {
+       "name": "Pita Inn - Skokie",
+       "city": "Skokie",
+       "region": "Illinois"
+      },
+      {
+       "name": "Pita Inn - Wheeling",
+       "city": "Wheeling",
+       "region": "Illinois"
+      },
+      {
+       "name": "Pita Inn - Hoffman Estates",
+       "city": "Hoffman Estates",
+       "region": "Illinois"
+      }
+     ],
+     "dishes": [
+      {
+       "name": "Falafel Sandwich",
+       "section": "main",
+       "description": "Golden-fried falafel balls served in fresh pita with tahini and pickled vegetables.",
+       "price": 6.99,
+       "ingredients": [
+        {
+         "name": "chickpeas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "parsley",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pita bread",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tahini sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pickled turnips",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Chicken Shawarma Plate",
+       "section": "main",
+       "description": "Sliced marinated chicken shawarma served over rice with salad and garlic sauce.",
+       "price": 11.99,
+       "ingredients": [
+        {
+         "name": "chicken thigh",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "shawarma spices",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "rice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic sauce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "salad greens",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Hummus",
+       "section": "appetizer",
+       "description": "Creamy chickpea dip drizzled with olive oil, served with warm pita bread.",
+       "price": 5.49,
+       "ingredients": [
+        {
+         "name": "chickpeas",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tahini",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "olive oil",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Baba Ghanouj",
+       "section": "appetizer",
+       "description": "Smoky roasted eggplant dip blended with tahini and lemon.",
+       "price": 5.99,
+       "ingredients": [
+        {
+         "name": "eggplant",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tahini",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "garlic",
+         "is_core": false,
+         "derived": true
+        },
+        {
+         "name": "olive oil",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Tabbouleh",
+       "section": "side",
+       "description": "Fresh parsley salad with bulgur wheat, tomatoes, and lemon dressing.",
+       "price": 4.99,
+       "ingredients": [
+        {
+         "name": "parsley",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "bulgur wheat",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "lemon juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "olive oil",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fattoush Salad",
+       "section": "side",
+       "description": "Crisp mixed greens with toasted pita chips, tomatoes, and sumac dressing.",
+       "price": 6.49,
+       "ingredients": [
+        {
+         "name": "romaine lettuce",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pita chips",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "tomato",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sumac",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "cucumber",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Baklava",
+       "section": "dessert",
+       "description": "Sweet layered pastry with pistachios and honey syrup.",
+       "price": 3.5,
+       "ingredients": [
+        {
+         "name": "phyllo dough",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "pistachios",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "honey syrup",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "butter",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      },
+      {
+       "name": "Fresh-Squeezed Lemonade",
+       "section": "drink",
+       "description": "Tangy house-made lemonade served chilled.",
+       "price": 2.99,
+       "ingredients": [
+        {
+         "name": "lemon juice",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "sugar",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "water",
+         "is_core": true,
+         "derived": true
+        },
+        {
+         "name": "ice",
+         "is_core": false,
+         "derived": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "ingredient_frequency": [
+  {
+   "ingredient": "onion",
+   "dish_count": 16,
+   "restaurant_count": 10,
+   "cuisine_count": 7
+  },
+  {
+   "ingredient": "chicken",
+   "dish_count": 16,
+   "restaurant_count": 8,
+   "cuisine_count": 6
+  },
+  {
+   "ingredient": "garlic",
+   "dish_count": 15,
+   "restaurant_count": 11,
+   "cuisine_count": 6
+  },
+  {
+   "ingredient": "butter",
+   "dish_count": 12,
+   "restaurant_count": 7,
+   "cuisine_count": 5
+  },
+  {
+   "ingredient": "tomato",
+   "dish_count": 12,
+   "restaurant_count": 9,
+   "cuisine_count": 5
+  },
+  {
+   "ingredient": "sugar",
+   "dish_count": 11,
+   "restaurant_count": 8,
+   "cuisine_count": 5
+  },
+  {
+   "ingredient": "soy sauce",
+   "dish_count": 9,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "potato",
+   "dish_count": 8,
+   "restaurant_count": 6,
+   "cuisine_count": 5
+  },
+  {
+   "ingredient": "rice",
+   "dish_count": 7,
+   "restaurant_count": 3,
+   "cuisine_count": 3
+  },
+  {
+   "ingredient": "rice noodles",
+   "dish_count": 7,
+   "restaurant_count": 4,
+   "cuisine_count": 3
+  },
+  {
+   "ingredient": "mushrooms",
+   "dish_count": 6,
+   "restaurant_count": 5,
+   "cuisine_count": 4
+  },
+  {
+   "ingredient": "chicken breast",
+   "dish_count": 6,
+   "restaurant_count": 4,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "lemon juice",
+   "dish_count": 6,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "parsley",
+   "dish_count": 6,
+   "restaurant_count": 4,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "yogurt",
+   "dish_count": 6,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "shrimp",
+   "dish_count": 5,
+   "restaurant_count": 4,
+   "cuisine_count": 4
+  },
+  {
+   "ingredient": "bell peppers",
+   "dish_count": 5,
+   "restaurant_count": 5,
+   "cuisine_count": 3
+  },
+  {
+   "ingredient": "cabbage",
+   "dish_count": 5,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "cheese",
+   "dish_count": 5,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "chickpeas",
+   "dish_count": 5,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "marinara sauce",
+   "dish_count": 5,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "mozzarella cheese",
+   "dish_count": 5,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "olive oil",
+   "dish_count": 5,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "peanuts",
+   "dish_count": 5,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "garlic sauce",
+   "dish_count": 5,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pita bread",
+   "dish_count": 5,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "turmeric",
+   "dish_count": 5,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "urad dal",
+   "dish_count": 5,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ginger",
+   "dish_count": 4,
+   "restaurant_count": 4,
+   "cuisine_count": 3
+  },
+  {
+   "ingredient": "lime juice",
+   "dish_count": 4,
+   "restaurant_count": 4,
+   "cuisine_count": 3
+  },
+  {
+   "ingredient": "milk",
+   "dish_count": 4,
+   "restaurant_count": 4,
+   "cuisine_count": 3
+  },
+  {
+   "ingredient": "baguette",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "beef",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "carrot",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "cashew",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "chocolate cake",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "cream cheese",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "eggs",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "flour tortillas",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "fried onions",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "green chili",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "ice",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "mixed vegetables",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "tequila",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "tortilla chips",
+   "dish_count": 3,
+   "restaurant_count": 3,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "basmati rice",
+   "dish_count": 3,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "biryani masala",
+   "dish_count": 3,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chickpea flour",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cornstarch",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cream sauce",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "curry leaves",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fish sauce",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ghee",
+   "dish_count": 3,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "heavy cream",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "prosciutto",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "saffron",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "shredded chicken",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "tahini",
+   "dish_count": 3,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "breadcrumbs",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "chili oil",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "chili sauce",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "egg roll wrapper",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "ground pork",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "lemon",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "pasta",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "peas",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "pork",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "pork ribs",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "romaine lettuce",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "salmon",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "sun-dried tomatoes",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "tamarind sauce",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "vanilla ice cream",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "zucchini",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 2
+  },
+  {
+   "ingredient": "asparagus",
+   "dish_count": 2,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "banana stem",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "basil",
+   "dish_count": 2,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "beef broth",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "black tea",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cardamom",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "catfish",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "champagne",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chicken thigh",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cilantro",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cinnamon sugar",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "coconut milk",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "condensed milk",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "corn tortillas",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cucumber",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "egg noodles",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "egg yolks",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "evaporated milk",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "flour dough",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ginger garlic paste",
+   "dish_count": 2,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ground beef",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "gruy\u00e8re cheese",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "honey",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "honey syrup",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "lemongrass",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pasta sheets",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "phyllo dough",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pita chips",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "refried beans",
+   "dish_count": 2,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ricotta cheese",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "salt",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "scallions",
+   "dish_count": 2,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "snails",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sour cream",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "tahini sauce",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "triple sec",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "vanilla",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "vegetable oil",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "water",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "wheat noodles",
+   "dish_count": 2,
+   "restaurant_count": 2,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "amaretto liqueur",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "angel hair pasta",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "avocado",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "avocado ranch dressing",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bacon",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bacon lardons",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "basil seeds",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "batter",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bbq sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bean sprouts",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bechamel sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "beef enchilada",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "beef or chicken",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "beef steak",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "black beans",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "black pepper",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "black peppercorns",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "boiled egg",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bolognese sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "broccoli",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "brown sugar",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "bulgur wheat",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cajun seasoning",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cashew paste",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "celery",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cheddar cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cheese blend",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chicken broth",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chicken or beef",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chickpea tofu",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chili gravy",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chili peppers",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chili powder",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chocolate",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chocolate icing",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chocolate mousse",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chocolate sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "chorizo",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "coconut chutney",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "coffee decoction",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cognac",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cookie dough",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "corn",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "corn husk",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "corn starch",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cream",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "crispy corn tortilla",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cr\u00e8me de cassis",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "cumin",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "curry broth",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "curry powder",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "diabla chile sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "diced tomatoes",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "dried chili peppers",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "duck fat",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "duck leg",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "egg batter",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "eggplant",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fenugreek seeds",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fermented tea leaves",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "feta cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "filet mignon",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "five-spice powder",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "flank steak",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "flatbread dough",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "flour",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "flour batter",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fried garlic",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fried shallots",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fris\u00e9e",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "fudge",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "garam masala",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "garlic oil",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "garlic powder",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "gin",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "gorgonzola cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "graham cracker crust",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "green onions",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "grilled chicken",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "hanger steak",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "hard-boiled egg",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "herbs",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "hoisin sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "hummus",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "iceberg lettuce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "jack cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "jalapenos",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "jalape\u00f1os",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "jelly",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "khoya (milk solids)",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "lemon cream",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "lettuce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "lettuce and cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "limoncello liqueur",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "macaroni pasta",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "madeira wine",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "maida (flour)",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mango pulp",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "marsala wine",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "masa dough",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mashed potatoes",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mayonnaise",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "melted cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mexican rice",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mint leaves",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "moong dal",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mustard seeds",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "mutton",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "oil",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "orange liqueur",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "orange sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "oreo cookies",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "paneer",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "parmesan cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pasta dough",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pearl onions",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "peppercorn sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pickled mustard greens",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pickled turnips",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pickles",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pico de gallo",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pineapple juice",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "pistachios",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "poblano cream sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "poblano pepper",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "provolone cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ranch dressing",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "ranchero sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "red chili chutney",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "red chili powder",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "red chili sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "red wine",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "red wine vinaigrette",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "rice flour",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "rigatoni pasta",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "rose syrup",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "rose water",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "salad greens",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "salami",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sambar",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "samosa pastry",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "seasonal vegetables",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "seasoned dipping sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "semolina (rava)",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sesame seeds",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "shawarma spice blend",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "shawarma spices",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "shredded beef",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "shredded cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sichuan peppercorn",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sirloin steak",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "spaghetti",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "spice rub",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "spicy cream sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "spinach",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "split peas",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sponge cake",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "steak",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sugar syrup",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sumac",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "sweet chili sauce",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "tamale",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "thick rice noodles",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "thyme",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "tortelloni pasta",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "tortilla strips",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "veal",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "vermicelli",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "vodka",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "walnuts",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "water chestnuts",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "white cheese",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "white rice",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "white wine",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "wonton wrapper",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  },
+  {
+   "ingredient": "yeast",
+   "dish_count": 1,
+   "restaurant_count": 1,
+   "cuisine_count": 1
+  }
+ ]
+}

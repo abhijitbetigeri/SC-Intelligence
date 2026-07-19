@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mise · Market Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#17120d; --bg2:#1e1811; --panel:#221a12; --panel2:#2a2016;
+    --line:#3a2c1e; --line-soft:#2f2418;
+    --cream:#f4ead9; --muted:#b6a288; --faint:#8a7860;
+    --tomato:#e5533d; --tomato-soft:#f0a493; --basil:#93b061; --amber:#e2a838;
+    --gold:#d8b26a; --blue:#6ea6c9; --plum:#c98fc0;
+    --mono:'IBM Plex Mono',ui-monospace,monospace; --sans:'IBM Plex Sans',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:15px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(120% 80% at 85% -10%,rgba(229,83,61,.10),transparent 60%),radial-gradient(90% 70% at 0% 110%,rgba(147,176,97,.07),transparent 55%)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:34px 26px 90px}
+
+  header.mast{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;
+    padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{width:46px;height:46px;border-radius:12px;flex:none;background:linear-gradient(150deg,var(--tomato),#b83a28);
+    display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:26px;color:#fff;
+    box-shadow:0 6px 20px -6px rgba(229,83,61,.6),inset 0 1px 0 rgba(255,255,255,.25)}
+  .brand h1{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:-.01em;line-height:1}
+  .brand .sub{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:6px}
+  .srcchip{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--panel)}
+  .srcchip b{color:var(--basil)}
+
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+  .kpi{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line-soft);border-radius:14px;padding:15px 16px;position:relative;overflow:hidden}
+  .kpi .lab{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+  .kpi .val{font-family:var(--serif);font-size:32px;font-weight:600;line-height:1;margin-top:8px;letter-spacing:-.02em}
+  .kpi::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tomato)}
+
+  .tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}
+  .tab{appearance:none;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--muted);
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 15px;transition:.15s}
+  .tab:hover{border-color:var(--tomato-soft);color:var(--cream)}
+  .tab[aria-selected="true"]{background:#2c2116;border-color:var(--tomato);color:#fff}
+  .tab small{color:var(--faint)}
+
+  .grid{display:grid;grid-template-columns:1.62fr 1fr;gap:20px;align-items:start}
+  .card{background:var(--panel);border:1px solid var(--line-soft);border-radius:16px;overflow:hidden}
+  .card>.head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line-soft)}
+  .card>.head h2{font-family:var(--serif);font-weight:600;font-size:18px}
+  .card>.head .note{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+  /* restaurant list */
+  .rest{border-bottom:1px solid var(--line-soft);padding:16px 20px}
+  .rest:last-child{border-bottom:0}
+  .rest .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .rest .rk{font-family:var(--mono);font-size:10px;color:var(--gold);border:1px solid rgba(216,178,106,.4);border-radius:5px;padding:1px 6px}
+  .rest .nm{font-family:var(--serif);font-size:19px;font-weight:600}
+  .rest .cz{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tomato-soft)}
+  .rest .sum{color:var(--muted);font-size:13px;margin:6px 0 10px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+  .chip{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:#2a2016;border:1px solid var(--line);border-radius:6px;padding:3px 8px}
+  .chip.city{color:var(--cream)}
+  details{margin-top:8px}
+  summary{cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--basil);list-style:none;padding:6px 0}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--faint)} details[open] summary::before{content:"▾ "}
+  .dish{padding:9px 0;border-top:1px solid var(--line-soft)}
+  .dish .dn{font-weight:500;font-size:14px}
+  .dish .dn .sec{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin-left:8px}
+  .dish .dd{color:var(--faint);font-size:12px;margin:2px 0 6px}
+  .ings{display:flex;flex-wrap:wrap;gap:5px}
+  .ing{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:5px;border:1px solid}
+  .ing.core{color:var(--cream);background:rgba(147,176,97,.10);border-color:rgba(147,176,97,.35)}
+  .ing.sub{color:var(--muted);background:transparent;border-color:var(--line)}
+  .ing.derived{border-style:dashed}
+
+  /* ingredient demand */
+  .demand{padding:14px 20px 18px}
+  .demand .legend{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.05em;margin-bottom:14px;line-height:1.6}
+  .drow{margin-bottom:11px}
+  .drow .t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .drow .nm{font-size:13px}
+  .drow .ct{font-family:var(--mono);font-size:11px;color:var(--gold)}
+  .drow .ct small{color:var(--faint)}
+  .bar{height:8px;border-radius:5px;background:#2c2217;overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--tomato),var(--gold));transition:width .6s cubic-bezier(.2,.7,.2,1)}
+
+  footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer a{color:var(--basil);text-decoration:none}
+  .loading{padding:60px;text-align:center;color:var(--faint);font-family:var(--mono)}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <div class="brand">
+      <div class="mark">M</div>
+      <div><h1>Market Intelligence</h1><div class="sub">Restaurants · Menus · Ingredients — scraped across cuisines</div></div>
+    </div>
+    <div class="srcchip" id="src">source · <b>InsForge mi_* tables</b></div>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+  <nav class="tabs" id="tabs"></nav>
+
+  <div class="grid">
+    <div class="card">
+      <div class="head"><h2 id="restTitle">Restaurants</h2><span class="note">branches · menus · ingredients</span></div>
+      <div id="restBody"><div class="loading">Loading market data…</div></div>
+    </div>
+    <div class="card">
+      <div class="head"><h2>Ingredient demand</h2><span class="note">across the market</span></div>
+      <div class="demand">
+        <p class="legend">How many dishes use each ingredient (and across how many cuisines). This is the cross-restaurant supply-chain signal — where shared procurement leverage lives.</p>
+        <div id="demandBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Mise — AGI Summit 2026 · <a href="../docs/menu-intelligence.md">how it's scraped →</a></span>
+    <span><a href="index.html">Branch dashboard →</a> · <a href="mesh.html">Mesh Console →</a></span>
+  </footer>
+</div>
+
+<script>
+let DATA=null, filter="all";
+const el=id=>document.getElementById(id);
+
+function kpiCards(t){
+  const items=[["Cuisines",t.cuisines],["Restaurants",t.restaurants],["Branches",t.branches],["Dishes",t.dishes],["Ingredients",t.ingredients]];
+  el("kpis").innerHTML=items.map(([l,v])=>`<div class="kpi"><div class="lab">${l}</div><div class="val">${v}</div></div>`).join("");
+}
+function tabs(){
+  const all=`<button class="tab" data-c="all" aria-selected="${filter==='all'}">All <small>· ${DATA.cuisines.length}</small></button>`;
+  el("tabs").innerHTML=all+DATA.cuisines.map(c=>`<button class="tab" data-c="${c.id}" aria-selected="${filter===c.id}">${c.name} <small>· ${c.restaurants.length}</small></button>`).join("");
+  document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{filter=b.dataset.c;renderRest();tabs();}));
+}
+function renderRest(){
+  const cz = filter==="all"?DATA.cuisines:DATA.cuisines.filter(c=>c.id===filter);
+  el("restTitle").textContent = filter==="all"?"Restaurants — all cuisines":(cz[0]?cz[0].name:"")+" restaurants";
+  let html="";
+  cz.forEach(c=>c.restaurants.forEach(r=>{
+    const branches=(r.branches||[]).map(b=>`<span class="chip city">${b.city||b.name||""}${b.region?`<span style="color:var(--faint)"> · ${b.region}</span>`:""}</span>`).join("");
+    const dishes=(r.dishes||[]).map(d=>{
+      const ings=(d.ingredients||[]).map(i=>`<span class="ing ${i.is_core?'core':'sub'}${i.derived?' derived':''}">${i.name}</span>`).join("");
+      return `<div class="dish"><div class="dn">${d.name}<span class="sec">${d.section||""}</span></div>${d.description?`<div class="dd">${d.description}</div>`:""}<div class="ings">${ings}</div></div>`;
+    }).join("");
+    html+=`<div class="rest">
+      <div class="top"><span class="rk">#${r.rank||"?"}</span><span class="nm">${r.name}</span><span class="cz">${c.name}</span></div>
+      ${r.summary?`<div class="sum">${r.summary}</div>`:""}
+      <div class="chips">${branches}</div>
+      <details><summary>${(r.dishes||[]).length} dishes · ingredients</summary>${dishes}</details>
+    </div>`;
+  }));
+  el("restBody").innerHTML=html||`<div class="loading">No restaurants.</div>`;
+}
+function renderDemand(){
+  const top=DATA.ingredient_frequency.slice(0,16);
+  const max=top.length?top[0].dish_count:1;
+  el("demandBody").innerHTML=top.map(x=>`
+    <div class="drow">
+      <div class="t"><span class="nm">${x.ingredient}</span><span class="ct">${x.dish_count}<small> dishes · ${x.cuisine_count} cuisines</small></span></div>
+      <div class="bar"><i style="width:${Math.max(6,x.dish_count/max*100)}%"></i></div>
+    </div>`).join("");
+}
+fetch("market-data.json").then(r=>r.json()).then(d=>{
+  DATA=d; kpiCards(d.totals); tabs(); renderRest(); renderDemand();
+}).catch(e=>{el("restBody").innerHTML=`<div class="loading">Could not load market-data.json — serve this over HTTP (see web/README).</div>`;});
+</script>
+</body>
+</html>
