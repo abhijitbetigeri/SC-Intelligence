@@ -7,6 +7,11 @@ promotions); consumers get predictable availability of the dishes they love.
 
 > *"mise en place" — everything in its place, ready before service.*
 
+**Why "Mise"?** *Mise en place* (French, "putting in place") is the discipline every professional
+kitchen runs on: before service, a cook preps and arranges every ingredient so that when orders
+fire, nothing is missing and nothing slows the line. Mise does the same for the supply chain — it
+keeps the right ingredients in the right branch at the right time, ready before demand hits.
+
 ## ▶ Live demo
 
 **https://k3trn3a2.insforge.site** (hosted on InsForge, light + dark mode)
