@@ -79,6 +79,8 @@ showpiece); (2) autonomous promotions from surplus / near-expiry stock; (3) cons
 
 ## Architecture
 
+📐 **[Slide-ready diagram](docs/architecture-diagram.html)** (open in a browser / screenshot for a deck) · full write-up in [docs/architecture.md](docs/architecture.md).
+
 Three layers, each doing what it's best at:
 
 ```
