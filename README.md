@@ -1,6 +1,6 @@
 # Mise — Intelligence Supply Chain for Restaurants
 
-> 🏆 **Winner — AGI Summit 2026 Hackathon** · *"Project Misé: Agent Mesh for Zero Waste"*
+> 🏆 **Winner — AGI Summit 2026 Hackathon** · *Agent Mesh for Zero Waste*
 
 **AGI Summit 2026.** A multi-agent system that keeps the right ingredients in the right
 branch at the right time, driven by real customer demand. Owners get an autonomous back-of-house
@@ -13,6 +13,8 @@ promotions); consumers get predictable availability of the dishes they love.
 kitchen runs on: before service, a cook preps and arranges every ingredient so that when orders
 fire, nothing is missing and nothing slows the line. Mise does the same for the supply chain — it
 keeps the right ingredients in the right branch at the right time, ready before demand hits.
+
+📖 **The story:** [Agent Mesh for Zero Waste — how we built it and won](docs/blog.md).
 
 ## ▶ Live demo
 
