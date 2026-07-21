@@ -38,6 +38,36 @@ single prompt returning a plan. You have to *show* the agents talking.
 
 ## Three layers, each doing what it's best at
 
+```
+   Consumers · Owners & branch admins
+        │  interact through the UI
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │  HOSTED UI   Landing · Mesh Console · Branch Operations · Market Intel   │  (+ Persona chat)
+   └────────────────────────────────────────────────────────────────────────┘
+        │
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │  COTAL — coordination   agents negotiate over channels; anycast on       │
+   │  #demand · #rebalance · #procurement · #promotions · #decisions          │
+   └────────────────────────────────────────────────────────────────────────┘
+        │  a node that must DECIDE calls a capability  ↓  (MCP bridge)
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │  RUNTYPE — reasoning    6 capabilities (agents + flows) as MCP tools     │
+   │  forecast · rebalance_and_procure ★opus · promotion · concierge ·        │
+   │  inventory · menu_intelligence                                           │
+   └────────────────────────────────────────────────────────────────────────┘
+        │  reads / writes shared state  ↓
+   ┌────────────────────────────────────────────────────────────────────────┐
+   │  INSFORGE — state + hosting   Postgres: inventory · transfers · rfqs ·   │
+   │  bids · purchase_orders · forecasts · mi_* market data · serves the UI   │
+   └────────────────────────────────────────────────────────────────────────┘
+
+   one cycle:  36kg short → transfer 10kg (Marina→Downtown) → net 26kg
+               → auction (Bay Foods $2.05 beats NorCal $2.20) → $53.30 PO, one approval
+```
+
+> A [slide-ready version of this diagram](architecture-diagram.html) (colored, light + dark) and the
+> full write-up live in [architecture.md](architecture.md).
+
 We deliberately didn't build one giant agent. We split the system by what each part is actually good
 at:
 
